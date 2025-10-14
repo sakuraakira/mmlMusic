@@ -1,0 +1,47 @@
+UI_CH = {
+// MML Player UI
+UI_MMLPlayer_Title = "MML 播放器",
+UI_MMLPlayer_InputLabel = "輸入 MML 代碼：",
+UI_MMLPlayer_Example = "範例",
+UI_MMLPlayer_Play = "播放",
+UI_MMLPlayer_Stop = "停止",
+UI_MMLPlayer_Pause = "暫停",
+UI_MMLPlayer_Resume = "繼續",
+UI_MMLPlayer_Validate = "驗證",
+UI_MMLPlayer_Clear = "清除",
+UI_MMLPlayer_LoadExample = "載入範例",
+UI_MMLPlayer_Ready = "就緒",
+UI_MMLPlayer_Playing = "播放中...",
+UI_MMLPlayer_Stopped = "已停止",
+UI_MMLPlayer_Paused = "已暫停",
+UI_MMLPlayer_Finished = "播放完畢",
+UI_MMLPlayer_EmptyInput = "請輸入 MML 代碼",
+UI_MMLPlayer_ParseError = "解析錯誤 - 請檢查 MML 語法",
+UI_MMLPlayer_PlayFailed = "播放失敗",
+UI_MMLPlayer_ValidSyntax = "語法正確",
+UI_MMLPlayer_InvalidSyntax = "語法錯誤",
+UI_MMLPlayer_ExampleLoaded = "已載入範例",
+UI_MMLPlayer_Notes = "音符",
+UI_Characters = "字元",
+
+// Context Menu
+ContextMenu_Bard_OpenMMLPlayer = "開啟 MML 播放器",
+ContextMenu_PlayMusicSheet = "播放樂譜",
+ContextMenu_ViewSheetInfo = "查看樂譜資訊",
+ContextMenu_RequireTrait = "需要特質",
+ContextMenu_RequireMusicianTrait = "你需要音樂家特質才能演奏音樂",
+ContextMenu_NoMusic = "沒有音樂",
+ContextMenu_MusicSheetEmpty = "這張樂譜是空白的",
+
+// Music Sheet
+UI_MusicSheet_Instrument = "樂器",
+UI_MusicSheet_Notes = "音符數",
+UI_MusicSheet_Length = "長度",
+UI_MusicSheet_NoMusic = "這張樂譜沒有音樂！",
+UI_MusicSheet_ParseError = "解析 MML 失敗",
+UI_MusicSheet_NowPlaying = "正在播放",
+UI_MusicSheet_PlayFailed = "播放音樂失敗",
+
+// Tooltip
+Tooltip_ItemNotInInventory = "物品不在背包中",
+}

@@ -1,0 +1,61 @@
+{
+  // ---- 基本：針對 PZ 的 Lua ----
+  "Lua.runtime.version": "Lua 5.1",
+  "Lua.workspace.checkThirdParty": false,
+
+  // 讓 LSP 載入 Umbrella 型別庫（使用擴充套件內建的 library）
+  // 如果你是用 VS Code 市集的 Umbrella 擴充，這條通常就夠了：
+  "Lua.workspace.library": [
+    "${3rd}/ProjectZomboid-Umbrella/library",
+    "${addons}/umbrella-unstable/module/library"
+  ],
+
+  // 常見 PZ 全域，避免未定義警告
+  "Lua.diagnostics.globals": [
+    "Events",
+    "sendClientCommand",
+    "sendServerCommand",
+    "ISWorldMap_instance",
+    "ISWorldMap",
+    "ISWorldMapSymbols",
+    "HaloTextHelper",
+    "DebugLog",
+    "getPlayer",
+    "getText",
+    "IsoCell",
+    "IsoPlayer",
+    "IsoWindow",
+    "TimedActions",
+    "ISUI"
+  ],
+
+  // ---- 編輯體驗 ----
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // ---- 建議： scripts(.txt) 相關（語法高亮/格式化交給 Script Support/ZedScript）----
+  // 若你的 scripts 檔名不是標準副檔名，可手動關聯語言模式：
+  "files.associations": {
+    "*.txt": "plaintext" // 先保留預設；若需要可改成擴充套件提供的語言 id
+  },
+  "Lua.runtime.path": [
+    "?.lua",
+    "?/init.lua",
+    "server/?.lua"
+  ],
+  "Lua.completion.requireSeparator": "/",
+  "Lua.runtime.builtin": {
+    "debug": "disable",
+    "io": "disable",
+    "package": "disable"
+  }
+
+  // ---- (可選) 如果你把 Umbrella repo clone 到本機，改用本機路徑：----
+  // "Lua.workspace.library": [
+  //   "C:/path/to/ProjectZomboid-Umbrella/library"
+  // ]
+}

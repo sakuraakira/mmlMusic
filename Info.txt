@@ -1,0 +1,22 @@
+Paint on ground
+
+refer to  Steam workshop ID 499153179 
+
+Spraypaint Mod for Project Zomboid
+
+Concept Idea by Thuztor
+
+Original Code by:
+- BlindCoder, Peanuts, Thuztor
+- Contributors: Ryun, gon
+- with initial help from RobertJohnson
+
+Textures by Thuztor
+3D Models by Thuztor
+
+What does this mod?
+
+You can find spraycans and chalk in some containers:
+- 9 colours (black, white, red, blue, green, yellow, orange, violet, cyan)
+- plenty of shapes to spray (alphabet, numbers, special characters, special symbols)
+- Single and Multiplayer support!

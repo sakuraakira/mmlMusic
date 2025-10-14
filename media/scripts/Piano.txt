@@ -1,0 +1,679 @@
+/**
+* MML Music - Piano Sounds
+* Correct format for Project Zomboid
+*/
+
+module mmlMusic {
+    
+    sound PianoA1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoAs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_As1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoB1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_B1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoC2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoCs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Cs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoD2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_D2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoDs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoE2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_E2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoF2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_F2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoFs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoG2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_G2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoGs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Gs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoA2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoAs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_As2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoB2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_B2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoC3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoCs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Cs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoD3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_D3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoDs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoE3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_E3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoF3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_F3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoFs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoG3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_G3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoGs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Gs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoA3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoAs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_As3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoB3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_B3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Cs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_D4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_E4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_F4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_G4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Gs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_As4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_B4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Cs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_D5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_E5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_F5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_G5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Gs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_As5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_B5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoC6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoCs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Cs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoD6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_D6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoDs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound PianoE6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_E6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+}

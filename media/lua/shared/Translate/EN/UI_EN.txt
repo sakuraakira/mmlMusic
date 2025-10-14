@@ -1,0 +1,46 @@
+UI_EN = {
+UI_MMLPlayer_Title = "MML Player",
+UI_MMLPlayer_InputLabel = "Enter MML Code:",
+UI_MMLPlayer_Example = "Example",
+UI_MMLPlayer_Play = "Play",
+UI_MMLPlayer_Stop = "Stop",
+UI_MMLPlayer_Pause = "Pause",
+UI_MMLPlayer_Resume = "Resume",
+UI_MMLPlayer_Validate = "Validate",
+UI_MMLPlayer_Clear = "Clear",
+UI_MMLPlayer_LoadExample = "Load Example",
+UI_MMLPlayer_Ready = "Ready",
+UI_MMLPlayer_Playing = "Playing...",
+UI_MMLPlayer_Stopped = "Stopped",
+UI_MMLPlayer_Paused = "Paused",
+UI_MMLPlayer_Finished = "Finished",
+UI_MMLPlayer_EmptyInput = "Please enter MML code",
+UI_MMLPlayer_ParseError = "Parse error - check your MML syntax",
+UI_MMLPlayer_PlayFailed = "Failed to play",
+UI_MMLPlayer_ValidSyntax = "Valid syntax",
+UI_MMLPlayer_InvalidSyntax = "Invalid syntax",
+UI_MMLPlayer_ExampleLoaded = "Example loaded",
+UI_MMLPlayer_Notes = "notes",
+UI_Characters = "characters",
+
+// Context Menu
+ContextMenu_Bard_OpenMMLPlayer = "Open MML Player",
+ContextMenu_PlayMusicSheet = "Play Music Sheet",
+ContextMenu_ViewSheetInfo = "View Sheet Info",
+ContextMenu_RequireTrait = "Requires Trait",
+ContextMenu_RequireMusicianTrait = "You need the Musician trait to play music",
+ContextMenu_NoMusic = "No Music",
+ContextMenu_MusicSheetEmpty = "This music sheet is empty",
+
+// Music Sheet
+UI_MusicSheet_Instrument = "Instrument",
+UI_MusicSheet_Notes = "Notes",
+UI_MusicSheet_Length = "Length",
+UI_MusicSheet_NoMusic = "This sheet has no music!",
+UI_MusicSheet_ParseError = "Failed to parse MML",
+UI_MusicSheet_NowPlaying = "Now Playing",
+UI_MusicSheet_PlayFailed = "Failed to play music",
+
+// Tooltip
+Tooltip_ItemNotInInventory = "Item not in inventory",
+}
