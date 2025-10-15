@@ -236,9 +236,11 @@ function MMLPlayerUI:onPlay()
   -- 創建新的播放器
   self.mmlPlayer = MMLPlayer:new(self.instrument)
 
-  -- 組合為單一字串（以逗號區分 track），UI 顯示與播放皆使用該字串由 player 處理預設 l4/o4 與 tempo
+  -- 組合為單一字串（以逗號區分 track）
   local combined = string.format("%s,%s,%s", mml1, mml2, mml3)
-  local ok = self.mmlPlayer:loadMMLFromCombined(combined)
+
+  -- 修正：使用正確的 API，讓 2/3 軌共享第 1 軌的 T(tempo)
+  local ok = self.mmlPlayer:loadMML(combined)
 
   -- 顯示合併後結果（方便使用者查看）
   self.infoLabel:setName(self.mmlPlayer:getMMLString() or "")

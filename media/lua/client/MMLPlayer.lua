@@ -49,15 +49,6 @@ local function trim(s)
     return s:match("^%s*(.-)%s*$")
 end
 
--- ============================================================
--- 輔助函數:sanitize n tokens (避免 n602 被誤解析)
--- ============================================================
-local function sanitizeNTokens(mml)
-    if not mml then return "" end
-    -- 這裡可以添加 n 指令的驗證邏輯
-    -- 目前直接返回,因為 parser 已經正確處理
-    return mml
-end
 
 -- ============================================================
 -- 統一入口:loadMML
@@ -72,7 +63,7 @@ function MMLPlayer:loadMML(mmlInput)
     -- 將輸入字符串按逗號分割成最多 3 個 track
     local rawTracks = {}
     for token in mmlInput:gmatch("([^,]+)") do
-        table.insert(rawTracks, sanitizeNTokens(trim(token)))
+        table.insert(rawTracks, trim(token))
         if #rawTracks >= 3 then break end
     end
 
@@ -97,7 +88,7 @@ function MMLPlayer:loadMML(mmlInput)
             local t = rawTracks[i]:match('[tT]%s*%d+')
             if t then
                 print(string.format(
-                "[MMLPlayer] Warning: Tempo in Track %d will be ignored (only Track 1 tempo is used)", i))
+                    "[MMLPlayer] Warning: Tempo in Track %d will be ignored (only Track 1 tempo is used)", i))
                 break
             end
         end
@@ -223,18 +214,9 @@ function MMLPlayer:loadMML(mmlInput)
     return anyNotes > 0
 end
 
--- ============================================================
--- 棄用的舊函數 (保留向後兼容)
--- ============================================================
-function MMLPlayer:loadMMLs(mmlArray)
-    print("[MMLPlayer] Warning: loadMMLs() is deprecated, use loadMML() instead")
-    local combined = table.concat(mmlArray, ",")
-    return self:loadMML(combined)
-end
-
-function MMLPlayer:loadMMLFromCombined(combined)
-    print("[MMLPlayer] Warning: loadMMLFromCombined() is deprecated, use loadMML() instead")
-    return self:loadMML(combined)
+-- 小別名：保持與舊 UI/呼叫端相容
+function MMLPlayer:loadMMLFromCombined(mmlInput)
+    return self:loadMML(mmlInput)
 end
 
 -- ============================================================
@@ -519,23 +501,79 @@ end
 -- 嘗試解析多個 MML 字符串,回傳每軌解析細節
 -- ============================================================
 function MMLPlayer:parseTracks(mmlArray)
+    -- 讓驗證流程與播放一致：只採用 Track 1 的 tempo，並讓 2/3 軌共享 tempo
     local results = {}
-    for i, mml in ipairs(mmlArray) do
-        if not mml or mml == "" then
-            results[i] = { ok = true, notes = 0, duration = 0 }
-        else
-            local safeMml = sanitizeNTokens(mml)
-            local ok, seq_or_err, dur = pcall(function()
-                local parser = MMLParser:new()
-                return parser:parse(safeMml, self.instrument), parser.totalDuration or 0
-            end)
-            if ok and seq_or_err then
-                results[i] = { ok = true, notes = #seq_or_err, duration = dur or 0 }
-            else
-                results[i] = { ok = false, err = tostring(seq_or_err) }
-            end
+    local rawTracks = {}
+
+    for i = 1, 3 do
+        local s = (mmlArray and mmlArray[i]) or ""
+        -- 與 loadMML 一樣先淨化、去頭尾空白
+        s = trim(s)
+        rawTracks[i] = s or ""
+    end
+
+    -- 取出 Track 1 的 tempo（若有），並標準化格式
+    local tempoToken = nil
+    local track1 = rawTracks[1]
+    if track1 ~= "" then
+        tempoToken = track1:match('[tT]%s*%d+')
+        if tempoToken then
+            tempoToken = tempoToken:gsub('%s+', '')
         end
     end
+
+    -- 建立共享 tempo 的 parser
+    local sharedTempo = { value = 120 }
+    local parsers = {}
+
+    for i = 1, 3 do
+        local s = rawTracks[i] or ""
+
+        -- 移除各軌上的 tempo 指令（只保留 Track 1 的）
+        s = s:gsub('[tT]%s*%d+', '')
+        s = trim(s)
+
+        -- 若缺少 L/O，補上與 loadMML 相同的預設
+        local hasL = s:match('^%s*[lL]%d+') ~= nil
+        local checkO
+        if hasL then
+            local lToken = s:match('^%s*([lL]%d+)')
+            local rest = s:sub((lToken and #lToken or 0) + 1)
+            checkO = rest:match('^%s*[oO]%d+')
+        else
+            checkO = s:match('^%s*[oO]%d+')
+        end
+        if not hasL then s = "l4 " .. s end
+        if not checkO then s = "o4 " .. s end
+
+        -- 只在 Track 1 前面加回 tempo
+        local parseInput = s
+        if i == 1 and tempoToken and parseInput ~= "" then
+            parseInput = tempoToken .. " " .. parseInput
+        end
+
+        -- Track 1 建立 tempoRef，其他軌共享
+        local parser
+        if i == 1 then
+            parser = MMLParser:new()
+            sharedTempo = parser.tempoRef
+        else
+            parser = MMLParser:new(sharedTempo)
+        end
+
+        -- 解析，並捕捉錯誤
+        local ok, seq, dur = pcall(function()
+            local seq1, dur1 = parser:parse(parseInput, self.instrument)
+            return seq1 or {}, dur1 or 0
+        end)
+
+        if ok then
+            results[i] = { ok = true, notes = #seq, duration = dur }
+        else
+            results[i] = { ok = false, err = tostring(seq) }
+        end
+    end
+
     return results
 end
 
