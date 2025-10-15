@@ -5,7 +5,7 @@ local MMLPlayer = require('MMLPlayer')
 local MMLParser = require('MMLParser')
 
 local WIDTH = 650
-local HEIGHT = 520
+local HEIGHT = 550
 
 function MMLPlayerUI:new(instrument)
   local x = getCore():getScreenWidth() / 2 - WIDTH / 2
@@ -101,7 +101,7 @@ function MMLPlayerUI:initialise()
   self:addChild(self.textArea3)
 
   -- 範例標籤（位置改為依 textArea3 底部）
-  local exampleText = "Example: Track1 T120 L4 CDEFG | Track2 T120 L4 EGBE | Track3 T120 L4 C2C2"
+  local exampleText = "Example: Track1 T120 L4CDEFG | Track2 L4 EGBEBEBEGA | Track3 L2 CCCC"
   self.labelExample = ISLabel:new(
     padding, self.textArea3:getBottom() + padding, buttonHeight,
     exampleText,
@@ -292,6 +292,8 @@ function MMLPlayerUI:onValidate()
   local mml2 = self.textArea2:getText() or ""
   local mml3 = self.textArea3:getText() or ""
 
+  MMLPlayer:debugValidateTriple(mml1, mml2, mml3)
+
   if mml1 == "" and mml2 == "" and mml3 == "" then
     self.statusLabel:setName(getText("UI_MMLPlayer_EmptyInput") or "Please enter MML code")
     return
@@ -312,10 +314,10 @@ function MMLPlayerUI:onValidate()
       if res.duration and res.duration > maxDuration then maxDuration = res.duration end
       -- 使用 formatDurationMs 把毫秒轉成可讀播放長度字串
       local durStr = formatDurationMs(res.duration or 0)
-      table.insert(lines, string.format("Track %d: OK — %d notes, %s", i, res.notes or 0, durStr))
+      table.insert(lines, string.format("Track %d: OK %d , %s", i, res.notes or 0, durStr))
     else
       anyError = true
-      table.insert(lines, string.format("Track %d: ERROR — %s", i, res.err or "parse error"))
+      table.insert(lines, string.format("Track %d: ERROR %s", i, res.err or "parse error"))
     end
   end
 

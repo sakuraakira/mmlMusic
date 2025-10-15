@@ -1,10 +1,127 @@
-/**
-* MML Music - Piano Sounds
-* Using 24 samples with pitch adjustment
-* Coverage: A1 to G7
-*/
-
 module mmlMusic {
+
+    sound PianoC1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_C1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+
+        }
+    }
+
+    sound PianoCs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_C1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+
+        }
+    }
+
+    sound PianoD1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+
+        }
+    }
+
+    sound PianoDs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+
+        }
+    }
+
+    sound PianoE1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+
+        }
+    }
+
+    sound PianoF1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+
+        }
+    }
+
+    sound PianoFs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+
+        }
+    }
+
+    sound PianoG1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+
+        }
+    }
+
+    sound PianoGs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+
+        }
+    }
 
     sound PianoA1 {
         category = Music,
@@ -29,6 +146,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -42,6 +160,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 0.9438743127,
+
         }
     }
 
@@ -68,6 +187,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -76,11 +196,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_C2.ogg,
+            file = media/sound/piano/Piano_Ds2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -107,6 +228,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -115,11 +237,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Ds2.ogg,
+            file = media/sound/piano/Piano_Fs2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -146,6 +269,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -154,11 +278,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Fs2.ogg,
+            file = media/sound/piano/Piano_A2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -185,6 +310,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -193,11 +319,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_A2.ogg,
+            file = media/sound/piano/Piano_C3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -224,6 +351,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -232,11 +360,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_C3.ogg,
+            file = media/sound/piano/Piano_Ds3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -263,6 +392,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -271,11 +401,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Ds3.ogg,
+            file = media/sound/piano/Piano_Fs3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -302,6 +433,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -310,11 +442,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Fs3.ogg,
+            file = media/sound/piano/Piano_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -341,6 +474,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -349,11 +483,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_A3.ogg,
+            file = media/sound/piano/Piano_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -380,6 +515,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -388,11 +524,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_C4.ogg,
+            file = media/sound/piano/Piano_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -419,6 +556,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -427,11 +565,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Ds4.ogg,
+            file = media/sound/piano/Piano_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -458,6 +597,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -466,11 +606,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Fs4.ogg,
+            file = media/sound/piano/Piano_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -497,6 +638,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -505,11 +647,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_A4.ogg,
+            file = media/sound/piano/Piano_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -536,6 +679,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -544,11 +688,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_C5.ogg,
+            file = media/sound/piano/Piano_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -575,6 +720,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -583,11 +729,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Ds5.ogg,
+            file = media/sound/piano/Piano_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -614,6 +761,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -622,11 +770,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Fs5.ogg,
+            file = media/sound/piano/Piano_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -653,6 +802,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -661,11 +811,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_A5.ogg,
+            file = media/sound/piano/Piano_C6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -692,6 +843,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -700,11 +852,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_C6.ogg,
+            file = media/sound/piano/Piano_Ds6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -731,6 +884,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -739,11 +893,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Ds6.ogg,
+            file = media/sound/piano/Piano_Fs6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -770,6 +925,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -778,11 +934,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Fs6.ogg,
+            file = media/sound/piano/Piano_A6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -809,6 +966,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -817,11 +975,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_A6.ogg,
+            file = media/sound/piano/Piano_C7.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -848,6 +1007,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -856,11 +1016,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_C7.ogg,
+            file = media/sound/piano/Piano_Ds7.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -887,6 +1048,7 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
 
@@ -895,11 +1057,12 @@ module mmlMusic {
         loop = false,
         is3D = true,
         clip {
-            file = media/sound/piano/Piano_Ds7.ogg,
+            file = media/sound/piano/Piano_Fs7.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            pitch = 1.1224620483,
+            pitch = 0.9438743127,
+
         }
     }
 
@@ -926,6 +1089,35 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 1.0,
             pitch = 1.0594630944,
+
         }
     }
+
+    sound PianoGs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_A7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+
+        }
+    }
+
+    sound PianoA7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/piano/Piano_A7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+
+        }
+    }
+
 }
