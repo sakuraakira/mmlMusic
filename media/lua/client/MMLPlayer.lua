@@ -3,6 +3,7 @@ local MMLPlayer = {}
 local MMLParser = require("MMLParser")
 local MusicPlayer = require("MusicPlayer")
 
+
 -- 全局設定
 MMLPlayer.activePlayers = {}
 MMLPlayer.soundRange = nil
@@ -650,7 +651,7 @@ function MMLPlayer:debugValidateTriple(mml1, mml2, mml3)
     local ms2 = (results[2] and results[2].ms) or 0
     local ms3 = (results[3] and results[3].ms) or 0
     print(string.format("[MMLPlayer][DEBUG] Durations(ms): T1=%d  T2=%d  T3=%d", ms1, ms2, ms3))
-    print(string.format("[MMLPlayer][DEBUG] Differences (ms): T2-T1=%d  T3-T1=%d", ms2-ms1, ms3-ms1))
+    print(string.format("[MMLPlayer][DEBUG] Differences (ms): T2-T1=%d  T3-T1=%d", ms2 - ms1, ms3 - ms1))
 
     -- 若需要，輸出首 few notes 的 start/duration（方便定位問題）
     for i = 1, 3 do

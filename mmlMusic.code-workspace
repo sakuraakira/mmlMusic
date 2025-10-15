@@ -7,6 +7,33 @@
 	"settings": {
 		"files.associations": {
 			"*.txt": "plaintext"
-		}
+		},
+		"Lua.runtime.version": "Lua 5.4",
+		"Lua.runtime.plugin": "c:\\Users\\sakur\\.vscode\\extensions\\ilka.umbrella-vscode-1.1.43\\plugin\\plugin.lua",
+		"Lua.runtime.nonstandardSymbol": [
+			"/**/",
+			"`",
+			"+=",
+			"-=",
+			"*=",
+			"/=",
+			"<<=",
+			">>=",
+			"&=",
+			"|=",
+			"^="
+		],
+		"Lua.workspace.ignoreDir": [
+			".vscode",
+			".git",
+			".github",
+			"node_modules"
+		],
+		"Lua.workspace.library": [
+			"${3rd}/ProjectZomboid-Umbrella/library",
+			"${addons}/umbrella-unstable/module/library",
+			"c:\\Users\\sakur\\.vscode\\extensions\\ilka.umbrella-vscode-1.1.43\\plugin\\library\\runtime",
+			"c:\\Users\\sakur\\.vscode\\extensions\\ilka.umbrella-vscode-1.1.43\\plugin\\library\\natives\\umbrella"
+		]
 	}
 }

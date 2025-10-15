@@ -10,7 +10,7 @@ function MusicPlayer.getInstance()
 end
 
 local InstrumentParameters = {
-    ["GuitarAcoustic"] = { baseTime = 500, fadingTime = 200, polyphonic = true },
+    ["GuitarAcoustic"] = { baseTime = 400, fadingTime = 200, polyphonic = true },
     ["Banjo"] = { baseTime = 300, fadingTime = 150, polyphonic = true },
     ["GuitarElectric"] = { baseTime = 250, fadingTime = 150, polyphonic = true },
     ["GuitarBass"] = { baseTime = 350, fadingTime = 150, polyphonic = true },
@@ -19,8 +19,8 @@ local InstrumentParameters = {
     ["Saxophone"] = { baseTime = 0, fadingTime = 50, polyphonic = true },
     ["Trumpet"] = { baseTime = 0, fadingTime = 50, polyphonic = true },
     ["Violin"] = { baseTime = 50, fadingTime = 100, polyphonic = true },
-    ["Piano"] = { baseTime = 500, fadingTime = 200, polyphonic = true },
-    ["GrandPiano"] = { baseTime = 500, fadingTime = 200, polyphonic = true },
+    ["Piano"] = { baseTime = 400, fadingTime = 200, polyphonic = true },
+    ["GrandPiano"] = { baseTime = 400, fadingTime = 200, polyphonic = true },
 }
 
 function MusicPlayer:new()
@@ -32,7 +32,7 @@ function MusicPlayer:new()
 
     o.soundsPlaying = {}
     o.soundsStopping = {}
-    o.baseVolume = 0.7
+    o.baseVolume = 1.0
     o.maxDistance = 40 -- tiles
     o.range = nil
     o.playCounter = 0  -- 唯一播放計數器
