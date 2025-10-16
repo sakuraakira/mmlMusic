@@ -1,8 +1,24 @@
 -- MMLContextMenu.lua
 -- 樂譜物品的右鍵選單
+
+local PlayerItemToActionName = {
+  ['Base.GuitarAcoustic'] = 'GuitarAcoustic',
+  ['Base.Banjo'] = 'Banjo',
+  ['Base.GuitarElectricBlack'] = 'GuitarDistortion',
+  ['Base.GuitarElectricBlue'] = 'GuitarDistortion',
+  ['Base.GuitarElectricRed'] = 'GuitarDistortion',
+  ['Base.GuitarElectricBassBlack'] = 'BassFinger',
+  ['Base.GuitarElectricBassBlue'] = 'BassFinger',
+  ['Base.GuitarElectricBassRed'] = 'BassFinger',
+  ['Base.Keytar'] = 'Keytar',
+  ['Base.Flute'] = 'Flute',
+  ['Base.Saxophone'] = 'Saxophone',
+  ['Base.Trumpet'] = 'Trumpet',
+  ['Base.Violin'] = 'Violin',
+}
+
 local MMLContextMenu = {}
 local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
-local BardTrait = require('BardTrait')
 
 -- ============================================================
 -- 創建選單
@@ -25,21 +41,6 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
   -- 檢查是否是樂譜物品
   local itemType = item:getFullType()
   if not itemType:match("MusicSheet") and not itemType:match("MMLSheet") then
-    return
-  end
-
-  -- 檢查是否有 Bard 特質（如果啟用特質系統）
-  if BardTrait.getInstance().enabled and not player:HasTrait(BardTrait.getTraitType()) then
-    -- 沒有音樂家特質，顯示灰色選項
-    local option = context:addOption(
-      getText("ContextMenu_PlayMusicSheet"),
-      nil, nil
-    )
-    option.notAvailable = true
-    local tooltip = ISWorldObjectContextMenu.addToolTip()
-    tooltip:setName(getText("ContextMenu_RequireTrait"))
-    tooltip.description = getText("ContextMenu_RequireMusicianTrait")
-    option.toolTip = tooltip
     return
   end
 
@@ -119,11 +120,6 @@ function MMLContextMenu.onViewSheetInfo(player, item)
   )
 
   player:Say(text)
-
-  -- 或者可以創建一個自定義的資訊視窗
-  -- local modal = ISMusicSheetInfoModal:new(...)
-  -- modal:initialise()
-  -- modal:addToUIManager()
 end
 
 return MMLContextMenu

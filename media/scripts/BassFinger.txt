@@ -8,7 +8,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             
         }
     }
@@ -21,7 +21,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -35,7 +35,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -49,7 +49,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             
         }
     }
@@ -62,7 +62,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -76,7 +76,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -90,7 +90,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             
         }
     }
@@ -103,7 +103,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -117,7 +117,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -131,7 +131,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             
         }
     }
@@ -144,7 +144,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A1.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -158,7 +158,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -172,7 +172,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.75,
             
         }
     }
@@ -185,7 +185,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume =  0.7,
+            volume = 0.7,
             pitch = 1.0594630944,
             
         }
@@ -199,7 +199,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume =  0.7,
+            volume = 0.7,
             pitch = 0.9438743127,
             
         }
@@ -213,7 +213,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume =  0.7,
+            volume = 0.7,
             
         }
     }
@@ -226,7 +226,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume =  0.7,
+            volume = 0.7,
             pitch = 1.0594630944,
             
         }
@@ -240,7 +240,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume =  0.7,
+            volume = 0.7,
             pitch = 0.9438743127,
             
         }
@@ -254,7 +254,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume =  0.7,
+            volume = 0.7,
             
         }
     }
@@ -281,7 +281,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume =  0.7,
+            volume = 0.7,
             pitch = 0.9438743127,
             
         }
@@ -295,7 +295,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume =  0.7,
+            volume = 0.7,
             
         }
     }
@@ -336,7 +336,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.75,
+            volume = 0.7,
             
         }
     }
@@ -349,7 +349,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.75,
+            volume = 0.7,
             pitch = 1.0594630944,
             
         }
@@ -459,7 +459,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             
         }
     }
@@ -472,7 +472,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -486,7 +486,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -500,7 +500,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             
         }
     }
@@ -513,7 +513,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -527,7 +527,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -541,7 +541,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             
         }
     }
@@ -554,7 +554,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -568,7 +568,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -582,7 +582,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.85,
+            volume = 0.75,
             
         }
     }
@@ -595,7 +595,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.85,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -609,7 +609,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.85,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -623,7 +623,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.85,
+            volume = 0.75,
             
         }
     }
@@ -636,7 +636,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.85,
+            volume = 0.75,
             pitch = 1.0594630944,
             
         }
@@ -650,7 +650,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.85,
+            volume = 0.75,
             pitch = 0.9438743127,
             
         }
@@ -664,7 +664,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             
         }
     }
@@ -677,7 +677,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             pitch = 1.0594630944,
             
         }
@@ -691,7 +691,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             pitch = 0.9438743127,
             
         }
@@ -705,7 +705,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             
         }
     }
@@ -718,7 +718,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             pitch = 1.0594630944,
             
         }
@@ -732,7 +732,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             pitch = 0.9438743127,
             
         }
@@ -746,7 +746,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 1.0,
+            volume = 0.8,
             
         }
     }
@@ -759,7 +759,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             pitch = 1.0594630944,
             
         }
@@ -773,7 +773,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             pitch = 0.9438743127,
             
         }
@@ -787,7 +787,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             
         }
     }
@@ -800,7 +800,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             pitch = 1.0594630944,
             
         }
@@ -814,7 +814,7 @@ module mmlMusic {
             file = media/sound/bassFinger/BassFinger_C6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.9,
+            volume = 0.8,
             pitch = 0.9438743127,
             
         }

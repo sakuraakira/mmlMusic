@@ -9,7 +9,7 @@ MMLTestSongs.songs = {
   -- 1. 基礎測試 - 簡單音階
   {
     name = "Scale Test",
-    description = "Basic scale test (C major)",
+    description = "Flute",
     mml = "T120 L4 O4 CDEFGAB O5 C",
     duration = "~4s"
   },
@@ -122,7 +122,7 @@ MMLTestSongs.songs = {
   {
     name = "Error Test",
     description = "Intentional syntax errors",
-    mml = "T120 L4 O4 C D E XYZ F G",     -- XYZ 是無效指令
+    mml = "T120 L4 O4 C D E XYZ F G", -- XYZ 是無效指令
     duration = "~4s"
   },
 }
