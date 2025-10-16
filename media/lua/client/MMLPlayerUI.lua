@@ -5,7 +5,7 @@ local MMLPlayer = require('MMLPlayer')
 local MMLParser = require('MMLParser')
 
 local WIDTH = 650
-local HEIGHT = 550
+local HEIGHT = 580
 
 function MMLPlayerUI:new(instrument)
   local x = getCore():getScreenWidth() / 2 - WIDTH / 2
@@ -110,8 +110,36 @@ function MMLPlayerUI:initialise()
   self.labelExample:initialise()
   self:addChild(self.labelExample)
 
+  -- 插入：樂器下拉選單（在範例標籤之下、按鈕區之前）
+  local instrY = self.labelExample:getBottom() + padding
+  self.labelInstrument = ISLabel:new(
+    padding, instrY, buttonHeight,
+    "Instrument:",
+    1, 1, 1, 1, UIFont.Small, true
+  )
+  self.labelInstrument:initialise()
+  self:addChild(self.labelInstrument)
+
+  -- 單一下拉選單 (僅四個選項)
+  self.instrumentCombo = ISComboBox:new(
+    self.labelInstrument:getRight() + 6,
+    instrY,
+    140,
+    buttonHeight,
+    self, nil
+  )
+  self.instrumentCombo:initialise()
+  self.instrumentCombo:instantiate()
+  self.instrumentCombo:addOption("Piano")
+  self.instrumentCombo:addOption("Violin")
+  self.instrumentCombo:addOption("Guitar")
+  self.instrumentCombo:addOption("Bass")
+  self.instrumentCombo:addOption("Flute")
+  self.instrumentCombo.selected = 0
+  self:addChild(self.instrumentCombo)
+
   -- 按鈕區
-  local buttonY = self.labelExample:getBottom() + padding
+  local buttonY = self.labelInstrument:getBottom() + padding
   local buttonWidth = 80
   local buttonSpacing = 10
 
@@ -233,8 +261,27 @@ function MMLPlayerUI:onPlay()
     self.mmlPlayer:stop()
   end
 
-  -- 創建新的播放器
-  self.mmlPlayer = MMLPlayer:new(self.instrument)
+  -- 取得下拉選單的選擇並映射到內部 instrument 名稱
+  local selectedDisplay = "Piano"
+  if self.instrumentCombo and self.instrumentCombo.selected then
+    -- 若你的 ISComboBox API 不一樣，請改用相對應的取值函數，例如 getSelectedText/getValue
+    selectedDisplay = self.instrumentCombo:getOptionText(self.instrumentCombo.selected) or "Piano"
+  elseif self.instrumentCombo and self.instrumentCombo.selected then
+    selectedDisplay = self.instrumentCombo.entries and self.instrumentCombo.entries[self.instrumentCombo.selected + 1] or
+        "Piano"
+  end
+
+  local instrumentMap = {
+    Piano = "Piano",
+    Violin = "Violin",
+    Guitar = "GuitarDistortion",
+    Bass = "BassFinger",
+    Flute = "Flute"
+  }
+  local selectedInstrument = instrumentMap[selectedDisplay] or "Piano"
+
+  -- 創建新的播放器（使用下拉選擇的樂器）
+  self.mmlPlayer = MMLPlayer:new(selectedInstrument)
 
   -- 組合為單一字串（以逗號區分 track）
   local combined = string.format("%s,%s,%s", mml1, mml2, mml3)

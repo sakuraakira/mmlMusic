@@ -10,16 +10,16 @@ function MusicPlayer.getInstance()
 end
 
 local InstrumentParameters = {
+    ["Piano"] = { baseTime = 400, fadingTime = 200, polyphonic = true },
+    ["Violin"] = { baseTime = 50, fadingTime = 100, polyphonic = true },
+    ["GuitarDistortion"] = { baseTime = 250, fadingTime = 150, polyphonic = true },
+    ["BassFinger"] = { baseTime = 350, fadingTime = 150, polyphonic = true },
+    ["Flute"] = { baseTime = 0, fadingTime = 20, polyphonic = true },
     ["GuitarAcoustic"] = { baseTime = 400, fadingTime = 200, polyphonic = true },
     ["Banjo"] = { baseTime = 300, fadingTime = 150, polyphonic = true },
-    ["GuitarElectric"] = { baseTime = 250, fadingTime = 150, polyphonic = true },
-    ["GuitarBass"] = { baseTime = 350, fadingTime = 150, polyphonic = true },
     ["Synthesizer"] = { baseTime = 250, fadingTime = 150, polyphonic = true },
-    ["Flute"] = { baseTime = 0, fadingTime = 50, polyphonic = true },
     ["Saxophone"] = { baseTime = 0, fadingTime = 50, polyphonic = true },
     ["Trumpet"] = { baseTime = 0, fadingTime = 50, polyphonic = true },
-    ["Violin"] = { baseTime = 50, fadingTime = 100, polyphonic = true },
-    ["Piano"] = { baseTime = 400, fadingTime = 200, polyphonic = true },
     ["GrandPiano"] = { baseTime = 400, fadingTime = 200, polyphonic = true },
 }
 

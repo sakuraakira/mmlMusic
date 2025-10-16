@@ -1,0 +1,823 @@
+module mmlMusic {
+    
+    sound BassFingerC1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            
+        }
+    }
+    
+    sound BassFingerCs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerD1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerDs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            
+        }
+    }
+    
+    sound BassFingerE1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerF1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerFs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            
+        }
+    }
+    
+    sound BassFingerG1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerGs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerA1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            
+        }
+    }
+    
+    sound BassFingerAs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerB1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerC2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            
+        }
+    }
+    
+    sound BassFingerCs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerD2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerDs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            
+        }
+    }
+    
+    sound BassFingerE2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerF2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerFs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            
+        }
+    }
+    
+    sound BassFingerG2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerGs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerA2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            
+        }
+    }
+    
+    sound BassFingerAs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerB2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerC3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            
+        }
+    }
+    
+    sound BassFingerCs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerD3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerDs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            
+        }
+    }
+    
+    sound BassFingerE3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerF3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerFs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            
+        }
+    }
+    
+    sound BassFingerG3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerGs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerA3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            
+        }
+    }
+    
+    sound BassFingerAs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerB3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            
+        }
+    }
+    
+    sound BassFingerCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            
+        }
+    }
+    
+    sound BassFingerE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            
+        }
+    }
+    
+    sound BassFingerG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            
+        }
+    }
+    
+    sound BassFingerAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            
+        }
+    }
+    
+    sound BassFingerCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            
+        }
+    }
+    
+    sound BassFingerE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound BassFingerG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound BassFingerA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            
+        }
+    }
+    
+    sound BassFingerAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound BassFingerB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassFinger/BassFinger_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+}

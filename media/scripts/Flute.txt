@@ -1,0 +1,631 @@
+module mmlMusic {
+    
+    sound FluteC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            
+        }
+    }
+    
+    sound FluteCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            
+        }
+    }
+    
+    sound FluteE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            
+        }
+    }
+    
+    sound FluteG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            
+        }
+    }
+    
+    sound FluteAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            
+        }
+    }
+    
+    sound FluteCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            
+        }
+    }
+    
+    sound FluteE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound FluteG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            
+        }
+    }
+    
+    sound FluteAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteC6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound FluteCs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteD6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteDs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound FluteE6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteF6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteFs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound FluteG6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteGs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteA6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound FluteAs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteB6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteC7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound FluteCs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteD7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteDs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound FluteE7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Ds7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteF7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteFs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+    sound FluteG7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_Fs7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound FluteGs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound FluteA7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/flute/Flute_A7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            
+        }
+    }
+    
+}

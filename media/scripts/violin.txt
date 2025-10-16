@@ -1,0 +1,764 @@
+module mmlMusic {
+    
+    sound ViolinC3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound ViolinCs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinD3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinDs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            
+        }
+    }
+    
+    sound ViolinE3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinF3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinFs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            
+        }
+    }
+    
+    sound ViolinG3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinGs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinA3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            
+        }
+    }
+    
+    sound ViolinAs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinB3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            
+        }
+    }
+    
+    sound ViolinCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            
+        }
+    }
+    
+    sound ViolinE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            
+        }
+    }
+    
+    sound ViolinG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            
+        }
+    }
+    
+    sound ViolinAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            
+        }
+    }
+    
+    sound ViolinCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+            
+        }
+    }
+    
+    sound ViolinDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            
+        }
+    }
+    
+    sound ViolinE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+            
+        }
+    }
+    
+    sound ViolinF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound ViolinG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+        }
+    }
+    
+    sound ViolinAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.9,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinC6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound ViolinCs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinD6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinDs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound ViolinE6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinF6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinFs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound ViolinG6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinGs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinA6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound ViolinAs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinB6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinC7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound ViolinCs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinD7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinDs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound ViolinE7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Ds7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinF7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinFs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound ViolinG7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_Fs7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound ViolinGs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound ViolinA7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/violin/Violin_A7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+}
