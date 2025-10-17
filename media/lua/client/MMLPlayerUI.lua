@@ -2,12 +2,26 @@
 -- MML 播放器 UI 介面
 local MMLPlayerUI = ISCollapsableWindow:derive("MMLPlayerUI")
 local MMLPlayer = require('MMLPlayer')
-local MMLParser = require('MMLParser')
+local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 
 local WIDTH = 650
 local HEIGHT = 580
 
-function MMLPlayerUI:new(instrument)
+local function formatDurationMs(ms)
+  ms = ms or 0
+  local secs = ms / 1000
+  local mins = math.floor(secs / 60)
+  local rem = secs - mins * 60
+  if mins > 0 then
+    -- 顯示為 M:SS.ss
+    return string.format("%d:%05.2f", mins, rem)
+  else
+    -- 顯示為 S.ss 秒
+    return string.format("%.2fs", rem)
+  end
+end
+
+function MMLPlayerUI:new(instrument, character)
   local x = getCore():getScreenWidth() / 2 - WIDTH / 2
   local y = getCore():getScreenHeight() / 2 - HEIGHT / 2
   local o = ISCollapsableWindow:new(x, y, WIDTH, HEIGHT)
@@ -18,7 +32,7 @@ function MMLPlayerUI:new(instrument)
   o.title = "MML Player - " .. o.instrument
   o.mmlPlayer = nil
   o.isPlaying = false
-
+  o.character = character
   return o
 end
 
@@ -120,23 +134,24 @@ function MMLPlayerUI:initialise()
   self.labelInstrument:initialise()
   self:addChild(self.labelInstrument)
 
-  -- 單一下拉選單 (僅四個選項)
+  -- 單一下拉選單
   self.instrumentCombo = ISComboBox:new(
     self.labelInstrument:getRight() + 6,
     instrY,
     140,
     buttonHeight,
-    self, nil
+    self, self.onInstrumentChange
   )
   self.instrumentCombo:initialise()
   self.instrumentCombo:instantiate()
   self.instrumentCombo:addOption("Piano")
   self.instrumentCombo:addOption("Violin")
-  self.instrumentCombo:addOption("Guitar")
-  self.instrumentCombo:addOption("Bass")
+  self.instrumentCombo:addOption("GuitarDistortion")
+  self.instrumentCombo:addOption("BassFinger")
   self.instrumentCombo:addOption("Flute")
   self.instrumentCombo.selected = 0
   self:addChild(self.instrumentCombo)
+
 
   -- 按鈕區
   local buttonY = self.labelInstrument:getBottom() + padding
@@ -191,18 +206,6 @@ function MMLPlayerUI:initialise()
   self.clearButton.borderColor = { r = 1, g = 1, b = 1, a = 0.3 }
   self:addChild(self.clearButton)
 
-  -- 範例樂曲按鈕
-  self.exampleButton = ISButton:new(
-    self.clearButton:getRight() + buttonSpacing, buttonY,
-    100, buttonHeight,
-    getText("UI_MMLPlayer_LoadExample") or "Load Example",
-    self, MMLPlayerUI.onLoadExample
-  )
-  self.exampleButton:initialise()
-  self.exampleButton:instantiate()
-  self.exampleButton.borderColor = { r = 1, g = 1, b = 1, a = 0.3 }
-  self:addChild(self.exampleButton)
-
   -- 進度條背景
   self.progressBar = ISPanel:new(
     padding,
@@ -238,7 +241,7 @@ function MMLPlayerUI:initialise()
   self:addChild(self.infoLabel)
 
   -- 預設 MML：放在 track1（其他兩軌預設空）
-  self.textArea1:setText("T120 L4 O4 C D E F G A B O5 C")
+  self.textArea1:setText("T120L4O4CDEFGAB>CDEFGAB")
   self.textArea2:setText("")
   self.textArea3:setText("")
 
@@ -261,43 +264,20 @@ function MMLPlayerUI:onPlay()
     self.mmlPlayer:stop()
   end
 
-  -- 取得下拉選單的選擇並映射到內部 instrument 名稱
-  local selectedDisplay = "Piano"
-  if self.instrumentCombo and self.instrumentCombo.selected then
-    -- 若你的 ISComboBox API 不一樣，請改用相對應的取值函數，例如 getSelectedText/getValue
-    selectedDisplay = self.instrumentCombo:getOptionText(self.instrumentCombo.selected) or "Piano"
-  elseif self.instrumentCombo and self.instrumentCombo.selected then
-    selectedDisplay = self.instrumentCombo.entries and self.instrumentCombo.entries[self.instrumentCombo.selected + 1] or
-        "Piano"
-  end
-
-  local instrumentMap = {
-    Piano = "Piano",
-    Violin = "Violin",
-    Guitar = "GuitarDistortion",
-    Bass = "BassFinger",
-    Flute = "Flute"
-  }
-  local selectedInstrument = instrumentMap[selectedDisplay] or "Piano"
-
-  -- 創建新的播放器（使用下拉選擇的樂器）
-  self.mmlPlayer = MMLPlayer:new(selectedInstrument)
+  -- 創建新的播放器
+  self.mmlPlayer = MMLPlayer:new(self.instrument)
 
   -- 組合為單一字串（以逗號區分 track）
   local combined = string.format("%s,%s,%s", mml1, mml2, mml3)
-
-  -- 修正：使用正確的 API，讓 2/3 軌共享第 1 軌的 T(tempo)
   local ok = self.mmlPlayer:loadMML(combined)
-
-  -- 顯示合併後結果（方便使用者查看）
-  self.infoLabel:setName(self.mmlPlayer:getMMLString() or "")
-
   if not ok then
     self.statusLabel:setName(getText("UI_MMLPlayer_ParseError") or "Parse error")
     self.playButton.enable = true
     self.stopButton.enable = false
     return
   end
+
+  ISTimedActionQueue.add(TAPlayMMLFromInventory:new(self.character, self.instrument))
 
   if self.mmlPlayer:play() then
     self.isPlaying = true
@@ -310,27 +290,14 @@ function MMLPlayerUI:onPlay()
 end
 
 function MMLPlayerUI:onStop()
+  ISTimedActionQueue.clear(self.character)
+
   if self.mmlPlayer then
     self.mmlPlayer:stop()
     self.isPlaying = false
     self.statusLabel:setName(getText("UI_MMLPlayer_Stopped") or "Stopped")
     self.playButton.enable = true
     self.stopButton.enable = false
-  end
-end
-
--- 新增：將毫秒格式化為可讀時間字串
-local function formatDurationMs(ms)
-  ms = ms or 0
-  local secs = ms / 1000
-  local mins = math.floor(secs / 60)
-  local rem = secs - mins * 60
-  if mins > 0 then
-    -- 顯示為 M:SS.ss
-    return string.format("%d:%05.2f", mins, rem)
-  else
-    -- 顯示為 S.ss 秒
-    return string.format("%.2fs", rem)
   end
 end
 
@@ -391,30 +358,6 @@ function MMLPlayerUI:onClear()
   end
 end
 
-function MMLPlayerUI:onLoadExample()
-  -- 三軌示範：主旋律、和聲、低音
-  local ex1 = "T120 L4 O4 CCGGAAG2 FFEEDDC2"
-  local ex2 = "T120 L8 O5 E E D C E E D C"
-  local ex3 = "T120 L2 O3 C C C C"
-  self.textArea1:setText(ex1)
-  self.textArea2:setText(ex2)
-  self.textArea3:setText(ex3)
-  self.statusLabel:setName(getText("UI_MMLPlayer_ExampleLoaded") or "Example loaded")
-end
-
-function MMLPlayerUI:prerender()
-  ISCollapsableWindow.prerender(self)
-
-  -- 檢查播放狀態
-  if self.mmlPlayer and not self.mmlPlayer:isPlayingMusic() and self.isPlaying then
-    -- 播放結束
-    self.isPlaying = false
-    self.statusLabel:setName(getText("UI_MMLPlayer_Finished") or "Finished")
-    self.playButton.enable = true
-    self.stopButton.enable = false
-  end
-end
-
 function MMLPlayerUI:render()
   ISCollapsableWindow.render(self)
 
@@ -446,6 +389,15 @@ function MMLPlayerUI:close()
   end
   ISCollapsableWindow.close(self)
   self:removeFromUIManager()
+end
+
+-- 樂器選擇改變時的回調函數
+function MMLPlayerUI:onInstrumentChange()
+  if self.instrumentCombo.selected > 0 and
+      self.instrumentCombo.options and
+      self.instrumentCombo.options[self.instrumentCombo.selected] then
+    self.instrument = self.instrumentCombo.options[self.instrumentCombo.selected].text
+  end
 end
 
 function MMLPlayerUI:setMMLPlayer(mmlPlayer)

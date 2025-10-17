@@ -74,7 +74,7 @@ local function OnKeyPressed(key)
     end
 
     -- 創建新的 MML 播放器 UI
-    debugMMLPlayerUI = MMLPlayerUI:new("Piano")
+    debugMMLPlayerUI = MMLPlayerUI:new("Piano", player)
     debugMMLPlayerUI:initialise()
     debugMMLPlayerUI:addToUIManager()
 
@@ -107,74 +107,6 @@ local function OnKeyPressed(key)
     end
     Events.OnPostRender.Add(loadExampleFunc)
   end
-
-  -- F10 - 顯示當前播放狀態和調試資訊
-  if key == Keyboard.KEY_F10 then
-    print("[MML Debug] ========================================")
-    print("[MML Debug] Current Status:")
-    print("[MML Debug] Active players: " .. MMLPlayer.getActivePlayerCount())
-
-    if MMLPlayer.getActivePlayerCount() > 0 then
-      for playerId, player in pairs(MMLPlayer.activePlayers) do
-        print(string.format("[MML Debug]   - Player %s: %s", playerId, player.instrument))
-        print(string.format("[MML Debug]     Playing: %s", tostring(player:isPlayingMusic())))
-        print(string.format("[MML Debug]     Progress: %.1f%%", player:getProgress() * 100))
-        print(string.format("[MML Debug]     Remaining: %.1fs", player:getRemainingTime()))
-        print(string.format("[MML Debug]     Notes in sequence: %d", #player.sequence))
-        print(string.format("[MML Debug]     Current index: %d", player.currentIndex))
-      end
-    else
-      print("[MML Debug]   No active playback")
-    end
-
-    -- 顯示音效範圍
-    print(string.format("[MML Debug] Sound range: %d tiles", MMLPlayer.getRange()))
-
-    -- 顯示 UI 狀態
-    if debugMMLPlayerUI then
-      print("[MML Debug] UI Status: Open")
-      print(string.format("[MML Debug]   Is playing: %s", tostring(debugMMLPlayerUI.isPlaying)))
-    else
-      print("[MML Debug] UI Status: Closed")
-    end
-
-    print("[MML Debug] ========================================")
-  end
-
-  -- F9 - 測試解析器
-  if key == Keyboard.KEY_F9 then
-    print("[MML Debug] ========================================")
-    print("[MML Debug] Testing MML Parser...")
-
-    local testMML = "T120 L4 O4 CDEFGAB O5 C"
-    print("[MML Debug] Test MML: " .. testMML)
-
-    local parser = MMLParser:new()
-    local success, result = pcall(function()
-      return parser:parse(testMML, "Piano")
-    end)
-
-    if success and result then
-      print(string.format("[MML Debug] Parse successful!"))
-      print(string.format("[MML Debug]   Notes parsed: %d", #result))
-      print(string.format("[MML Debug]   Total duration: %.2fs",
-        parser.totalTicks * (60000 / parser.currentTempo) / parser.PPQ / 1000))
-      print(string.format("[MML Debug]   Tempo: %d BPM", parser.currentTempo))
-
-      -- 顯示前 5 個音符
-      print("[MML Debug]   First 5 notes:")
-      for i = 1, math.min(5, #result) do
-        local note = result[i]
-        print(string.format("[MML Debug]     %d. %s at %.0fms (dur: %.0fms)",
-          i, note.note, note.startTime, note.duration))
-      end
-    else
-      print("[MML Debug] Parse failed!")
-      print("[MML Debug] Error: " .. tostring(result))
-    end
-
-    print("[MML Debug] ========================================")
-  end
 end
 
 Events.OnKeyPressed.Add(OnKeyPressed)
@@ -183,11 +115,3 @@ Events.OnKeyPressed.Add(OnKeyPressed)
 -- 顯示調試快捷鍵說明
 -- ============================================================
 print("[MML] MML system initialized successfully")
-print("[MML] Active modules: MMLPlayer, MMLParser, MMLContextMenu")
-print("[MML] ========================================")
-print("[MML] Debug hotkeys:")
-print("[MML]   F9  - Test MML Parser")
-print("[MML]   F10 - Show current status")
-print("[MML]   F11 - Stop all playback")
-print("[MML]   F12 - Open MML Player and auto-play example")
-print("[MML] ========================================")

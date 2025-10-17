@@ -1,7 +1,7 @@
 -- MMLContextMenu.lua
 -- 樂譜物品的右鍵選單
 
-local PlayerItemToActionName = {
+local PlayerItemToMMLInstrument = {
   ['Base.GuitarAcoustic'] = 'GuitarAcoustic',
   ['Base.Banjo'] = 'Banjo',
   ['Base.GuitarElectricBlack'] = 'GuitarDistortion',
@@ -19,6 +19,7 @@ local PlayerItemToActionName = {
 
 local MMLContextMenu = {}
 local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
+local MMLPlayerUI = require('MMLPlayerUI') -- 新增：用來打開 UI
 
 -- ============================================================
 -- 創建選單
@@ -38,43 +39,33 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
 
   if not item then return end
 
-  -- 檢查是否是樂譜物品
   local itemType = item:getFullType()
-  if not itemType:match("MusicSheet") and not itemType:match("MMLSheet") then
-    return
-  end
 
-  -- 檢查 MML 資料
-  local mml = item:getModData().mml
-  if not mml or mml == "" then
-    -- 沒有 MML 資料
-    local option = context:addOption(
-      getText("ContextMenu_PlayMusicSheet"),
-      nil, nil
+  -- 如果物品類型在 PlayerItemToMMLInstrument 表裡，加入「演奏」選項（開啟 UI）
+  if PlayerItemToMMLInstrument[itemType] then
+    context:addOption(
+      getText("UI_ContextMenu_PlayMusicSheet") or "Play",
+      player,
+      MMLContextMenu.onOpenMMLPlayerUI,
+      item
     )
-    option.notAvailable = true
-    local tooltip = ISWorldObjectContextMenu.addToolTip()
-    tooltip:setName(getText("ContextMenu_NoMusic"))
-    tooltip.description = getText("ContextMenu_MusicSheetEmpty")
-    option.toolTip = tooltip
     return
   end
+end
 
-  -- 添加「播放樂譜」選項
-  context:addOption(
-    getText("ContextMenu_PlayMusicSheet"),
-    player,
-    MMLContextMenu.onPlayMusicSheet,
-    item
-  )
+-- 新增：按下「演奏」時開啟 UI，預設填入物品的 MML 與建議樂器（顯示名稱）
+function MMLContextMenu.onOpenMMLPlayerUI(player, item)
+  -- 取得建議內部樂器
+  local itemType = item and item:getFullType() or ""
+  local internalInstrument = PlayerItemToMMLInstrument[itemType] or "Piano"
 
-  -- 添加「查看資訊」選項（可選）
-  context:addOption(
-    getText("ContextMenu_ViewSheetInfo"),
-    player,
-    MMLContextMenu.onViewSheetInfo,
-    item
-  )
+  if player:getPrimaryHandItem() ~= item then
+    ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, true))
+  end
+
+  -- 建立並初始化 UI
+  local ui = MMLPlayerUI:new(internalInstrument, player)
+  ui:initialise()
 end
 
 -- ============================================================
@@ -94,32 +85,6 @@ function MMLContextMenu.onPlayMusicSheet(player, item)
   ISTimedActionQueue.add(TAPlayMMLFromInventory:new(player, item))
 
   print("[MMLContextMenu] Added play action to queue")
-end
-
--- ============================================================
--- 查看樂譜資訊
--- ============================================================
-function MMLContextMenu.onViewSheetInfo(player, item)
-  local instrument = item:getModData().instrument or "Unknown"
-  local mml = item:getModData().mml or ""
-  local title = item:getName()
-
-  -- 計算音符數量和時長（簡化版）
-  local noteCount = 0
-  for _ in mml:gmatch("[CDEFGAB]") do
-    noteCount = noteCount + 1
-  end
-
-  -- 顯示資訊（使用遊戲的對話框）
-  local text = string.format(
-    "%s\n\n%s: %s\n%s: %d\n%s: %d %s",
-    title,
-    getText("UI_MusicSheet_Instrument"), instrument,
-    getText("UI_MusicSheet_Notes"), noteCount,
-    getText("UI_MusicSheet_Length"), #mml, getText("UI_Characters")
-  )
-
-  player:Say(text)
 end
 
 return MMLContextMenu

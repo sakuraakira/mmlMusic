@@ -25,13 +25,7 @@ UI_MMLPlayer_Notes = "音符",
 UI_Characters = "字元",
 
 // Context Menu
-ContextMenu_Bard_OpenMMLPlayer = "開啟 MML 播放器",
-ContextMenu_PlayMusicSheet = "播放樂譜",
-ContextMenu_ViewSheetInfo = "查看樂譜資訊",
-ContextMenu_RequireTrait = "需要特質",
-ContextMenu_RequireMusicianTrait = "你需要音樂家特質才能演奏音樂",
-ContextMenu_NoMusic = "沒有音樂",
-ContextMenu_MusicSheetEmpty = "這張樂譜是空白的",
+UI_ContextMenu_PlayMusicSheet = "演奏樂器",
 
 // Music Sheet
 UI_MusicSheet_Instrument = "樂器",
@@ -42,6 +36,4 @@ UI_MusicSheet_ParseError = "解析 MML 失敗",
 UI_MusicSheet_NowPlaying = "正在播放",
 UI_MusicSheet_PlayFailed = "播放音樂失敗",
 
-// Tooltip
-Tooltip_ItemNotInInventory = "物品不在背包中",
 }
