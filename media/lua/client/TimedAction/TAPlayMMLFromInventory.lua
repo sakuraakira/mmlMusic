@@ -1,5 +1,19 @@
 -- TAPlayMMLFromInventory.lua
 -- 播放樂譜的 TimedAction
+
+local MMLPlayer = require('MMLPlayer')
+
+---@class TAPlayMMLFromInventory: ISBaseTimedAction
+---@field onComplete fun(): nil 顯示視窗
+---@field instrument string
+---@field item InventoryItem
+---@field mml string
+---@field Playing boolean
+---@field lastCheckTime number
+---@field checkInterval number
+---@field mmlPlayer MMLPlayer
+---@field handItem string
+---@field walkSpeedModifier number
 local TAPlayMMLFromInventory = ISBaseTimedAction:derive('TAPlayMMLFromInventory')
 
 local ItemToAnimation = {
@@ -15,17 +29,25 @@ local ItemToAnimation = {
 -- ============================================================
 -- 創建新的 Action
 -- ============================================================
-function TAPlayMMLFromInventory:new(character, instrument)
-  local o = ISBaseTimedAction:new(character)
+function TAPlayMMLFromInventory:new(character, instrument, mml)
+  ---@type TAPlayMMLFromInventory
+  local o = ISBaseTimedAction.new(self, character)
   setmetatable(o, self)
   self.__index = self
+
+
   o.instrument = instrument
   o.item = character:getPrimaryHandItem()
-  o.stopOnWalk = true
+  o.mml = mml
+  o.stopOnWalk = false
+  o.walkSpeedModifier = 0.6
   o.stopOnRun = true
   o.stopOnAim = true
   o.maxTime = -1 -- 無限時間（直到播放完成或被打斷）
-  o.isPlaying = false
+  o.Playing = true
+  o.mmlPlayer = MMLPlayer:new(o.instrument)
+  o.lastCheckTime = 0
+  o.checkInterval = 100 -- 每100ms檢查一次狀態
   return o
 end
 
@@ -42,20 +64,23 @@ function TAPlayMMLFromInventory:equipInstrumentOnSecondaryHand()
 end
 
 function TAPlayMMLFromInventory:isValid()
-  return true
+  return self.Playing
 end
 
 -- ============================================================
 -- 開始動作
 -- ============================================================
 function TAPlayMMLFromInventory:start()
-  print("[MML] Starting to play instrument: " .. tostring(self.instrument))
-
+  local ok = self.mmlPlayer:loadMML(self.mml)
+  if not ok then
+    print("[MML] Error: Failed to load MML data")
+    self.Playing = false
+    return
+  end
   -- 設置手部模型
   if self.item then
     self:equipInstrumentOnSecondaryHand()
   end
-
   -- 設置動畫
   local animName = ItemToAnimation[self.instrument]
   if animName then
@@ -65,24 +90,64 @@ function TAPlayMMLFromInventory:start()
     print("[MML] Warning: No animation found for instrument: " .. tostring(self.instrument))
   end
 
-  self.isPlaying = true
+  self.mmlPlayer:play()
+  self.character:ModSpeed(self.walkSpeedModifier)
 end
 
 -- ============================================================
 -- 更新
 -- ============================================================
 function TAPlayMMLFromInventory:update()
-  -- 可以在這裡添加播放邏輯
-  -- 檢查是否需要停止
+  -- 限制檢查頻率，避免每幀都檢查
+  local currentTime = getTimestampMs()
+  if currentTime - self.lastCheckTime < self.checkInterval then
+    return
+  end
+  self.lastCheckTime = currentTime
+
+  -- 檢查播放器是否還在播放
+  if self.mmlPlayer then
+    local isPlaying = self.mmlPlayer:isPlayingMusic()
+    if not isPlaying and self.Playing then
+      self:forceComplete() -- 正常完成
+      return
+    end
+
+    -- 可選：檢查進度
+    local progress = self.mmlPlayer:getProgress()
+    if progress >= 1.0 then
+      self:forceComplete()
+      return
+    end
+  else
+    self:forceStop()
+  end
+end
+
+function TAPlayMMLFromInventory:getProgress()
+  if self.mmlPlayer then
+    return self.mmlPlayer:getProgress()
+  end
+  return 0
+end
+
+function TAPlayMMLFromInventory:isPlaying()
+  return self.Playing
 end
 
 -- ============================================================
 -- 停止
 -- ============================================================
 function TAPlayMMLFromInventory:stop()
-  print("[MML] Stopping action")
-  self.isPlaying = false
+  self.Playing = false
+  if self.mmlPlayer then
+    self.mmlPlayer:stop()
+  end
   self:EquipInstrumentAsBefore()
+  self.character:ModSpeed(1.0)
+  if self.onComplete and type(self.onComplete) == "function" then
+    self.onComplete()
+  end
   ISBaseTimedAction.stop(self)
 end
 
@@ -102,10 +167,26 @@ function TAPlayMMLFromInventory:EquipInstrumentAsBefore()
   end
 end
 
+-- ============================================================
+-- 強制完成
+-- ============================================================
+function TAPlayMMLFromInventory:forceComplete()
+  self:perform()
+end
+
 function TAPlayMMLFromInventory:perform()
-  print("[MML] Action completed")
-  self.isPlaying = false
+  self.Playing = false
+  if self.mmlPlayer then
+    self.mmlPlayer:stop()
+  end
   self:EquipInstrumentAsBefore()
+  -- 恢復移動速度
+
+  self.character:ModSpeed(1.0)
+
+  if self.onComplete and type(self.onComplete) == "function" then
+    self.onComplete()
+  end
   ISBaseTimedAction.perform(self)
 end
 

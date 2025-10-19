@@ -1,6 +1,5 @@
 -- MMLInit.lua
 -- MML 系統客戶端初始化
-print("[MML] Initializing MML system...")
 
 -- 載入核心模組
 local MMLPlayer = require('MMLPlayer')

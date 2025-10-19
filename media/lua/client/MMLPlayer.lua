@@ -1,4 +1,37 @@
 -- MMLPlayer.lua
+---@class MMLPlayer
+---@field new fun(instrument: string): MMLPlayer
+---@field play fun(): nil
+---@field stop fun(): nil
+---@field isPlaying fun(): boolean
+---@field pause fun(): nil
+---@field getProgress fun(): number
+---@field getRemainingTime fun(): number
+---@field loadMML fun(mmlInput: string): boolean
+---@field resume fun(): nil
+---@field setSourcePlayer fun(player: IsoPlayer): nil
+---@field getMMLString fun(): string
+---@field parseTracks fun(mmlArray: string[]): table
+---@field debugValidateTriple fun( mml1: string, mml2: string, mml3: string): table
+---@field stopAll fun(): nil
+---@field getActivePlayerCount fun(): number
+---@field setRange fun(range: number): nil
+---@field getRange fun(): number
+---@field activePlayers table<number, MMLPlayer>
+---@field soundRange number
+---@field instrument string
+---@field tracks table<number, {sequence: table, totalDuration: number, currentIndex: number}>
+---@field totalDuration number
+---@field isPlaying boolean
+---@field startTime number
+---@field updateFunc fun(): nil
+---@field sourcePlayer IsoPlayer
+---@field originalMML string
+---@field playerId number
+---@field activeNotes table<number, {key: any, note: string, endTime: number}>
+---@field tempoRef table<{value: number}>
+---@field PPQ number
+---@field totalTicks number
 local MMLPlayer = {}
 local MMLParser = require("MMLParser")
 local MusicPlayer = require("MusicPlayer")
@@ -215,11 +248,6 @@ function MMLPlayer:loadMML(mmlInput)
     return anyNotes > 0
 end
 
--- 小別名：保持與舊 UI/呼叫端相容
-function MMLPlayer:loadMMLFromCombined(mmlInput)
-    return self:loadMML(mmlInput)
-end
-
 -- ============================================================
 -- 獲取原始 MML 字符串(用於網絡同步)
 -- ============================================================
@@ -309,10 +337,8 @@ end
 -- ============================================================
 function MMLPlayer:update()
     if not self.isPlaying then return end
-
     local currentTime = GetCurrentTimeInMs() - self.startTime
     local player = getPlayer()
-    local musicPlayer = MusicPlayer.getInstance()
 
     -- 計算音量(基於距離)
     if self.sourcePlayer and self.sourcePlayer ~= player then
@@ -386,7 +412,7 @@ function MMLPlayer:playNote(noteData)
         self.playerId,
         self.instrument,
         noteData.note,
-        false
+        noteData.velocity
     )
 
     return key

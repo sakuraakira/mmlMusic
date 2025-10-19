@@ -1,6 +1,37 @@
 -- MMLPlayerUI.lua
 -- MML 播放器 UI 介面
+---@class MMLPlayerUI: ISCollapsableWindow
+---@field instrument string
+---@field mmlPlayer MMLPlayer
+---@field isPlaying boolean
+---@field character IsoPlayer
+---@field textArea1 ISTextEntryBox
+---@field textArea2 ISTextEntryBox
+---@field textArea3 ISTextEntryBox
+---@field playButton ISButton
+---@field stopButton ISButton
+---@field validateButton ISButton
+---@field clearButton ISButton
+---@field progressBar ISPanel
+---@field statusLabel ISLabel
+---@field infoLabel ISLabel
+---@field instrumentCombo ISComboBox
+---@field labelInput ISLabel
+---@field labelTrack2 ISLabel
+---@field labelTrack3 ISLabel
+---@field labelExample ISLabel
+---@field labelInstrument ISLabel
+---@field onInstrumentChange fun(self: MMLPlayerUI): nil 樂器選擇改變時的回調函數
+---@field onPlay fun(self: MMLPlayerUI): nil 播放按鈕回調
+---@field onStop fun(self: MMLPlayerUI): nil 停止按鈕
+---@field onValidate fun(self: MMLPlayerUI): nil 驗證按鈕
+---@field onClear fun(self: MMLPlayerUI): nil 清除按鈕
+---@field setMMLPlayer fun(self: MMLPlayerUI, mmlPlayer: MMLPlayer): nil 設定 MMLPlayer 實例
+---@field render fun(self: MMLPlayerUI): nil 繪製介面
+---@field close fun(self: MMLPlayerUI): nil 關閉視窗
+---@field initialise fun(self: MMLPlayerUI): nil 初始化元件
 local MMLPlayerUI = ISCollapsableWindow:derive("MMLPlayerUI")
+
 local MMLPlayer = require('MMLPlayer')
 local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 
@@ -24,6 +55,7 @@ end
 function MMLPlayerUI:new(instrument, character)
   local x = getCore():getScreenWidth() / 2 - WIDTH / 2
   local y = getCore():getScreenHeight() / 2 - HEIGHT / 2
+  ---@class MMLPlayerUI
   local o = ISCollapsableWindow:new(x, y, WIDTH, HEIGHT)
   setmetatable(o, self)
   self.__index = self

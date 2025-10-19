@@ -28,7 +28,7 @@ function MusicPlayer:new()
 
     o.soundsPlaying = {}
     o.soundsStopping = {}
-    o.baseVolume = 1.0
+    o.baseVolume = 0.7
     o.maxDistance = 40 -- tiles
     o.range = nil
     o.playCounter = 0  -- 唯一播放計數器
@@ -52,15 +52,11 @@ function MusicPlayer:setRange(range)
     print("[MusicPlayer] Sound range set to: " .. range)
 end
 
-local function GetFileName(instrument, note, isDistorted)
-    local distorted = isDistorted and 'Distorted' or ''
-    local filename = instrument .. distorted .. note
+local function GetFileName(instrument, note)
+    local filename = instrument .. note
     return filename
 end
 
-local function GetKeyFromNoteAndPlayerId(note, playerId)
-    return playerId .. note
-end
 
 function MusicPlayer:setEmitterVolume(emitter, soundId, volume, sourceId)
     local player = getPlayer()
@@ -73,13 +69,12 @@ function MusicPlayer:setEmitterVolume(emitter, soundId, volume, sourceId)
     emitter:setVolume(soundId, modifiedVolume)
 end
 
-function MusicPlayer:playNote(sourcePlayerId, instrument, note, isDistorted)
+function MusicPlayer:playNote(sourcePlayerId, instrument, note, velocity)
     if self.range == nil then
         print('[MusicPlayer] ERROR: sound range not set')
         self.range = 40 -- 緊急預設值
     end
-
-    local instrumentNote = GetFileName(instrument, note, isDistorted)
+    local instrumentNote = GetFileName(instrument, note)
     assert(instrumentNote ~= nil, string.format("Unknown note %s", note))
 
     local player = getPlayer()
@@ -104,13 +99,13 @@ function MusicPlayer:playNote(sourcePlayerId, instrument, note, isDistorted)
     end
 
     local soundId = soundEmitter:playSoundImpl(instrumentNote, square)
-    addSound(source, square:getX(), square:getY(), square:getZ(), self.range, self.baseVolume)
+    addSound(source, square:getX(), square:getY(), square:getZ(), self.range, velocity or self.baseVolume)
 
     if not isClient() or player:getOnlineID() == sourcePlayerId then
         soundEmitter:set3D(soundId, false)
     end
 
-    self:setEmitterVolume(soundEmitter, soundId, self.baseVolume, sourcePlayerId)
+    self:setEmitterVolume(soundEmitter, soundId, velocity or self.baseVolume, sourcePlayerId)
 
     -- 若 instrument 非 polyphonic，先停止該 player 的所有音符
     if InstrumentParameters[instrument] and InstrumentParameters[instrument].polyphonic == false then

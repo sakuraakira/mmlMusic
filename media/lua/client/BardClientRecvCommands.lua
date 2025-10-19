@@ -4,7 +4,7 @@ MusicPlayer = require('MusicPlayer')
 
 BardClientRecvCommands['ServerSendStartNote'] = function(args)
     local musicPlayer = MusicPlayer.getInstance()
-    musicPlayer:playNote(args.sourceId, args.instrument, args.note, args.isDistorted)
+    musicPlayer:playNote(args.sourceId, args.instrument, args.note, args.volume)
 end
 
 BardClientRecvCommands['ServerSendEndNote'] = function(args)

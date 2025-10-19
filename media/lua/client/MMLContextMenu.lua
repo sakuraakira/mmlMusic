@@ -1,26 +1,9 @@
 -- MMLContextMenu.lua
--- 樂譜物品的右鍵選單
-
-local PlayerItemToMMLInstrument = {
-  ['Base.GuitarAcoustic'] = 'GuitarAcoustic',
-  ['Base.Banjo'] = 'Banjo',
-  ['Base.GuitarElectricBlack'] = 'GuitarDistortion',
-  ['Base.GuitarElectricBlue'] = 'GuitarDistortion',
-  ['Base.GuitarElectricRed'] = 'GuitarDistortion',
-  ['Base.GuitarElectricBassBlack'] = 'BassFinger',
-  ['Base.GuitarElectricBassBlue'] = 'BassFinger',
-  ['Base.GuitarElectricBassRed'] = 'BassFinger',
-  ['Base.Keytar'] = 'Keytar',
-  ['Base.Flute'] = 'Flute',
-  ['Base.Saxophone'] = 'Saxophone',
-  ['Base.Trumpet'] = 'Trumpet',
-  ['Base.Violin'] = 'Violin',
-}
-
+-- 樂器物品的右鍵選單
 local MMLContextMenu = {}
 local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
-local MMLPlayerUI = require('MMLPlayerUI') -- 新增：用來打開 UI
-
+local MMLInstrumentUI = require('MMLInstrumentUI') -- 新增：用來打開 UI
+local PlayerItemToMMLInstrument = require('MMLInstrument')
 -- ============================================================
 -- 創建選單
 -- ============================================================
@@ -55,17 +38,13 @@ end
 
 -- 新增：按下「演奏」時開啟 UI，預設填入物品的 MML 與建議樂器（顯示名稱）
 function MMLContextMenu.onOpenMMLPlayerUI(player, item)
-  -- 取得建議內部樂器
-  local itemType = item and item:getFullType() or ""
-  local internalInstrument = PlayerItemToMMLInstrument[itemType] or "Piano"
-
   if player:getPrimaryHandItem() ~= item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, true))
   end
 
   -- 建立並初始化 UI
-  local ui = MMLPlayerUI:new(internalInstrument, player)
-  ui:initialise()
+  local ui = MMLInstrumentUI.getInstance(player, item)
+  ui:show()
 end
 
 -- ============================================================

@@ -11,8 +11,8 @@ function MMLParser:new(sharedTempo)
   o.currentTick = 0
   o.currentOctave = 4
   o.currentLength = 4
-  o.currentLengthDots = 0        -- 新增：預設長度的附點數 (例如 l1. )
-  o.currentVelocity = 100
+  o.currentLengthDots = 0 -- 新增：預設長度的附點數 (例如 l1. )
+  o.currentVelocity = 1.0
   o.currentInstrument = nil
 
   -- ========== 新增:支援共享 tempo ==========
@@ -360,8 +360,8 @@ function MMLParser:parseVelocity(mml, pos)
   pos = pos + 1 -- 跳過 'V'
   local num, newPos = self:parseNumber(mml, pos)
   if num >= 0 then
-    -- MML 的 V 值通常是 0-15，轉換為 MIDI 的 0-127
-    self.currentVelocity = math.min(127, num * 8)
+    -- MML 的 V 值通常是 0-15，轉換為 音量 0.0 - 1.0
+    self.currentVelocity = math.min(3.0, num * 0.2)
   end
   return newPos
 end
@@ -474,7 +474,6 @@ end
 -- ============================================================
 function MMLParser:addNote(midiNumber, duration, velocity)
   local noteName = self:midiNumberToNoteName(midiNumber)
-
   table.insert(self.notes, {
     note = noteName,
     tick = self.currentTick,

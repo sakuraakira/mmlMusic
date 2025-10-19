@@ -52,7 +52,10 @@
     "debug": "disable",
     "io": "disable",
     "package": "disable"
-  }
+  },
+  "Lua.diagnostics.disable": [
+    "param-type-mismatch"
+  ]
 
   // ---- (可選) 如果你把 Umbrella repo clone 到本機，改用本機路徑：----
   // "Lua.workspace.library": [
