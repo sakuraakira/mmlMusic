@@ -30,21 +30,21 @@ local ItemToAnimation = {
 -- 創建新的 Action
 -- ============================================================
 function TAPlayMMLFromInventory:new(character, instrument, mml)
-  ---@type TAPlayMMLFromInventory
-  local o = ISBaseTimedAction.new(self, character)
+  ---@class TAPlayMMLFromInventory
+  local o = ISBaseTimedAction:new(character)
   setmetatable(o, self)
   self.__index = self
-
+  o.stopOnWalk = false
+  o.walkSpeedModifier = 0.3
+  o.stopOnRun = true
+  o.stopOnAim = true
+  o.maxTime = -1 -- 無限時間（直到播放完成或被打斷）
 
   o.instrument = instrument
   o.item = character:getPrimaryHandItem()
   o.mml = mml
-  o.stopOnWalk = false
-  o.walkSpeedModifier = 0.6
-  o.stopOnRun = true
-  o.stopOnAim = true
-  o.maxTime = -1 -- 無限時間（直到播放完成或被打斷）
-  o.Playing = true
+
+  o.playing = true
   o.mmlPlayer = MMLPlayer:new(o.instrument)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
@@ -64,7 +64,7 @@ function TAPlayMMLFromInventory:equipInstrumentOnSecondaryHand()
 end
 
 function TAPlayMMLFromInventory:isValid()
-  return self.Playing
+  return self.playing
 end
 
 -- ============================================================
@@ -74,14 +74,22 @@ function TAPlayMMLFromInventory:start()
   local ok = self.mmlPlayer:loadMML(self.mml)
   if not ok then
     print("[MML] Error: Failed to load MML data")
-    self.Playing = false
+    self.playing = false
     return
   end
-  -- 設置手部模型
+  local ok2, orig = pcall(function() return self.character:getMoveSpeed() end)
+  if ok2 and orig then
+    self._origMoveSpeed = orig
+    -- 使用倍率
+    local mul = self.walkSpeedModifier or 1.0
+    self.character:setMoveSpeed(orig * mul)
+  else
+    print("[MML] Warning: failed to read player:getMoveSpeed()")
+  end
+
   if self.item then
     self:equipInstrumentOnSecondaryHand()
   end
-  -- 設置動畫
   local animName = ItemToAnimation[self.instrument]
   if animName then
     print("[MML] Setting animation: " .. animName)
@@ -91,7 +99,14 @@ function TAPlayMMLFromInventory:start()
   end
 
   self.mmlPlayer:play()
-  self.character:ModSpeed(self.walkSpeedModifier)
+end
+
+function TAPlayMMLFromInventory:restoreMoveSpeed()
+  if self._origMoveSpeed then
+    local ok = pcall(function() self.character:setMoveSpeed(self._origMoveSpeed) end)
+    if not ok then print("[MML] Warning: failed to restore move speed") end
+    self._origMoveSpeed = nil
+  end
 end
 
 -- ============================================================
@@ -108,7 +123,7 @@ function TAPlayMMLFromInventory:update()
   -- 檢查播放器是否還在播放
   if self.mmlPlayer then
     local isPlaying = self.mmlPlayer:isPlayingMusic()
-    if not isPlaying and self.Playing then
+    if not isPlaying and self.playing then
       self:forceComplete() -- 正常完成
       return
     end
@@ -132,19 +147,19 @@ function TAPlayMMLFromInventory:getProgress()
 end
 
 function TAPlayMMLFromInventory:isPlaying()
-  return self.Playing
+  return self.playing
 end
 
 -- ============================================================
 -- 停止
 -- ============================================================
 function TAPlayMMLFromInventory:stop()
-  self.Playing = false
+  self.playing = false
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
   self:EquipInstrumentAsBefore()
-  self.character:ModSpeed(1.0)
+  self:restoreMoveSpeed()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
@@ -175,19 +190,22 @@ function TAPlayMMLFromInventory:forceComplete()
 end
 
 function TAPlayMMLFromInventory:perform()
-  self.Playing = false
+  self.playing = false
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
   self:EquipInstrumentAsBefore()
   -- 恢復移動速度
-
-  self.character:ModSpeed(1.0)
-
+  self:restoreMoveSpeed()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
   ISBaseTimedAction.perform(self)
+end
+
+-- Graceful forceStop to match callers in update()
+function TAPlayMMLFromInventory:forceStop()
+  self:stop()
 end
 
 return TAPlayMMLFromInventory

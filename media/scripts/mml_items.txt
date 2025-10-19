@@ -1,0 +1,26 @@
+module MMLSheet
+{
+	item Courage
+	{
+		DisplayCategory     =   Music,
+		Type              	=  	Drainable,
+		DisplayName       	=  	Old Sheet (Courage),
+		Icon              	=  	MMLSheet_Old.png,
+		UseDelta          	=  	0.01,
+		UseWhileEquipped  	=  	false,
+		Weight            	=  	0.05,
+    WorldStaticModel = SheetOfPaper,
+	}
+
+  item Unravel
+	{
+		DisplayCategory     =   Music,
+		Type              	=  	Drainable,
+		DisplayName       	=  	Old Sheet (unravel),
+		Icon              	=  	MMLSheet_Old.png,
+		UseDelta          	=  	0.01,
+		UseWhileEquipped  	=  	false,
+		Weight            	=  	0.05,
+    WorldStaticModel = SheetOfPaper,
+	}
+}

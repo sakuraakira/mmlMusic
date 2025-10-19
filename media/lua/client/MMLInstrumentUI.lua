@@ -14,10 +14,16 @@
 ---@field progressBar ISPanel
 ---@field statusLabel ISLabel
 ---@field infoLabel ISLabel
+---@field TAPlay TAPlayMMLFromInventory|TAPlayMMLFromWorld
+---@field isInitialized boolean
+---@field facing string
+---@field upperSidePianoObject IsoObject
+---@field hasSeat boolean
 local MMLInstrumentUI = ISCollapsableWindow:derive("MMLInstrumentUI")
 
 
 local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
+local TAPlayMMLFromWorld = require('TimedAction/TAPlayMMLFromWorld')
 local PlayerItemToMMLInstrument = require('MMLInstrument')
 local WIDTH = 650
 local HEIGHT = 580
@@ -25,19 +31,46 @@ local HEIGHT = 580
 -- 儲存單例實例
 local instance = nil
 
-
 ---@param character IsoPlayer 玩家角色
 ---@param item InventoryItem 樂器物品
 ---@return ISCollapsableWindow
 function MMLInstrumentUI.getInstance(character, item)
   if not instance then
     instance = MMLInstrumentUI:new(character, item)
+    instance.facing = nil
+    instance.upperSidePianoObject = nil
+    instance.hasSeat = nil
   else
     -- 更新現有實例的資料
     instance.character = character
     if item then
       instance.instrument = PlayerItemToMMLInstrument[item:getFullType()] or "Piano"
       instance.title = getText("UI_MMLPlayer_Play") .. item:getName()
+      instance.facing = nil
+      instance.upperSidePianoObject = nil
+      instance.hasSeat = nil
+    end
+  end
+  return instance
+end
+
+function MMLInstrumentUI.getInstanceFromWorld(character, instrument, upperSidePianoObject, facing, hasSeat)
+  if not instance then
+    instance = MMLInstrumentUI:new(character, nil)
+    instance.instrument = instrument or "Piano"
+    instance.title = getText("UI_MMLPlayer_Play") .. instrument
+    instance.facing = facing
+    instance.upperSidePianoObject = upperSidePianoObject
+    instance.hasSeat = hasSeat
+  else
+    -- 更新現有實例的資料
+    instance.character = character
+    if instrument then
+      instance.instrument = instrument or "Piano"
+      instance.title = getText("UI_MMLPlayer_Play") .. instrument
+      instance.facing = facing
+      instance.upperSidePianoObject = upperSidePianoObject
+      instance.hasSeat = hasSeat
     end
   end
   return instance
@@ -54,8 +87,10 @@ function MMLInstrumentUI:new(character, item)
   setmetatable(o, self)
   self.__index = self
 
-  o.instrument = PlayerItemToMMLInstrument[item:getFullType()] or "Piano"
-  o.title = getText("UI_MMLPlayer_Play") .. item:getName()
+  if item ~= nil then
+    o.instrument = PlayerItemToMMLInstrument[item:getFullType()] or "Piano"
+    o.title = getText("UI_MMLPlayer_Play") .. item:getName()
+  end
   o.TAPlay = nil
   o.isPlaying = false
   o.character = character
@@ -225,6 +260,12 @@ function MMLInstrumentUI:initialise()
   self:addToUIManager()
 end
 
+function MMLInstrumentUI:setMML(mml1, mml2, mml3)
+  self.textArea1:setText(mml1 or "")
+  self.textArea2:setText(mml2 or "")
+  self.textArea3:setText(mml3 or "")
+end
+
 function MMLInstrumentUI:show()
   -- 顯示視窗
   if not self.isInitialized then
@@ -249,10 +290,22 @@ function MMLInstrumentUI:onPlay()
     return
   end
 
-  -- 組合為單一字串（以逗號區分 track）
   local combined = string.format("%s,%s,%s", mml1, mml2, mml3)
-  -- 創建新的播放器
-  self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, combined)
+
+  -- Use world TA if there is a world instrument object (covers Piano/GrandPiano)
+  if self.upperSidePianoObject then
+    local squareFacingPiano = self.facing == "south" and self.upperSidePianoObject:getSquare():getS()
+        or self.upperSidePianoObject:getSquare():getE()
+    ISTimedActionQueue.add(ISWalkToTimedAction:new(self.character, squareFacingPiano))
+
+    self.TAPlay = TAPlayMMLFromWorld:new(
+      self.character, self.instrument,
+      self.upperSidePianoObject, self.facing, self.hasSeat, combined
+    )
+  else
+    self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, combined)
+  end
+
   self.TAPlay.onComplete = function()
     self:onPlaybackComplete()
   end

@@ -3,44 +3,39 @@
 
 -- 載入核心模組
 local MMLPlayer = require('MMLPlayer')
-local MMLParser = require('MMLParser')
 local MMLContextMenu = require('MMLContextMenu')
 local MMLClientRecvCommands = require('MMLClientRecvCommands')
 local MMLPlayerUI = require('MMLPlayerUI')
+local MMLInstrumentUI = require('MMLInstrumentUI')
 
 -- ============================================================
 -- 註冊物品右鍵選單
 -- ============================================================
-local function OnPreFillInventoryObjectContextMenu(playerIndex, context, items)
-  MMLContextMenu.createMenu(playerIndex, context, items)
-end
 
-Events.OnPreFillInventoryObjectContextMenu.Add(OnPreFillInventoryObjectContextMenu)
+Events.OnPreFillInventoryObjectContextMenu.Add(MMLContextMenu.createMenu)
 
 -- ============================================================
 -- 註冊世界物品右鍵選單（鋼琴等）
 -- ============================================================
-local function OnPreFillWorldObjectContextMenu(playerIndex, context, worldobjects, test)
-  -- 可以在這裡添加「使用 MML 播放器」選項
-  -- 例如：在鋼琴右鍵選單中添加「打開 MML 編輯器」
-end
 
-Events.OnPreFillWorldObjectContextMenu.Add(OnPreFillWorldObjectContextMenu)
+Events.OnPreFillWorldObjectContextMenu.Add(MMLContextMenu.OnPreFillWorldObjectContextMenu)
 
--- ============================================================
--- 玩家死亡時停止播放
--- ============================================================
-local function OnPlayerDeath(player)
-  local playerId = player:getOnlineID()
-  if MMLPlayer.activePlayers[playerId] then
-    MMLPlayer.activePlayers[playerId]:stop()
-    print("[MML] Stopped playback due to player death")
+
+local function applyMMLSelection(playerObj, item)
+  if not playerObj or not item then return end
+  if not playerObj:isLocalPlayer() then return end
+  if playerObj:isDead() then return end
+  if item:getFullType() ~= "Courage" then
+    MMLInstrumentUI.setMML(mml1, mml2, mml3)
   end
 end
 
-Events.OnPlayerDeath.Add(OnPlayerDeath)
-
-
+Events.OnEquipSecondary.Add(function(playerObj, item)
+  if isServer() then return end
+  if item then
+    applyMMLSelection(playerObj, item)
+  end
+end)
 -- ============================================================
 -- 調試指令和測試
 -- ============================================================

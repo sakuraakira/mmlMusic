@@ -1,26 +1,21 @@
 -- MMLPlayer.lua
 ---@class MMLPlayer
----@field new fun(instrument: string): MMLPlayer
----@field play fun(): nil
----@field stop fun(): nil
----@field isPlaying fun(): boolean
----@field pause fun(): nil
----@field getProgress fun(): number
----@field getRemainingTime fun(): number
----@field loadMML fun(mmlInput: string): boolean
----@field resume fun(): nil
----@field setSourcePlayer fun(player: IsoPlayer): nil
----@field getMMLString fun(): string
----@field parseTracks fun(mmlArray: string[]): table
----@field debugValidateTriple fun( mml1: string, mml2: string, mml3: string): table
----@field stopAll fun(): nil
----@field getActivePlayerCount fun(): number
----@field setRange fun(range: number): nil
----@field getRange fun(): number
+---@field new fun(self: MMLPlayer ,instrument: string): MMLPlayer
+---@field play fun(self: MMLPlayer): nil
+---@field stop fun(self: MMLPlayer): nil
+---@field isPlaying fun(self: MMLPlayer): boolean
+---@field pause fun(self: MMLPlayer): nil
+---@field getProgress fun(self: MMLPlayer): number
+---@field getRemainingTime fun(self: MMLPlayer): number
+---@field loadMML fun(self: MMLPlayer ,mmlInput: string): boolean
+---@field setSourcePlayer fun(self: MMLPlayer ,player: IsoPlayer): nil
+---@field getMMLString fun(self: MMLPlayer): string
+---@field parseTracks fun(self: MMLPlayer,mmlArray: string): table
+---@field stopAll fun(self: MMLPlayer): nil
+---@field getActivePlayerCount fun(self: MMLPlayer): number
 ---@field activePlayers table<number, MMLPlayer>
 ---@field soundRange number
 ---@field instrument string
----@field tracks table<number, {sequence: table, totalDuration: number, currentIndex: number}>
 ---@field totalDuration number
 ---@field isPlaying boolean
 ---@field startTime number
@@ -28,14 +23,12 @@
 ---@field sourcePlayer IsoPlayer
 ---@field originalMML string
 ---@field playerId number
----@field activeNotes table<number, {key: any, note: string, endTime: number}>
----@field tempoRef table<{value: number}>
 ---@field PPQ number
 ---@field totalTicks number
 local MMLPlayer = {}
+
 local MMLParser = require("MMLParser")
 local MusicPlayer = require("MusicPlayer")
-
 
 -- 全局設定
 MMLPlayer.activePlayers = {}
@@ -598,97 +591,6 @@ function MMLPlayer:parseTracks(mmlArray)
             results[i] = { ok = true, notes = #seq, duration = dur }
         else
             results[i] = { ok = false, err = tostring(seq) }
-        end
-    end
-
-    return results
-end
-
--- 新增：除錯用，對三段 MML 做逐段解析並輸出 tick/毫秒/音符數比較
-function MMLPlayer:debugValidateTriple(mml1, mml2, mml3)
-    local tracks = { mml1 or "", mml2 or "", mml3 or "" }
-    local parsers = {}
-    local results = {}
-
-    -- 先擷取 Track1 tempo（若有）
-    local tempoToken = nil
-    if tracks[1] and tracks[1] ~= "" then
-        tempoToken = tracks[1]:match('[tT]%s*%d+')
-        if tempoToken then tempoToken = tempoToken:gsub('%s+', '') end
-    end
-
-    local sharedTempo = { value = 120 }
-    for i = 1, 3 do
-        local s = (tracks[i] or ""):gsub('[tT]%s*%d+', '') -- 移除各軌 tempo，之後只會在 track1 加回
-        s = trim(s)
-        local parser
-        if i == 1 then
-            parser = MMLParser:new()
-            sharedTempo = parser.tempoRef
-            -- 如果 Track1 有 tempo token，先把它放到字串前面以正確解析 tempo
-            if tempoToken and s ~= "" then
-                s = tempoToken .. " " .. s
-            end
-        else
-            parser = MMLParser:new(sharedTempo)
-        end
-
-        parsers[i] = parser
-
-        -- 解析並取得時間序列與 total duration (ms)
-        local ok, seq, dur = pcall(function()
-            return parser:parse(s, self.instrument)
-        end)
-
-        if not ok then
-            results[i] = { ok = false, err = tostring(seq) }
-        else
-            -- parser.totalTicks 以 tick 為單位，parser.PPQ 可用來換算
-            local ticks = parser.totalTicks or 0
-            local tempo = parser.tempoRef and parser.tempoRef.value or (sharedTempo and sharedTempo.value) or 120
-            local msPerTick = (60000 / tempo) / parser.PPQ
-            local ms = math.floor(ticks * msPerTick + 0.5)
-            results[i] = {
-                ok = true,
-                notes = #seq,
-                ticks = ticks,
-                ms = ms,
-                tempo = tempo,
-                seq = seq
-            }
-        end
-    end
-
-    -- 列印摘要
-    for i = 1, 3 do
-        local r = results[i]
-        if not r then
-            print(string.format("[MMLPlayer][DEBUG] Track %d: no result", i))
-        elseif not r.ok then
-            print(string.format("[MMLPlayer][DEBUG] Track %d: PARSE ERROR: %s", i, r.err or "unknown"))
-        else
-            print(string.format("[MMLPlayer][DEBUG] Track %d: notes=%d ticks=%d ms=%d tempo=%d",
-                i, r.notes, r.ticks, r.ms, r.tempo))
-        end
-    end
-
-    -- 比較差異（以 ms 為主）
-    local ms1 = (results[1] and results[1].ms) or 0
-    local ms2 = (results[2] and results[2].ms) or 0
-    local ms3 = (results[3] and results[3].ms) or 0
-    print(string.format("[MMLPlayer][DEBUG] Durations(ms): T1=%d  T2=%d  T3=%d", ms1, ms2, ms3))
-    print(string.format("[MMLPlayer][DEBUG] Differences (ms): T2-T1=%d  T3-T1=%d", ms2 - ms1, ms3 - ms1))
-
-    -- 若需要，輸出首 few notes 的 start/duration（方便定位問題）
-    for i = 1, 3 do
-        local r = results[i]
-        if r and r.ok then
-            print(string.format("[MMLPlayer][DEBUG] Track %d first 8 notes (startms,durms,note):", i))
-            for idx = 1, math.min(8, #r.seq) do
-                local n = r.seq[idx]
-                print(string.format("  %2d: start=%d dur=%d note=%s",
-                    idx, n.startTime or 0, n.duration or 0, tostring(n.note)))
-            end
         end
     end
 
