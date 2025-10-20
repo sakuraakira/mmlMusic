@@ -1,8 +1,8 @@
 -- MMLContextMenu.lua
 -- 樂器物品的右鍵選單
 local MMLContextMenu = {}
-local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 local MMLInstrumentUI = require('MMLInstrumentUI') -- 新增：用來打開 UI
+local MMLComposeUI = require('MMLComposeUI')       -- 新增：用來打開作曲 UIElement
 local PlayerItemToMMLInstrument = require('MMLInstrument')
 local MMLWorldItemInfo = require('MMLWorldItemInfo')
 -- ============================================================
@@ -30,21 +30,38 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
     context:addOption(
       getText("UI_ContextMenu_PlayMusicSheet") or "Play",
       player,
-      MMLContextMenu.onOpenMMLPlayerUI,
+      MMLContextMenu.onOpenMMLInstrumentUI,
+      item
+    )
+    return
+  elseif itemType == "MMLSheet.BlankSheetMusic" then
+    context:addOption(
+      getText("UI_ContextMenu_EditMusicSheet") or "Edit",
+      player,
+      MMLContextMenu.onOpenMMLComposeUI,
       item
     )
     return
   end
 end
 
--- 新增：按下「演奏」時開啟 UI，預設填入物品的 MML 與建議樂器（顯示名稱）
-function MMLContextMenu.onOpenMMLPlayerUI(player, item)
+-- 新增：按下「演奏」時開啟 UI
+function MMLContextMenu.onOpenMMLInstrumentUI(player, item)
+  if player:getSecondaryHandItem() ~= item then
+    ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, false))
+  end
+  -- 建立並初始化 UI
+  local ui = MMLInstrumentUI.getInstance(player, item)
+  ui:show()
+end
+
+-- 新增：按下「作曲」時開啟 UI
+function MMLContextMenu.onOpenMMLComposeUI(player, item)
   if player:getPrimaryHandItem() ~= item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, true))
   end
-
   -- 建立並初始化 UI
-  local ui = MMLInstrumentUI.getInstance(player, item)
+  local ui = MMLComposeUI.getInstance(player)
   ui:show()
 end
 

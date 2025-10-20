@@ -6,14 +6,10 @@
 ---@field instrument string
 ---@field isPlaying boolean
 ---@field character IsoPlayer
----@field textArea1 ISTextEntryBox
----@field textArea2 ISTextEntryBox
----@field textArea3 ISTextEntryBox
 ---@field playButton ISButton
 ---@field stopButton ISButton
 ---@field progressBar ISPanel
 ---@field statusLabel ISLabel
----@field infoLabel ISLabel
 ---@field TAPlay TAPlayMMLFromInventory|TAPlayMMLFromWorld
 ---@field isInitialized boolean
 ---@field facing string
@@ -25,11 +21,17 @@ local MMLInstrumentUI = ISCollapsableWindow:derive("MMLInstrumentUI")
 local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 local TAPlayMMLFromWorld = require('TimedAction/TAPlayMMLFromWorld')
 local PlayerItemToMMLInstrument = require('MMLInstrument')
+local MMLScores = require('MMLScores')
 local WIDTH = 650
 local HEIGHT = 580
 
 -- 儲存單例實例
 local instance = nil
+
+-- 新增：取得現有實例（不創建新的）
+function MMLInstrumentUI.getExistingInstance()
+  return instance
+end
 
 ---@param character IsoPlayer 玩家角色
 ---@param item InventoryItem 樂器物品
@@ -95,7 +97,29 @@ function MMLInstrumentUI:new(character, item)
   o.isPlaying = false
   o.character = character
   o.isInitialized = false -- 追蹤是否已初始化
+  o.mml = nil
   return o
+end
+
+-- Checkbox 變更回調函數
+function MMLInstrumentUI:onTrackCheckboxChanged(index, selected)
+  -- 更新勾選狀態
+  if index == 1 then
+    self.selectedTracks.melody = selected
+    print("Melody: " .. tostring(selected))
+  elseif index == 2 then
+    self.selectedTracks.harmony = selected
+    print("Harmony: " .. tostring(selected))
+  elseif index == 3 then
+    self.selectedTracks.chord = selected
+    print("Chord: " .. tostring(selected))
+  elseif index == 4 then
+    self.selectedTracks.graceNote = selected
+    print("Grace Note: " .. tostring(selected))
+  elseif index == 5 then
+    self.selectedTracks.rootNote = selected
+    print("Root Note: " .. tostring(selected))
+  end
 end
 
 function MMLInstrumentUI:initialise()
@@ -119,75 +143,72 @@ function MMLInstrumentUI:initialise()
   -- 輸入區標籤
   self.labelInput = ISLabel:new(
     padding, th + padding, buttonHeight,
-    getText("UI_MMLPlayer_InputLabel") or "Enter MML Code:",
+    getText("UI_MMLPlayer_UsedSheet") or "Enter MML:",
     1, 1, 1, 1, UIFont.Medium, true
   )
   self.labelInput:initialise()
   self:addChild(self.labelInput)
 
-  self.textArea1 = ISTextEntryBox:new(
-    "",
+  self.labelInput2 = ISLabel:new(
     padding,
     self.labelInput:getBottom() + 5,
-    WIDTH - padding * 2,
-    120
-  )
-  self.textArea1:initialise()
-  self.textArea1:instantiate()
-  self.textArea1.font = UIFont.Small
-  self.textArea1:setMultipleLine(true)
-  self.textArea1:setMaxLines(20)
-  self.textArea1:setEditable(true)
-  self:addChild(self.textArea1)
-
-  self.labelTrack2 = ISLabel:new(
-    padding, self.textArea1:getBottom() + 4, buttonHeight,
-    "Track 2:",
+    buttonHeight,
+    getText("UI_MMLPlayer_NoSheet") or "No Sheet (You can equip a sheet to primary hand)",
     1, 1, 1, 1, UIFont.Small, true
   )
-  self.labelTrack2:initialise()
-  self:addChild(self.labelTrack2)
+  self.labelInput2:initialise()
+  self:addChild(self.labelInput2)
 
-  self.textArea2 = ISTextEntryBox:new(
-    "",
+  -- 選擇演奏樂譜標籤
+  self.labelSelectTracks = ISLabel:new(
     padding,
-    self.labelTrack2:getBottom() + 2,
-    WIDTH - padding * 2,
-    80
+    self.labelInput2:getBottom() + padding + 5,
+    buttonHeight,
+    getText("UI_MMLPlayer_SelectTracks") or "Select Tracks to Play:",
+    1, 1, 1, 1, UIFont.Medium, true
   )
-  self.textArea2:initialise()
-  self.textArea2:instantiate()
-  self.textArea2.font = UIFont.Small
-  self.textArea2:setMultipleLine(true)
-  self.textArea2:setMaxLines(10)
-  self.textArea2:setEditable(true)
-  self:addChild(self.textArea2)
+  self.labelSelectTracks:initialise()
+  self:addChild(self.labelSelectTracks)
 
-  self.labelTrack3 = ISLabel:new(
-    padding, self.textArea2:getBottom() + 4, buttonHeight,
-    "Track 3:",
-    1, 1, 1, 1, UIFont.Small, true
-  )
-  self.labelTrack3:initialise()
-  self:addChild(self.labelTrack3)
-
-  self.textArea3 = ISTextEntryBox:new(
+  -- 創建 TickBox (可複選的 checkbox 群組)
+  self.trackCheckbox = ISTickBox:new(
+    padding + 10, -- 稍微縮排
+    self.labelSelectTracks:getBottom() + 5,
+    200,
+    20 * 5, -- 5個選項的高度
     "",
-    padding,
-    self.labelTrack3:getBottom() + 2,
-    WIDTH - padding * 2,
-    80
+    self,
+    self.onTrackCheckboxChanged
   )
-  self.textArea3:initialise()
-  self.textArea3:instantiate()
-  self.textArea3.font = UIFont.Small
-  self.textArea3:setMultipleLine(true)
-  self.textArea3:setMaxLines(10)
-  self.textArea3:setEditable(true)
-  self:addChild(self.textArea3)
+  self.trackCheckbox:initialise()
+  self.trackCheckbox:instantiate()
+
+  -- 添加 5 個選項
+  self.trackCheckbox:addOption(getText("UI_MMLPlayer_melody") or "Melody", nil)
+  self.trackCheckbox:addOption(getText("UI_MMLPlayer_harmony") or "Harmony", nil)
+  self.trackCheckbox:addOption(getText("UI_MMLPlayer_chord") or "Chord", nil)
+  self.trackCheckbox:addOption(getText("UI_MMLPlayer_graceNote") or "Grace Note", nil)
+  self.trackCheckbox:addOption(getText("UI_MMLPlayer_rootNote") or "Root Note", nil)
+
+  -- 設定初始狀態（預設全部勾選）
+  self.trackCheckbox:setSelected(1, true)  -- Melody
+  self.trackCheckbox:setSelected(2, false) -- Harmony
+  self.trackCheckbox:setSelected(3, false) -- Chord
+  self.trackCheckbox:setSelected(4, false) -- Grace Note
+  self.trackCheckbox:setSelected(5, false) -- Root Note
+  self:addChild(self.trackCheckbox)
+
+  -- 儲存勾選狀態（方便後續使用）
+  self.selectedTracks = {
+    melody = true,
+    harmony = false,
+    chord = false,
+    graceNote = false,
+    rootNote = false
+  }
 
   -- 按鈕區
-  local buttonY = self.textArea3:getBottom() + padding
+  local buttonY = self.trackCheckbox:getBottom() + padding
   local buttonWidth = 80
   local buttonSpacing = 10
 
@@ -238,32 +259,62 @@ function MMLInstrumentUI:initialise()
   self.statusLabel:initialise()
   self:addChild(self.statusLabel)
 
-  -- 資訊標籤（音符數、時長等）
-  self.infoLabel = ISLabel:new(
-    padding,
-    self.statusLabel:getBottom() + 5,
-    buttonHeight,
-    "",
-    0.7, 0.7, 0.7, 1, UIFont.Small, true
-  )
-  self.infoLabel:initialise()
-  self:addChild(self.infoLabel)
 
-  -- 預設 MML：放在 track1（其他兩軌預設空）
-  self.textArea1:setText("T120L4O4CDEFGAB>CDEFGAB")
-  self.textArea2:setText("")
-  self.textArea3:setText("")
-
-  self:setResizable(false)
+  self.mml =
+      self:setResizable(false)
 
   -- 只有第一次初始化才加入 UIManager
   self:addToUIManager()
 end
 
-function MMLInstrumentUI:setMML(mml1, mml2, mml3)
-  self.textArea1:setText(mml1 or "")
-  self.textArea2:setText(mml2 or "")
-  self.textArea3:setText(mml3 or "")
+function MMLInstrumentUI:setMML(mml)
+  self.mml = mml
+  if not self.trackCheckbox then
+    return
+  end
+
+  local trackNames = { "melody", "harmony", "chord", "graceNote", "rootNote" }
+  local trackDisplayNames = {
+    getText("UI_MMLPlayer_melody") or "Melody",
+    getText("UI_MMLPlayer_harmony") or "Harmony",
+    getText("UI_MMLPlayer_chord") or "Chord",
+    getText("UI_MMLPlayer_graceNote") or "Grace Note",
+    getText("UI_MMLPlayer_rootNote") or "Root Note"
+  }
+  local anyTrackAvailable = false
+
+  for i, trackName in ipairs(trackNames) do
+    local hasContent = false
+
+    if self.mml[trackName] then
+      local track = self.mml[trackName]
+      if (track.mml1 and track.mml1 ~= "") or
+          (track.mml2 and track.mml2 ~= "") or
+          (track.mml3 and track.mml3 ~= "") then
+        hasContent = true
+        anyTrackAvailable = true
+      end
+    end
+    local optionName = trackDisplayNames[i]
+    if hasContent then
+      self.trackCheckbox:disableOption(optionName, false)
+      self.trackCheckbox:setSelected(i, true)
+      self.selectedTracks[trackName] = true
+    else
+      self.trackCheckbox:disableOption(optionName, true)
+      self.trackCheckbox:setSelected(i, false)
+      self.selectedTracks[trackName] = false
+    end
+  end
+
+  -- 如果沒有任何軌道可用,顯示警告
+  if not anyTrackAvailable then
+    self.statusLabel:setName(getText("UI_MMLPlayer_NoTracksAvailable") or "No tracks available in this sheet")
+    self.playButton.enable = false
+  else
+    self.statusLabel:setName(getText("UI_MMLPlayer_Ready") or "Ready")
+    self.playButton.enable = true
+  end
 end
 
 function MMLInstrumentUI:show()
@@ -273,6 +324,17 @@ function MMLInstrumentUI:show()
   end
   self:setVisible(true)
   self:bringToTop()
+  if self.character and self.character:getPrimaryHandItem() then
+    local fullType = self.character:getPrimaryHandItem():getFullType()
+    if string.sub(fullType, 1, 9) == "MMLSheet." then
+      local sheet = MMLScores and MMLScores[fullType]
+      if not sheet or type(sheet.mml) ~= "table" then
+        print("No matching sheet for", tostring(fullType))
+        return
+      end
+      self:setMML(sheet.mml)
+    end
+  end
 end
 
 function MMLInstrumentUI:hide()
@@ -281,9 +343,45 @@ function MMLInstrumentUI:hide()
 end
 
 function MMLInstrumentUI:onPlay()
-  local mml1 = self.textArea1:getText() or ""
-  local mml2 = self.textArea2:getText() or ""
-  local mml3 = self.textArea3:getText() or ""
+  local trackNames = { "melody", "harmony", "chord", "graceNote", "rootNote" }
+  local allTracks = {}
+  -- 遍歷所有勾選的軌道
+  for i, trackName in ipairs(trackNames) do
+    if self.selectedTracks[trackName] and self.mml[trackName] then
+      table.insert(allTracks, {
+        mml1 = self.mml[trackName].mml1 or "",
+        mml2 = self.mml[trackName].mml2 or "",
+        mml3 = self.mml[trackName].mml3 or ""
+      })
+    end
+  end
+
+  -- 檢查是否有任何內容
+  if #allTracks == 0 then
+    self.statusLabel:setName(getText("UI_MMLPlayer_NoTrackSelected") or "Please select at least one track")
+    return
+  end
+
+  -- 合併所有軌道的 mml1, mml2, mml3
+  local combined_mml1 = {}
+  local combined_mml2 = {}
+  local combined_mml3 = {}
+
+  for _, track in ipairs(allTracks) do
+    if track.mml1 ~= "" then
+      table.insert(combined_mml1, track.mml1)
+    end
+    if track.mml2 ~= "" then
+      table.insert(combined_mml2, track.mml2)
+    end
+    if track.mml3 ~= "" then
+      table.insert(combined_mml3, track.mml3)
+    end
+  end
+
+  local mml1 = table.concat(combined_mml1, ",")
+  local mml2 = table.concat(combined_mml2, ",")
+  local mml3 = table.concat(combined_mml3, ",")
 
   if mml1 == "" and mml2 == "" and mml3 == "" then
     self.statusLabel:setName(getText("UI_MMLPlayer_EmptyInput") or "Please enter MML code")

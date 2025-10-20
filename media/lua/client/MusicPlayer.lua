@@ -69,7 +69,7 @@ function MusicPlayer:setEmitterVolume(emitter, soundId, volume, sourceId)
     emitter:setVolume(soundId, modifiedVolume)
 end
 
-function MusicPlayer:playNote(sourcePlayerId, instrument, note, velocity)
+function MusicPlayer:playNote(sourcePlayerId, instrument, note, velocity, isSilent)
     if self.range == nil then
         print('[MusicPlayer] ERROR: sound range not set')
         self.range = 40 -- 緊急預設值
@@ -99,7 +99,9 @@ function MusicPlayer:playNote(sourcePlayerId, instrument, note, velocity)
     end
 
     local soundId = soundEmitter:playSoundImpl(instrumentNote, square)
-    addSound(source, square:getX(), square:getY(), square:getZ(), self.range, velocity or self.baseVolume)
+    if not isSilent then
+        addSound(source, square:getX(), square:getY(), square:getZ(), self.range, velocity or self.baseVolume)
+    end
 
     if not isClient() or player:getOnlineID() == sourcePlayerId then
         soundEmitter:set3D(soundId, false)

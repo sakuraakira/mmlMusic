@@ -1,5 +1,5 @@
 UI_EN = {
-UI_MMLPlayer_Title = "MML Player",
+UI_MMLPlayer_Title = "MML music editor",
 UI_MMLPlayer_InputLabel = "Enter MML Code:",
 UI_MMLPlayer_Example = "Example",
 UI_MMLPlayer_Play = "Play",

@@ -1,6 +1,6 @@
 -- MMLPlayer.lua
 ---@class MMLPlayer
----@field new fun(self: MMLPlayer ,instrument: string): MMLPlayer
+---@field new fun(self: MMLPlayer ,instrument: string , isSilent:boolean): MMLPlayer
 ---@field play fun(self: MMLPlayer): nil
 ---@field stop fun(self: MMLPlayer): nil
 ---@field isPlaying fun(self: MMLPlayer): boolean
@@ -25,6 +25,7 @@
 ---@field playerId number
 ---@field PPQ number
 ---@field totalTicks number
+---@field isSilent boolean
 local MMLPlayer = {}
 
 local MMLParser = require("MMLParser")
@@ -49,7 +50,7 @@ end
 -- ============================================================
 -- 創建新的播放器實例
 -- ============================================================
-function MMLPlayer:new(instrument)
+function MMLPlayer:new(instrument, isSilent)
     local o = {}
     setmetatable(o, self)
     self.__index = self
@@ -63,6 +64,7 @@ function MMLPlayer:new(instrument)
     o.sourcePlayer = nil
     o.originalMML = ""
     o.playerId = nil
+    o.isSilent = isSilent or false
     o.activeNotes = {}
 
     return o
@@ -87,11 +89,11 @@ function MMLPlayer:loadMML(mmlInput)
         return false
     end
 
-    -- 將輸入字符串按逗號分割成最多 3 個 track
+    -- 將輸入字符串按逗號分割成最多個 track
     local rawTracks = {}
     for token in mmlInput:gmatch("([^,]+)") do
         table.insert(rawTracks, trim(token))
-        if #rawTracks >= 3 then break end
+        if #rawTracks >= 15 then break end
     end
 
     -- 補齊到 3 個 track
@@ -108,20 +110,16 @@ function MMLPlayer:loadMML(mmlInput)
             tempoToken = tempoToken:gsub('%s+', '') -- 移除空白: "t 120" -> "t120"
         end
     end
-
-    -- 如果 Track 1 沒有 tempo,檢查 Track 2/3 (但會被忽略)
+    -- 如果 Track 1 沒有 tempo,檢查 Track 2/3
     if not tempoToken then
         for i = 2, 3 do
-            local t = rawTracks[i]:match('[tT]%s*%d+')
-            if t then
-                print(string.format(
-                    "[MMLPlayer] Warning: Tempo in Track %d will be ignored (only Track 1 tempo is used)", i))
+            tempoToken = rawTracks[i]:match('[tT]%s*%d+')
+            if tempoToken then
+                tempoToken = tempoToken:gsub('%s+', '')
                 break
             end
         end
     end
-    -- ============================================
-
     -- ========== 清理並補充預設值 ==========
     self.tracks = {}
     self.totalDuration = 0
@@ -405,7 +403,8 @@ function MMLPlayer:playNote(noteData)
         self.playerId,
         self.instrument,
         noteData.note,
-        noteData.velocity
+        noteData.velocity,
+        self.isSilent
     )
 
     return key

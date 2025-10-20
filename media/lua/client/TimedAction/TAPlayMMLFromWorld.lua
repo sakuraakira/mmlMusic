@@ -36,7 +36,7 @@ function TAPlayMMLFromWorld:new(character, instrument, instrumentObject, orienta
     o.orientation = normalizeOrientation(orientation)
     o.seated = seated
     o.playing = true
-    o.mmlPlayer = MMLPlayer:new(o.instrument)
+    o.mmlPlayer = MMLPlayer:new(o.instrument, false)
     o.lastCheckTime = 0
     o.checkInterval = 100 -- 每100ms檢查一次狀態
     return o
@@ -80,22 +80,11 @@ function TAPlayMMLFromWorld:startAnimation()
 end
 
 function TAPlayMMLFromWorld:unequipHandItems()
-    local primaryItem = self.character:getPrimaryHandItem()
     local secondaryItem = self.character:getSecondaryHandItem()
-    if primaryItem ~= nil and self.character:isItemInBothHands(primaryItem) then
+    if secondaryItem ~= nil then
         table.insert(self.handItems,
-            { item = primaryItem, hands = "both" })
-    else
-        if primaryItem ~= nil then
-            table.insert(self.handItems,
-                { item = primaryItem, hands = "primary" })
-        end
-        if secondaryItem ~= nil then
-            table.insert(self.handItems,
-                { item = secondaryItem, hands = "secondary" })
-        end
+            { item = secondaryItem, hands = "secondary" })
     end
-    self.character:setPrimaryHandItem(nil)
     self.character:setSecondaryHandItem(nil)
 end
 
@@ -120,10 +109,7 @@ end
 function TAPlayMMLFromWorld:equipHandItemsAsBefore()
     for _, handItemInfo in ipairs(self.handItems) do
         if handItemInfo.hands == 'both' then
-            self.character:setPrimaryHandItem(handItemInfo.item)
             self.character:setSecondaryHandItem(handItemInfo.item)
-        elseif handItemInfo.hands == 'primary' then
-            self.character:setPrimaryHandItem(handItemInfo.item)
         elseif handItemInfo.hands == 'secondary' then
             self.character:setSecondaryHandItem(handItemInfo.item)
         end

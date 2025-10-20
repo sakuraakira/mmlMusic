@@ -45,7 +45,7 @@ function TAPlayMMLFromInventory:new(character, instrument, mml)
   o.mml = mml
 
   o.playing = true
-  o.mmlPlayer = MMLPlayer:new(o.instrument)
+  o.mmlPlayer = MMLPlayer:new(o.instrument, false)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
   return o
@@ -87,9 +87,9 @@ function TAPlayMMLFromInventory:start()
     print("[MML] Warning: failed to read player:getMoveSpeed()")
   end
 
-  if self.item then
-    self:equipInstrumentOnSecondaryHand()
-  end
+  --if self.item then
+  --  self:equipInstrumentOnSecondaryHand()
+  --end
   local animName = ItemToAnimation[self.instrument]
   if animName then
     print("[MML] Setting animation: " .. animName)
@@ -158,7 +158,7 @@ function TAPlayMMLFromInventory:stop()
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
-  self:EquipInstrumentAsBefore()
+  --self:EquipInstrumentAsBefore()
   self:restoreMoveSpeed()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
@@ -194,7 +194,7 @@ function TAPlayMMLFromInventory:perform()
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
-  self:EquipInstrumentAsBefore()
+  --self:EquipInstrumentAsBefore()
   -- 恢復移動速度
   self:restoreMoveSpeed()
   if self.onComplete and type(self.onComplete) == "function" then

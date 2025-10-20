@@ -17,7 +17,7 @@ MMLClientRecvCommands['ServerStartMML'] = function(args)
 
   -- 检查距离
   local distance = player:DistTo(sourcePlayer:getX(), sourcePlayer:getY())
-  local maxRange = MMLPlayer.getRange()   -- 使用模块函数
+  local maxRange = MMLPlayer.getRange() -- 使用模块函数
 
   if distance > maxRange + 10 then
     print("[MMLClient] Player too far away: " .. distance)
@@ -30,7 +30,7 @@ MMLClientRecvCommands['ServerStartMML'] = function(args)
   end
 
   -- 创建新的播放器实例
-  local mmlPlayer = MMLPlayer:new(args.instrument)
+  local mmlPlayer = MMLPlayer:new(args.instrument, false)
   mmlPlayer:setSourcePlayer(sourcePlayer)
 
   if not mmlPlayer:loadMML(args.mml) then
@@ -53,7 +53,7 @@ end
 
 -- 接收音效范围设定
 MMLClientRecvCommands['ServerAnswerRange'] = function(args)
-  MMLPlayer.setRange(args.SoundRange)   -- 使用模块函数
+  MMLPlayer.setRange(args.SoundRange) -- 使用模块函数
   print("[MMLClient] Sound range set to: " .. args.SoundRange)
 end
 
@@ -75,7 +75,7 @@ local function AskServerData()
   end
   lastAskedTime = currentTime
 
-  if MMLPlayer.getRange() ~= 40 then   -- 已经设定过了
+  if MMLPlayer.getRange() ~= 40 then -- 已经设定过了
     Events.OnPostRender.Remove(AskServerData)
     return
   end

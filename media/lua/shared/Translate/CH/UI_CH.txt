@@ -1,8 +1,16 @@
 UI_CH = {
 // MML Player UI
-UI_MMLPlayer_Title = "MML 播放器",
+UI_MMLPlayer_Title = "MML作曲編輯",
 UI_MMLPlayer_InputLabel = "輸入 MML 代碼：",
-UI_MMLPlayer_Example = "範例",
+UI_MMLPlayer_UsedSheet = "使用樂譜：",
+UI_MMLPlayer_NoSheet = "無樂譜(可以把樂譜裝備到手主)",
+UI_MMLPlayer_melody = "主旋律",
+UI_MMLPlayer_harmony = "和音",
+UI_MMLPlayer_chord = "和弦",
+UI_MMLPlayer_graceNote = "裝飾音",
+UI_MMLPlayer_rootNote = "根音",
+UI_MMLPlayer_NoTrackSelected = "至少選擇一個要演奏的樂譜",
+UI_MMLPlayer_NoTracksAvailable = "樂譜沒有可演奏的內容",
 UI_MMLPlayer_Play = "演奏",
 UI_MMLPlayer_Stop = "停止",
 UI_MMLPlayer_Pause = "暫停",
@@ -11,10 +19,10 @@ UI_MMLPlayer_Validate = "驗證",
 UI_MMLPlayer_Clear = "清除",
 UI_MMLPlayer_LoadExample = "載入範例",
 UI_MMLPlayer_Ready = "就緒",
-UI_MMLPlayer_Playing = "播放中...",
+UI_MMLPlayer_Playing = "演奏中...",
 UI_MMLPlayer_Stopped = "已停止",
 UI_MMLPlayer_Paused = "已暫停",
-UI_MMLPlayer_Finished = "播放完畢",
+UI_MMLPlayer_Finished = "演奏完畢",
 UI_MMLPlayer_EmptyInput = "請輸入 MML 代碼",
 UI_MMLPlayer_ParseError = "解析錯誤 - 請檢查 MML 語法",
 UI_MMLPlayer_PlayFailed = "播放失敗",
@@ -26,6 +34,7 @@ UI_Characters = "字元",
 
 // Context Menu
 UI_ContextMenu_PlayMusicSheet = "演奏樂器",
+UI_ContextMenu_EditMusicSheet = "樂譜作曲"
 
 // Music Sheet
 UI_MusicSheet_Instrument = "樂器",

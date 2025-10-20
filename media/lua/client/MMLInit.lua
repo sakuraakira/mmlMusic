@@ -4,9 +4,9 @@
 -- 載入核心模組
 local MMLPlayer = require('MMLPlayer')
 local MMLContextMenu = require('MMLContextMenu')
-local MMLClientRecvCommands = require('MMLClientRecvCommands')
-local MMLPlayerUI = require('MMLPlayerUI')
+local MMLComposeUI = require('MMLComposeUI')
 local MMLInstrumentUI = require('MMLInstrumentUI')
+local MMLScores = require('MMLScores')
 
 -- ============================================================
 -- 註冊物品右鍵選單
@@ -23,14 +23,24 @@ Events.OnPreFillWorldObjectContextMenu.Add(MMLContextMenu.OnPreFillWorldObjectCo
 
 local function applyMMLSelection(playerObj, item)
   if not playerObj or not item then return end
-  if not playerObj:isLocalPlayer() then return end
   if playerObj:isDead() then return end
-  if item:getFullType() ~= "Courage" then
-    MMLInstrumentUI.setMML(mml1, mml2, mml3)
+
+  local fullType = item:getFullType()
+
+  local sheet = MMLScores and MMLScores[fullType]
+  if not sheet or type(sheet.mml) ~= "table" then
+    print("No matching sheet for", tostring(fullType))
+    return
   end
+
+  local ui = MMLInstrumentUI.getExistingInstance and MMLInstrumentUI.getExistingInstance() or nil
+  local isOpen = ui and
+      ((ui.getIsVisible and ui:getIsVisible()) or (ui.isVisible and ui:isVisible()) or ui.visible == true)
+  if not (ui and isOpen) then return end
+  ui:setMML(sheet.mml)
 end
 
-Events.OnEquipSecondary.Add(function(playerObj, item)
+Events.OnEquipPrimary.Add(function(playerObj, item)
   if isServer() then return end
   if item then
     applyMMLSelection(playerObj, item)
@@ -43,24 +53,10 @@ end)
 local debugMMLPlayerUI = nil
 
 local function OnKeyPressed(key)
-  -- F11 - 停止所有 MML 播放
+  local player = getSpecificPlayer(0)
+
   if key == Keyboard.KEY_F11 then
-    MMLPlayer.stopAll()
-    print("[MML Debug] Stopped all playback (F11)")
-
-    -- 如果有 UI 開著，也關閉
-    if debugMMLPlayerUI then
-      debugMMLPlayerUI:close()
-      debugMMLPlayerUI = nil
-    end
-  end
-
-  -- F12 - 開啟 MML 播放器並測試範例
-  if key == Keyboard.KEY_F12 then
-    print("[MML Debug] ========================================")
     print("[MML Debug] Opening MML Player and testing example...")
-    print("[MML Debug] ========================================")
-
     -- 如果已經有 UI 開著，先關閉
     if debugMMLPlayerUI then
       debugMMLPlayerUI:close()
@@ -68,38 +64,10 @@ local function OnKeyPressed(key)
     end
 
     -- 創建新的 MML 播放器 UI
-    debugMMLPlayerUI = MMLPlayerUI:new("Piano", player)
+    debugMMLPlayerUI = MMLComposeUI:new("Piano", player)
     debugMMLPlayerUI:initialise()
     debugMMLPlayerUI:addToUIManager()
-
     print("[MML Debug] UI created and initialized")
-
-    -- 等待 UI 完全初始化後載入範例
-    -- 使用 OnPostRender 延遲執行
-    local loadExampleFunc = nil
-    loadExampleFunc = function()
-      if debugMMLPlayerUI and debugMMLPlayerUI.textArea then
-        -- 載入範例樂曲（小星星）
-        local exampleMML = "T120 L4 O4 CCGGAAG2 FFEEDDC2 GGFFEED2 GGFFEED2 CCGGAAG2 FFEEDDC2"
-        debugMMLPlayerUI.textArea:setText(exampleMML)
-        print("[MML Debug] Example loaded: " .. exampleMML)
-
-        -- 再延遲一幀後自動播放
-        local autoPlayFunc = nil
-        autoPlayFunc = function()
-          if debugMMLPlayerUI then
-            debugMMLPlayerUI:onPlay()
-            print("[MML Debug] Auto-play started!")
-            print("[MML Debug] ========================================")
-          end
-          Events.OnPostRender.Remove(autoPlayFunc)
-        end
-        Events.OnPostRender.Add(autoPlayFunc)
-
-        Events.OnPostRender.Remove(loadExampleFunc)
-      end
-    end
-    Events.OnPostRender.Add(loadExampleFunc)
   end
 end
 
