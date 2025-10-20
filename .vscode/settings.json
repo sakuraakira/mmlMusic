@@ -1,16 +1,43 @@
 {
-  // ---- 基本：針對 PZ 的 Lua ----
+  // ========================================
+  // Lua 運行時設定
+  // ========================================
   "Lua.runtime.version": "Lua 5.1",
-  "Lua.workspace.checkThirdParty": false,
+  "Lua.runtime.path": [
+    "?.lua",
+    "?/init.lua",
+    "server/?.lua",
+    "client/?.lua",
+    "shared/?.lua"
+  ],
+  "Lua.runtime.builtin": {
+    "debug": "disable",
+    "io": "disable",
+    "package": "disable"
+  },
 
-  // 讓 LSP 載入 Umbrella 型別庫（使用擴充套件內建的 library）
-  // 如果你是用 VS Code 市集的 Umbrella 擴充，這條通常就夠了：
+  // ========================================
+  // 工作區設定
+  // ========================================
+  "Lua.workspace.checkThirdParty": false,
   "Lua.workspace.library": [
     "${3rd}/ProjectZomboid-Umbrella/library",
     "${addons}/umbrella-unstable/module/library"
   ],
 
-  // 常見 PZ 全域，避免未定義警告
+  // **重要：忽略生成的元數據目錄**
+  "Lua.workspace.ignoreDir": [
+    ".vscode",
+    "meta",
+    ".luarc.json"
+  ],
+
+  // **防止 LSP 掃描過多文件**
+  "Lua.workspace.ignoreSubmodules": true,
+
+  // ========================================
+  // 診斷設定
+  // ========================================
   "Lua.diagnostics.globals": [
     "Events",
     "sendClientCommand",
@@ -21,44 +48,108 @@
     "HaloTextHelper",
     "DebugLog",
     "getPlayer",
+    "getSpecificPlayer",
     "getText",
     "IsoCell",
     "IsoPlayer",
     "IsoWindow",
     "TimedActions",
-    "ISUI"
+    "ISUI",
+    "ISTimedActionQueue",
+    "ISBaseTimedAction",
+    "ISCollapsableWindow",
+    "ISButton",
+    "ISComboBox",
+    "getWorld",
+    "getCore",
+    "isClient",
+    "isServer",
+    "Calendar",
+    "getOnlinePlayers",
+    "getPlayerByOnlineID",
+    "SandboxVars",
+    "TraitFactory",
+    "keyBinding",
+    "getKeyName"
+  ],
+  "Lua.diagnostics.disable": [
+    "param-type-mismatch",
+    "lowercase-global",
+    "undefined-global"
   ],
 
-  // ---- 編輯體驗 ----
+  // **設置診斷級別**
+  "Lua.diagnostics.severity": {
+    "redefined-local": "Warning",
+    "trailing-space": "Hint"
+  },
+
+  // ========================================
+  // 完成和提示
+  // ========================================
+  "Lua.completion.requireSeparator": "/",
+  "Lua.completion.callSnippet": "Replace",
+  "Lua.hint.enable": true,
+  "Lua.hint.paramName": "All",
+
+  // ========================================
+  // 編輯器設定
+  // ========================================
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  // ========================================
+  // 文件設定
+  // ========================================
   "files.eol": "\n",
+  "files.encoding": "utf8",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
+  "files.autoSave": "off",
+  "files.autoSaveDelay": 1000,
 
-  // ---- 建議： scripts(.txt) 相關（語法高亮/格式化交給 Script Support/ZedScript）----
-  // 若你的 scripts 檔名不是標準副檔名，可手動關聯語言模式：
+  // **重要：排除不需要的文件**
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.vscode": false,  // 保持可見但不監視
+    "**/meta": true,      // 隱藏 Lua LSP 生成的 meta 目錄
+    "**/*.bak": true,
+    "**/*~": true
+  },
+
+  // **重要：不監視這些文件變化**
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.hg/store/**": true,
+    "**/meta/**": true,           // 不監視 meta 目錄
+    "**/.vscode/**": true
+  },
+
+  // ========================================
+  // 文件關聯
+  // ========================================
   "files.associations": {
-    "*.txt": "plaintext" // 先保留預設；若需要可改成擴充套件提供的語言 id
+    "*.txt": "plaintext",
+    "*.lua": "lua"
   },
-  "Lua.runtime.path": [
-    "?.lua",
-    "?/init.lua",
-    "server/?.lua"
-  ],
-  "Lua.completion.requireSeparator": "/",
-  "Lua.runtime.builtin": {
-    "debug": "disable",
-    "io": "disable",
-    "package": "disable"
-  },
-  "Lua.diagnostics.disable": [
-    "param-type-mismatch"
-  ]
 
-  // ---- (可選) 如果你把 Umbrella repo clone 到本機，改用本機路徑：----
-  // "Lua.workspace.library": [
-  //   "C:/path/to/ProjectZomboid-Umbrella/library"
-  // ]
+  // ========================================
+  // 搜索排除
+  // ========================================
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/meta": true,
+    "**/.vscode": true
+  }
 }

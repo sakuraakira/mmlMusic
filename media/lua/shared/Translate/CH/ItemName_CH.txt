@@ -1,6 +1,6 @@
 ItemName_CH = {
-  ItemName_MMLSheet.Courage = "樂團樂譜(曲名:Courage)",
-  ItemName_MMLSheet.Unravel = "樂團樂譜(曲名:Unravel)",
+  ItemName_MMLSheet.Courage = "泛黃樂譜(曲名:Courage)",
+  ItemName_MMLSheet.Unravel = "泛黃樂譜(曲名:Unravel)",
 
   ItemName_MMLSheet.BlankBandSheetMusic = "樂團樂譜(空白)",
   ItemName_MMLSheet.BlankSheetMusic = "樂譜(空白)",

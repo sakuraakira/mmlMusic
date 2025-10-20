@@ -37,7 +37,7 @@ local function applyMMLSelection(playerObj, item)
   local isOpen = ui and
       ((ui.getIsVisible and ui:getIsVisible()) or (ui.isVisible and ui:isVisible()) or ui.visible == true)
   if not (ui and isOpen) then return end
-  ui:setMML(sheet.mml)
+  ui:setMML(sheet.mml, item:getName())
 end
 
 Events.OnEquipPrimary.Add(function(playerObj, item)

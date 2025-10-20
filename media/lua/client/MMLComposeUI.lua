@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 -- MMLComposeUI.lua
 -- MML 播放器 UI 介面
 ---@class MMLComposeUI: ISCollapsableWindow
@@ -21,7 +22,6 @@
 ---@field labelTrack3 ISLabel
 ---@field labelExample ISLabel
 ---@field labelInstrument ISLabel
----@field onInstrumentChange fun(self: MMLComposeUI): nil 樂器選擇改變時的回調函數
 ---@field onPlay fun(self: MMLComposeUI): nil 播放按鈕回調
 ---@field onStop fun(self: MMLComposeUI): nil 停止按鈕
 ---@field render fun(self: MMLComposeUI): nil 繪製介面
@@ -30,23 +30,28 @@
 local MMLComposeUI = ISCollapsableWindow:derive("MMLComposeUI")
 
 local MMLPlayer = require('MMLPlayer')
-local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 
-local WIDTH = 650
+local WIDTH = 730
 local HEIGHT = 580
+local MAX_LEN = 1500
+local function clampEntry(entry)
+  local value = entry:getText() or ""
+  if #value > MAX_LEN then
+    local trimmed = value:sub(1, MAX_LEN)
+    entry:setText(trimmed)
+    return trimmed, true
+  end
+  return value
+end
 
 local function formatDurationMs(ms)
   ms = ms or 0
   local secs = ms / 1000
   local mins = math.floor(secs / 60)
   local rem = secs - mins * 60
-  if mins > 0 then
-    -- 顯示為 M:SS.ss
-    return string.format("%d:%05.2f", mins, rem)
-  else
-    -- 顯示為 S.ss 秒
-    return string.format("%.2fs", rem)
-  end
+
+  -- 顯示為 S.ss 秒
+  return string.format("%.2fs", rem)
 end
 
 -- 儲存單例實例
@@ -78,7 +83,8 @@ function MMLComposeUI:new(instrument, character)
   self.__index = self
 
   o.title = getText("UI_MMLPlayer_Title") or "MML Player"
-  o.mmlPlayer = nil
+  o.mmlPlayer = nil -- backwards-compat, 保留欄位（不再主要使用）
+  o.mmlPlayers = {} -- 新：多播放器實例列表（按 tab 順序）
   o.isPlaying = false
 
   o.isInitialized = false -- 追蹤是否已初始化
@@ -198,9 +204,38 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
   textArea3:setEditable(true)
   container:addChild(textArea3)
 
+  local composeUI = self
+
+  local labelInstrument = ISLabel:new(
+    padding, textArea3:getBottom() + 5,
+    buttonHeight,
+    getText("UI_MMLPlayer_TryInstrument") or "Instrument:",
+    1, 1, 1, 1, UIFont.Medium, true
+  )
+  labelInstrument:initialise()
+  container:addChild(labelInstrument)
+
+  local instrumentCombo = ISComboBox:new(
+    padding + 140, textArea3:getBottom() + padding,
+    140,
+    buttonHeight,
+    nil, nil
+  )
+  instrumentCombo:initialise()
+  instrumentCombo:instantiate()
+  instrumentCombo:addOption("Piano")
+  instrumentCombo:addOption("Violin")
+  instrumentCombo:addOption("GuitarDistortion")
+  instrumentCombo:addOption("GuitarClean")
+  instrumentCombo:addOption("GuitarSteel")
+  instrumentCombo:addOption("BassFinger")
+  instrumentCombo:addOption("Flute")
+  instrumentCombo.selected = 1
+  container:addChild(instrumentCombo)
+
   local infoLabel = ISLabel:new(
     padding,
-    textArea3:getBottom() + 5,
+    instrumentCombo:getBottom() + 5,
     buttonHeight,
     "",
     1, 1, 1, 1, UIFont.Small, true
@@ -213,13 +248,15 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
     textArea1 = textArea1,
     textArea2 = textArea2,
     textArea3 = textArea3,
-    infoLabel = infoLabel
+    infoLabel = infoLabel,
+    instrumentCombo = instrumentCombo
   }
-  local composeUI = self
+
   -- 按鈕區
-  local buttonY = infoLabel:getBottom() + 60 + padding
+
+  local buttonY = infoLabel:getBottom() + 40 + padding
   local buttonWidth = 80
-  local buttonSpacing = 10
+  local buttonSpacing = 20
 
   -- 驗證按鈕
   local validateButton = ISButton:new(
@@ -303,7 +340,7 @@ function MMLComposeUI:initialise()
   -- 播放按鈕
   self.playButton = ISButton:new(
     padding, buttonY, buttonWidth, buttonHeight,
-    getText("UI_MMLPlayer_Play") or "Play",
+    getText("UI_MMLPlayer_Try") or "Try",
     self, MMLComposeUI.onPlay
   )
   self.playButton:initialise()
@@ -354,88 +391,89 @@ function MMLComposeUI:initialise()
 end
 
 function MMLComposeUI:onPlay()
-  -- 獲取當前激活的 tab 索引
-  local activeTabIndex = self.nested:getActiveViewIndex()
+  -- 停止並清空先前所有播放器
+  if self.mmlPlayers and #self.mmlPlayers > 0 then
+    for _, p in ipairs(self.mmlPlayers) do
+      if p and p.stop then p:stop() end
+    end
+  end
+  self.mmlPlayers = {}
 
-  -- 定義 tab 名稱映射
   local tabNames = { "melody", "harmony", "chord", "graceNote", "rootNote" }
-  local currentTabName = tabNames[activeTabIndex]
+  local anyPlayed = false
+  local playedCount = 0
 
-  if not currentTabName then
-    self.statusLabel:setName("Error: Invalid tab")
-    return
+  for _, tabName in ipairs(tabNames) do
+    local controls = self.tabControls[tabName]
+    if controls then
+      local mml1 = clampEntry(controls.textArea1)
+      local mml2 = clampEntry(controls.textArea2)
+      local mml3 = clampEntry(controls.textArea3)
+      -- 若此 tab 全空則跳過
+      if not (mml1 == "" and mml2 == "" and mml3 == "") then
+        local instr = controls.instrumentCombo and controls.instrumentCombo:getSelectedText() or "Piano"
+        local player = MMLPlayer:new(instr, true)
+        local combined = string.format("%s,%s,%s", mml1, mml2, mml3)
+        local ok = player:loadMML(combined)
+        if not ok then
+          controls.infoLabel:setName(getText("UI_MMLPlayer_ParseError") or "Parse error")
+        else
+          if player:play() then
+            table.insert(self.mmlPlayers, player)
+            anyPlayed = true
+            playedCount = playedCount + 1
+            controls.infoLabel:setName(getText("UI_MMLPlayer_Playing") or "Playing")
+          else
+            controls.infoLabel:setName(getText("UI_MMLPlayer_PlayFailed") or "Play failed")
+          end
+        end
+      end
+    end
   end
 
-  -- 獲取當前 tab 的控件
-  local controls = self.tabControls[currentTabName]
-  if not controls then
-    self.statusLabel:setName("Error: Tab controls not found")
-    return
-  end
-
-  -- 從當前 tab 獲取 MML 內容
-  local mml1 = controls.textArea1:getText() or ""
-  local mml2 = controls.textArea2:getText() or ""
-  local mml3 = controls.textArea3:getText() or ""
-
-  if mml1 == "" and mml2 == "" and mml3 == "" then
-    self.statusLabel:setName(getText("UI_MMLPlayer_EmptyInput") or "Please enter MML code")
-    return
-  end
-
-  -- 停止之前的播放
-  if self.mmlPlayer then
-    self.mmlPlayer:stop()
-  end
-
-  -- 創建新的播放器
-  self.mmlPlayer = MMLPlayer:new(self.instrument, true)
-
-  -- 組合為單一字串（以逗號區分 track）
-  local combined = string.format("%s,%s,%s", mml1, mml2, mml3)
-  local ok = self.mmlPlayer:loadMML(combined)
-  if not ok then
-    self.statusLabel:setName(getText("UI_MMLPlayer_ParseError") or "Parse error")
-    self.playButton.enable = true
-    self.stopButton.enable = false
-    return
-  end
-
-  ISTimedActionQueue.add(TAPlayMMLFromInventory:new(self.character, self.instrument))
-
-  if self.mmlPlayer:play() then
+  if anyPlayed then
     self.isPlaying = true
-    self.statusLabel:setName(
-      string.format("%s: %s",
-        getText("UI_MMLPlayer_Playing") or "Playing",
-        getText("UI_MMLPlayer_" .. currentTabName) or currentTabName
-      )
-    )
     self.playButton.enable = false
     self.stopButton.enable = true
+    self.statusLabel:setName(string.format("%s (%d)", getText("UI_MMLPlayer_Playing") or "Playing", playedCount))
   else
-    self.statusLabel:setName(getText("UI_MMLPlayer_PlayFailed") or "Play failed")
+    self.isPlaying = false
+    self.playButton.enable = true
+    self.stopButton.enable = false
+    self.statusLabel:setName(getText("UI_MMLPlayer_EmptyInput") or "Please enter MML code")
   end
 end
 
 function MMLComposeUI:onStop()
-  ISTimedActionQueue.clear(self.character)
-
-  if self.mmlPlayer then
-    self.mmlPlayer:stop()
-    self.isPlaying = false
-    self.statusLabel:setName(getText("UI_MMLPlayer_Stopped") or "Stopped")
-    self.playButton.enable = true
-    self.stopButton.enable = false
+  if self.mmlPlayers then
+    for _, p in ipairs(self.mmlPlayers) do
+      if p and p.stop then p:stop() end
+    end
   end
+  -- 保留舊欄位兼容性
+  if self.mmlPlayer and self.mmlPlayer.stop then
+    self.mmlPlayer:stop()
+  end
+  self.mmlPlayers = {}
+  self.isPlaying = false
+  self.statusLabel:setName(getText("UI_MMLPlayer_Stopped") or "Stopped")
+  self.playButton.enable = true
+  self.stopButton.enable = false
 end
 
 function MMLComposeUI:render()
   ISCollapsableWindow.render(self)
 
   -- 繪製進度條
-  if self.mmlPlayer and self.isPlaying then
-    local progress = self.mmlPlayer:getProgress()
+  -- 使用第一個播放器的進度（若存在）
+  local primary = nil
+  if self.mmlPlayers and #self.mmlPlayers > 0 then
+    primary = self.mmlPlayers[1]
+  elseif self.mmlPlayer then
+    primary = self.mmlPlayer
+  end
+  if primary and self.isPlaying then
+    local progress = primary:getProgress()
     local barWidth = (self.progressBar.width - 4) * progress
 
     self:drawRect(
@@ -444,13 +482,6 @@ function MMLComposeUI:render()
       barWidth,
       self.progressBar.height - 4,
       1.0, 0.3, 0.7, 0.3
-    )
-
-    -- 顯示剩餘時間
-    local remaining = self.mmlPlayer:getRemainingTime()
-    self.infoLabel:setName(
-      string.format("Progress: %.0f%% | Remaining: %.1fs",
-        progress * 100, remaining)
     )
   end
 end
@@ -489,16 +520,15 @@ function MMLComposeUI:onValidate(tabName)
     return
   end
 
-  local mml1 = controls.textArea1:getText() or ""
-  local mml2 = controls.textArea2:getText() or ""
-  local mml3 = controls.textArea3:getText() or ""
+  local mml1 = clampEntry(controls.textArea1)
+  local mml2 = clampEntry(controls.textArea2)
+  local mml3 = clampEntry(controls.textArea3)
 
   if mml1 == "" and mml2 == "" and mml3 == "" then
     controls.infoLabel:setName(getText("UI_MMLPlayer_EmptyInput") or "Please enter MML code")
     return
   end
 
-  -- 使用 MMLPlayer helper 解析三軌
   local tmpPlayer = MMLPlayer:new(self.instrument, true)
   local results = tmpPlayer:parseTracks({ mml1, mml2, mml3 })
 
@@ -520,21 +550,12 @@ function MMLComposeUI:onValidate(tabName)
   end
 
   if anyError then
-    controls.infoLabel:setName(table.concat(lines, " | "))
+    local msg = table.concat(lines, " | ")
+    controls.infoLabel:setName(msg)
   else
-    controls.infoLabel:setName(
-      string.format("Valid: %d notes, %.2fs | ", totalNotes, (maxDuration or 0) / 1000) ..
-      table.concat(lines, " | ")
-    )
-  end
-end
-
--- 樂器選擇改變時的回調函數
-function MMLComposeUI:onInstrumentChange()
-  if self.instrumentCombo.selected > 0 and
-      self.instrumentCombo.options and
-      self.instrumentCombo.options[self.instrumentCombo.selected] then
-    self.instrument = self.instrumentCombo.options[self.instrumentCombo.selected].text
+    local msg = string.format("Valid: %d notes, %s | %s",
+      totalNotes, formatDurationMs((maxDuration or 0)), table.concat(lines, " | "))
+    controls.infoLabel:setName(msg)
   end
 end
 

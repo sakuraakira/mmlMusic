@@ -1,8 +1,8 @@
 local PlayerItemToMMLInstrument = {
-  ['Base.GuitarAcoustic'] = 'GuitarAcoustic',
+  ['Base.GuitarAcoustic'] = 'GuitarSteel',
   ['Base.Banjo'] = 'Banjo',
-  ['Base.GuitarElectricBlack'] = 'GuitarDistortion',
-  ['Base.GuitarElectricBlue'] = 'GuitarDistortion',
+  ['Base.GuitarElectricBlack'] = 'GuitarClean',
+  ['Base.GuitarElectricBlue'] = 'GuitarClean',
   ['Base.GuitarElectricRed'] = 'GuitarDistortion',
   ['Base.GuitarElectricBassBlack'] = 'BassFinger',
   ['Base.GuitarElectricBassBlue'] = 'BassFinger',

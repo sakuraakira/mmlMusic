@@ -1,0 +1,610 @@
+module mmlMusic {
+    
+    sound GuitarCleanC2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound GuitarCleanCs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanD2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanDs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound GuitarCleanE2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanF2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanFs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound GuitarCleanG2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanGs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanA2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound GuitarCleanAs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanB2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanC3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+        }
+    }
+    
+    sound GuitarCleanCs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanD3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanDs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+        }
+    }
+    
+    sound GuitarCleanE3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanF3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanFs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+        }
+    }
+    
+    sound GuitarCleanG3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanGs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.62,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanA3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound GuitarCleanAs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanB3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound GuitarCleanCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound GuitarCleanE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound GuitarCleanG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound GuitarCleanAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+        }
+    }
+    
+    sound GuitarCleanCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+        }
+    }
+    
+    sound GuitarCleanE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 1.0,
+        }
+    }
+    
+    sound GuitarCleanG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarCleanA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+        }
+    }
+    
+    sound GuitarCleanAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarCleanB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarClean/GuitarClean_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 0.9438743127,
+        }
+    }
+}

@@ -1,3 +1,4 @@
+---@diagnostic disable: inject-field
 -- MMLInstrumentUI.lua
 -- UI 介面
 ---@class MMLInstrumentUI: ISCollapsableWindow
@@ -267,12 +268,12 @@ function MMLInstrumentUI:initialise()
   self:addToUIManager()
 end
 
-function MMLInstrumentUI:setMML(mml)
+function MMLInstrumentUI:setMML(mml, name)
   self.mml = mml
   if not self.trackCheckbox then
     return
   end
-
+  self.labelInput2:setName(name)
   local trackNames = { "melody", "harmony", "chord", "graceNote", "rootNote" }
   local trackDisplayNames = {
     getText("UI_MMLPlayer_melody") or "Melody",
@@ -298,13 +299,11 @@ function MMLInstrumentUI:setMML(mml)
     local optionName = trackDisplayNames[i]
     if hasContent then
       self.trackCheckbox:disableOption(optionName, false)
-      self.trackCheckbox:setSelected(i, true)
-      self.selectedTracks[trackName] = true
     else
       self.trackCheckbox:disableOption(optionName, true)
-      self.trackCheckbox:setSelected(i, false)
-      self.selectedTracks[trackName] = false
     end
+    self.trackCheckbox:setSelected(i, false)
+    self.selectedTracks[trackName] = false
   end
 
   -- 如果沒有任何軌道可用,顯示警告
@@ -325,14 +324,15 @@ function MMLInstrumentUI:show()
   self:setVisible(true)
   self:bringToTop()
   if self.character and self.character:getPrimaryHandItem() then
-    local fullType = self.character:getPrimaryHandItem():getFullType()
+    local item = self.character:getPrimaryHandItem()
+    local fullType = item:getFullType()
     if string.sub(fullType, 1, 9) == "MMLSheet." then
       local sheet = MMLScores and MMLScores[fullType]
       if not sheet or type(sheet.mml) ~= "table" then
         print("No matching sheet for", tostring(fullType))
         return
       end
-      self:setMML(sheet.mml)
+      self:setMML(sheet.mml, item:getName())
     end
   end
 end

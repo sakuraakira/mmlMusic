@@ -8,7 +8,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_C3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.4,
         }
     }
     
@@ -20,9 +20,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_C3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.4,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -34,9 +33,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.4,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -48,8 +46,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
-            
+            volume = 0.4,
         }
     }
     
@@ -61,7 +58,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.4,
             pitch = 1.0594630944,
         }
     }
@@ -74,9 +71,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.4,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -88,8 +84,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
-            
+            volume = 0.4,
         }
     }
     
@@ -101,9 +96,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.4,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -115,9 +109,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.4,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -129,8 +122,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
-            
+            volume = 0.45,
         }
     }
     
@@ -142,9 +134,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.45,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -156,9 +147,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.45,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -170,8 +160,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
-            
+            volume = 0.45,
         }
     }
     
@@ -183,9 +172,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.45,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -197,9 +185,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.45,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -211,8 +198,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
-            
+            volume = 0.45,
         }
     }
     
@@ -224,9 +210,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.45,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -238,9 +223,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.45,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -252,8 +236,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.68,
-            
+            volume = 0.48,
         }
     }
     
@@ -265,9 +248,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.68,
+            volume = 0.48,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -279,9 +261,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.68,
+            volume = 0.48,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -293,8 +274,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.68,
-            
+            volume = 0.48,
         }
     }
     
@@ -306,9 +286,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.68,
+            volume = 0.48,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -320,9 +299,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.68,
+            volume = 0.48,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -334,8 +312,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
-            
+            volume = 0.5,
         }
     }
     
@@ -347,9 +324,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -361,9 +337,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -375,8 +350,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
-            
+            volume = 0.5,
         }
     }
     
@@ -388,9 +362,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -402,7 +375,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
             pitch = 0.9438743127,
         }
     }
@@ -415,7 +388,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
         }
     }
     
@@ -427,7 +400,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
             pitch = 1.0594630944,
         }
     }
@@ -440,7 +413,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
             pitch = 0.9438743127,
         }
     }
@@ -453,7 +426,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
         }
     }
     
@@ -465,7 +438,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
             pitch = 1.0594630944,
         }
     }
@@ -478,7 +451,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_C6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.5,
             pitch = 0.9438743127,
         }
     }
@@ -491,7 +464,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_C6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
         }
     }
     
@@ -503,7 +476,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_C6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 1.0594630944,
         }
     }
@@ -516,7 +489,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 0.9438743127,
         }
     }
@@ -529,7 +502,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
         }
     }
     
@@ -541,7 +514,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Ds6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 1.0594630944,
         }
     }
@@ -554,7 +527,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 0.9438743127,
         }
     }
@@ -567,7 +540,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
         }
     }
     
@@ -579,7 +552,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_Fs6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 1.0594630944,
         }
     }
@@ -592,7 +565,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_A6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 0.9438743127,
         }
     }
@@ -605,7 +578,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_A6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
         }
     }
     
@@ -617,7 +590,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_A6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 1.0594630944,
         }
     }
@@ -630,7 +603,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_C7.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 0.9438743127,
         }
     }
@@ -643,7 +616,7 @@ module mmlMusic {
             file = media/sound/violin/Violin_C7.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
         }
     }
     
@@ -655,110 +628,8 @@ module mmlMusic {
             file = media/sound/violin/Violin_C7.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.8,
+            volume = 0.6,
             pitch = 1.0594630944,
         }
     }
-    
-    sound ViolinD7 {
-        category = Music,
-        loop = false,
-        is3D = true,
-        clip {
-            file = media/sound/violin/Violin_Ds7.ogg,
-            distanceMax = 650,
-            reverbFactor = 0.1,
-            volume = 0.8,
-            pitch = 0.9438743127,
-        }
-    }
-    
-    sound ViolinDs7 {
-        category = Music,
-        loop = false,
-        is3D = true,
-        clip {
-            file = media/sound/violin/Violin_Ds7.ogg,
-            distanceMax = 650,
-            reverbFactor = 0.1,
-            volume = 0.8,
-        }
-    }
-    
-    sound ViolinE7 {
-        category = Music,
-        loop = false,
-        is3D = true,
-        clip {
-            file = media/sound/violin/Violin_Ds7.ogg,
-            distanceMax = 650,
-            reverbFactor = 0.1,
-            volume = 0.8,
-            pitch = 1.0594630944,
-        }
-    }
-    
-    sound ViolinF7 {
-        category = Music,
-        loop = false,
-        is3D = true,
-        clip {
-            file = media/sound/violin/Violin_Fs7.ogg,
-            distanceMax = 650,
-            reverbFactor = 0.1,
-            volume = 0.8,
-            pitch = 0.9438743127,
-        }
-    }
-    
-    sound ViolinFs7 {
-        category = Music,
-        loop = false,
-        is3D = true,
-        clip {
-            file = media/sound/violin/Violin_Fs7.ogg,
-            distanceMax = 650,
-            reverbFactor = 0.1,
-            volume = 0.8,
-        }
-    }
-    
-    sound ViolinG7 {
-        category = Music,
-        loop = false,
-        is3D = true,
-        clip {
-            file = media/sound/violin/Violin_Fs7.ogg,
-            distanceMax = 650,
-            reverbFactor = 0.1,
-            volume = 0.8,
-            pitch = 1.0594630944,
-        }
-    }
-    
-    sound ViolinGs7 {
-        category = Music,
-        loop = false,
-        is3D = true,
-        clip {
-            file = media/sound/violin/Violin_A7.ogg,
-            distanceMax = 650,
-            reverbFactor = 0.1,
-            volume = 0.8,
-            pitch = 0.9438743127,
-        }
-    }
-    
-    sound ViolinA7 {
-        category = Music,
-        loop = false,
-        is3D = true,
-        clip {
-            file = media/sound/violin/Violin_A7.ogg,
-            distanceMax = 650,
-            reverbFactor = 0.1,
-            volume = 0.8,
-        }
-    }
-    
 }

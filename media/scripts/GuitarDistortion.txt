@@ -9,7 +9,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.6,
-            
         }
     }
     
@@ -23,7 +22,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.6,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -37,7 +35,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.6,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -50,7 +47,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.6,
-            
         }
     }
     
@@ -64,7 +60,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.6,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -78,7 +73,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.6,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -91,7 +85,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.6,
-            
         }
     }
     
@@ -105,7 +98,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.6,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -119,7 +111,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.6,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -132,7 +123,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.6,
-            
         }
     }
     
@@ -146,7 +136,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.6,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -160,7 +149,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.6,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -173,7 +161,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.62,
-            
         }
     }
     
@@ -187,7 +174,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.62,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -201,7 +187,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.62,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -214,7 +199,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.62,
-            
         }
     }
     
@@ -228,7 +212,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.62,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -242,7 +225,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.62,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -255,7 +237,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.62,
-            
         }
     }
     
@@ -269,7 +250,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.62,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -283,7 +263,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.62,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -296,7 +275,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.65,
-            
         }
     }
     
@@ -310,7 +288,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.65,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -324,7 +301,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.65,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -337,7 +313,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.65,
-            
         }
     }
     
@@ -351,7 +326,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.65,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -365,7 +339,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.65,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -378,7 +351,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.65,
-            
         }
     }
     
@@ -392,7 +364,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.65,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -406,7 +377,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.65,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -419,7 +389,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.7,
-            
         }
     }
     
@@ -433,7 +402,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.7,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -447,7 +415,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.7,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -460,7 +427,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.7,
-            
         }
     }
     
@@ -474,7 +440,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.7,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -488,7 +453,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.7,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -501,7 +465,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.72,
-            
         }
     }
     
@@ -515,7 +478,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.72,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -529,7 +491,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.72,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -542,7 +503,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.72,
-            
         }
     }
     
@@ -556,7 +516,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.72,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -570,7 +529,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.72,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -583,7 +541,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 1.0,
-            
         }
     }
     
@@ -597,7 +554,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.72,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -611,7 +567,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.72,
             pitch = 0.9438743127,
-            
         }
     }
     
@@ -624,7 +579,6 @@ module mmlMusic {
             distanceMax = 650,
             reverbFactor = 0.1,
             volume = 0.72,
-            
         }
     }
     
@@ -638,7 +592,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.72,
             pitch = 1.0594630944,
-            
         }
     }
     
@@ -652,7 +605,6 @@ module mmlMusic {
             reverbFactor = 0.1,
             volume = 0.72,
             pitch = 0.9438743127,
-            
         }
     }
 }
