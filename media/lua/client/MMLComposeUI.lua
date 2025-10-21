@@ -2,37 +2,28 @@
 -- MMLComposeUI.lua
 -- MML 播放器 UI 介面
 ---@class MMLComposeUI: ISCollapsableWindow
----@field instrument string
 ---@field mmlPlayer MMLPlayer
 ---@field isPlaying boolean
 ---@field character IsoPlayer
----@field textArea1 ISTextEntryBox
----@field textArea2 ISTextEntryBox
----@field textArea3 ISTextEntryBox
 ---@field playButton ISButton
 ---@field stopButton ISButton
 ---@field validateButton ISButton
----@field clearButton ISButton
 ---@field progressBar ISPanel
 ---@field statusLabel ISLabel
 ---@field infoLabel ISLabel
----@field instrumentCombo ISComboBox
 ---@field labelInput ISLabel
----@field labelTrack2 ISLabel
----@field labelTrack3 ISLabel
----@field labelExample ISLabel
----@field labelInstrument ISLabel
 ---@field onPlay fun(self: MMLComposeUI): nil 播放按鈕回調
 ---@field onStop fun(self: MMLComposeUI): nil 停止按鈕
 ---@field render fun(self: MMLComposeUI): nil 繪製介面
 ---@field close fun(self: MMLComposeUI): nil 關閉視窗
 ---@field initialise fun(self: MMLComposeUI): nil 初始化元件
+---@field item InventoryItem 樂譜物品
 local MMLComposeUI = ISCollapsableWindow:derive("MMLComposeUI")
 
 local MMLPlayer = require('MMLPlayer')
 
-local WIDTH = 730
-local HEIGHT = 580
+local WIDTH = 750
+local HEIGHT = 600
 local MAX_LEN = 1500
 local function clampEntry(entry)
   local value = entry:getText() or ""
@@ -64,17 +55,42 @@ end
 
 ---@param character IsoPlayer 玩家角色
 ---@return ISCollapsableWindow
-function MMLComposeUI.getInstance(character)
+function MMLComposeUI.getInstance(character, item)
   if not instance then
-    instance = MMLComposeUI:new("Piano", character)
+    instance = MMLComposeUI:new(character, item)
   else
     -- 更新現有實例的資料
     instance.character = character
+    instance.item = item
   end
+
+  if item:getFullType() == "MMLSheet.SheetMusic" then
+    local mmlData = item:getModData().mml
+    if mmlData and type(mmlData) == "table" then
+      -- 如果已經初始化，直接加載數據
+      if instance.isInitialized then
+        instance:loadMMLData(mmlData)
+        -- 同時更新名稱
+        local sheetName = item:getModData().name
+        if sheetName and instance.NameText then
+          instance.NameText:setText(sheetName)
+        end
+      else
+        -- 延遲加載數據，等待UI初始化完成
+        instance.pendingMMLData = mmlData
+        -- 同時更新名稱
+        local sheetName = item:getModData().name
+        if sheetName then
+          instance.pendingSheetName = sheetName
+        end
+      end
+    end
+  end
+
   return instance
 end
 
-function MMLComposeUI:new(instrument, character)
+function MMLComposeUI:new(character, item)
   local x = getCore():getScreenWidth() / 2 - WIDTH / 2
   local y = getCore():getScreenHeight() / 2 - HEIGHT / 2
   ---@class MMLComposeUI
@@ -82,7 +98,7 @@ function MMLComposeUI:new(instrument, character)
   setmetatable(o, self)
   self.__index = self
 
-  o.title = getText("UI_MMLPlayer_Title") or "MML Player"
+  o.title = getText("UI_MML_Title") or "MML Player"
   o.mmlPlayer = nil -- backwards-compat, 保留欄位（不再主要使用）
   o.mmlPlayers = {} -- 新：多播放器實例列表（按 tab 順序）
   o.isPlaying = false
@@ -91,13 +107,13 @@ function MMLComposeUI:new(instrument, character)
   o.resizable = false
 
   o.character = character
-  o.instrument = instrument or "Piano"
+  o.item = item
   o.tabControls = {
     melody = {},
     harmony = {},
-    chord = {},
-    graceNote = {},
-    rootNote = {}
+    accompaniment = {},
+    orchestra = {},
+    bassline = {}
   }
   return o
 end
@@ -122,7 +138,7 @@ function MMLComposeUI:addTab(name)
   return mainPanel
 end
 
-function MMLComposeUI:addTabContainer(TabPanel, tabName)
+function MMLComposeUI:addTabContainer(TabPanel, tabName, displayName)
   local container = ISPanel:new(0, 0, TabPanel:getWidth() - 20, TabPanel:getHeight() - 30)
   container:initialise()
   container:instantiate()
@@ -137,7 +153,7 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
   local buttonHeight = 25
   local labelInput = ISLabel:new(
     padding, padding, buttonHeight,
-    getText("UI_MMLPlayer_InputLabel") or "Enter MML Code:",
+    string.format(getText("UI_MML_InputLabel") or "Enter %s MML Code:", displayName),
     1, 1, 1, 1, UIFont.Medium, true
   )
   labelInput:initialise()
@@ -154,12 +170,12 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
   textArea1:instantiate()
   textArea1.font = UIFont.Small
   textArea1:setMultipleLine(true)
-  textArea1:setMaxLines(20)
+  textArea1:setMaxLines(1)
   textArea1:setEditable(true)
   container:addChild(textArea1)
 
   local labelTrack2 = ISLabel:new(
-    padding, textArea1:getBottom() + 4, buttonHeight,
+    padding, textArea1:getBottom() + padding, buttonHeight,
     "Track 2:",
     1, 1, 1, 1, UIFont.Small, true
   )
@@ -169,7 +185,7 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
   local textArea2 = ISTextEntryBox:new(
     "",
     padding,
-    labelTrack2:getBottom() + 2,
+    labelTrack2:getBottom() + 3,
     WIDTH - padding * 4,
     20
   )
@@ -177,12 +193,12 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
   textArea2:instantiate()
   textArea2.font = UIFont.Small
   textArea2:setMultipleLine(true)
-  textArea2:setMaxLines(10)
+  textArea2:setMaxLines(1)
   textArea2:setEditable(true)
   container:addChild(textArea2)
 
   local labelTrack3 = ISLabel:new(
-    padding, textArea2:getBottom() + 4, buttonHeight,
+    padding, textArea2:getBottom() + padding, buttonHeight,
     "Track 3:",
     1, 1, 1, 1, UIFont.Small, true
   )
@@ -192,7 +208,7 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
   local textArea3 = ISTextEntryBox:new(
     "",
     padding,
-    labelTrack3:getBottom() + 2,
+    labelTrack3:getBottom() + 3,
     WIDTH - padding * 4,
     20
   )
@@ -207,17 +223,17 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
   local composeUI = self
 
   local labelInstrument = ISLabel:new(
-    padding, textArea3:getBottom() + 5,
+    padding, textArea3:getBottom() + padding,
     buttonHeight,
-    getText("UI_MMLPlayer_TryInstrument") or "Instrument:",
+    getText("UI_MML_TryInstrument") or "Instrument:",
     1, 1, 1, 1, UIFont.Medium, true
   )
   labelInstrument:initialise()
   container:addChild(labelInstrument)
 
   local instrumentCombo = ISComboBox:new(
-    padding + 140, textArea3:getBottom() + padding,
-    140,
+    padding + 100, textArea3:getBottom() + padding + 5,
+    150,
     buttonHeight,
     nil, nil
   )
@@ -235,7 +251,7 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
 
   local infoLabel = ISLabel:new(
     padding,
-    instrumentCombo:getBottom() + 5,
+    instrumentCombo:getBottom() + padding,
     buttonHeight,
     "",
     1, 1, 1, 1, UIFont.Small, true
@@ -254,15 +270,15 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
 
   -- 按鈕區
 
-  local buttonY = infoLabel:getBottom() + 40 + padding
+  local buttonY = infoLabel:getBottom() + padding * 3
   local buttonWidth = 80
   local buttonSpacing = 20
 
   -- 驗證按鈕
   local validateButton = ISButton:new(
-    buttonSpacing, buttonY,
+    WIDTH - buttonWidth * 2 - buttonSpacing * 4, buttonY,
     buttonWidth, buttonHeight,
-    getText("UI_MMLPlayer_Validate") or "Validate",
+    getText("UI_MML_Validate") or "Validate",
     nil, function(button, ui)
       composeUI:onValidate(tabName)
     end
@@ -276,7 +292,7 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName)
   local clearButton = ISButton:new(
     validateButton:getRight() + buttonSpacing, buttonY,
     buttonWidth, buttonHeight,
-    getText("UI_MMLPlayer_Clear") or "Clear",
+    getText("UI_MML_Clear") or "Clear",
     nil, function(button, ui)
       composeUI:onClear(tabName)
     end
@@ -296,7 +312,6 @@ function MMLComposeUI:initialise()
     self:bringToTop()
     return
   end
-
   -- 標記為已初始化
   self.isInitialized = true
   ISCollapsableWindow.initialise(self)
@@ -317,30 +332,30 @@ function MMLComposeUI:initialise()
   local buttonHeight = 25
 
   -- === 分頁 1：Main ===
-  self.MelodyTab = self:addTab(getText("UI_MMLPlayer_melody") or "Melody")
-  self:addTabContainer(self.MelodyTab, "melody")
+  self.melodyTab = self:addTab(getText("UI_MML_melody") or "Melody")
+  self:addTabContainer(self.melodyTab, "melody", getText("UI_MML_melody") or "Melody")
 
-  self.HarmonyTab = self:addTab(getText("UI_MMLPlayer_harmony") or "Harmony")
-  self:addTabContainer(self.HarmonyTab, "harmony")
+  self.harmonyTab = self:addTab(getText("UI_MML_harmony") or "Harmony")
+  self:addTabContainer(self.harmonyTab, "harmony", getText("UI_MML_harmony") or "Harmony")
 
-  self.ChordTab = self:addTab(getText("UI_MMLPlayer_chord") or "Chord")
-  self:addTabContainer(self.ChordTab, "chord")
+  self.accompanimentTab = self:addTab(getText("UI_MML_accompaniment") or "Accompaniment")
+  self:addTabContainer(self.accompanimentTab, "accompaniment", getText("UI_MML_accompaniment") or "Accompaniment")
 
-  self.graceNoteTab = self:addTab(getText("UI_MMLPlayer_graceNote") or "Grace Note")
-  self:addTabContainer(self.graceNoteTab, "graceNote")
+  self.orchestraTab = self:addTab(getText("UI_MML_orchestra") or "Orchestra")
+  self:addTabContainer(self.orchestraTab, "orchestra", getText("UI_MML_orchestra") or "Orchestra")
 
-  self.rootNoteTab = self:addTab(getText("UI_MMLPlayer_rootNote") or "Root Note")
-  self:addTabContainer(self.rootNoteTab, "rootNote")
+  self.basslineTab = self:addTab(getText("UI_MML_bassline") or "Root Note")
+  self:addTabContainer(self.basslineTab, "bassline", getText("UI_MML_bassline") or "Root Note")
 
   -- 按鈕區
-  local buttonY = self.nested:getBottom() + padding
+  local buttonY = self.nested:getBottom() + padding * 3
   local buttonWidth = 80
   local buttonSpacing = 10
 
-  -- 播放按鈕
+  -- 試播按鈕
   self.playButton = ISButton:new(
     padding, buttonY, buttonWidth, buttonHeight,
-    getText("UI_MMLPlayer_Try") or "Try",
+    getText("UI_MML_Try") or "Try",
     self, MMLComposeUI.onPlay
   )
   self.playButton:initialise()
@@ -352,7 +367,7 @@ function MMLComposeUI:initialise()
   self.stopButton = ISButton:new(
     self.playButton:getRight() + buttonSpacing, buttonY,
     buttonWidth, buttonHeight,
-    getText("UI_MMLPlayer_Stop") or "Stop",
+    getText("UI_MML_Stop") or "Stop",
     self, MMLComposeUI.onStop
   )
   self.stopButton:initialise()
@@ -361,6 +376,16 @@ function MMLComposeUI:initialise()
   self.stopButton.enable = false
   self:addChild(self.stopButton)
 
+  -- 狀態標籤
+  self.statusLabel = ISLabel:new(
+    self.stopButton:getRight() + buttonSpacing,
+    buttonY,
+    buttonHeight,
+    getText("UI_MML_TryReady") or "Ready",
+    1, 1, 1, 1, UIFont.Small, true
+  )
+  self.statusLabel:initialise()
+  self:addChild(self.statusLabel)
 
   -- 進度條背景
   self.progressBar = ISPanel:new(
@@ -374,17 +399,60 @@ function MMLComposeUI:initialise()
   self.progressBar.backgroundColor = { r = 0.2, g = 0.2, b = 0.2, a = 0.8 }
   self:addChild(self.progressBar)
 
-  -- 狀態標籤
-  self.statusLabel = ISLabel:new(
-    padding,
-    self.progressBar:getBottom() + 5,
-    buttonHeight,
-    getText("UI_MMLPlayer_Ready") or "Ready",
-    1, 1, 1, 1, UIFont.Small, true
-  )
-  self.statusLabel:initialise()
-  self:addChild(self.statusLabel)
 
+
+  -- 樂譜名稱輸入
+  self.NameLabel = ISLabel:new(
+    WIDTH - 280 - buttonWidth - padding * 6,
+    self.progressBar:getBottom() + padding * 2,
+    buttonHeight,
+    getText("UI_MML_SongTitle") or "Title:",
+    1, 1, 1, 1, UIFont.Medium, true
+  )
+  self.NameLabel:initialise()
+  self:addChild(self.NameLabel)
+
+  self.NameText = ISTextEntryBox:new(
+    "",
+    self.NameLabel:getRight() + padding,
+    self.progressBar:getBottom() + padding * 2,
+    240,
+    20
+  )
+  self.NameText:initialise()
+  self.NameText:instantiate()
+  self.NameText.font = UIFont.Medium
+  self.NameText:setMultipleLine(true)
+  self.NameText:setMaxLines(1)
+  self.NameText:setEditable(true)
+  self:addChild(self.NameText)
+  -- 完成按鈕
+  self.completeButton = ISButton:new(
+    self.NameText:getRight() + padding,
+    self.progressBar:getBottom() + padding * 2,
+    buttonWidth + 20,
+    buttonHeight,
+    getText("UI_MML_Complete") or "Complete",
+    self, MMLComposeUI.onComplete
+  )
+
+  self.completeButton:initialise()
+  self.completeButton:instantiate()
+  self.completeButton.borderColor = { r = 1, g = 1, b = 1, a = 0.3 }
+  self.completeButton.enable = true
+  self:addChild(self.completeButton)
+
+  -- 如果有待加載的MML數據，現在加載它們
+  if self.pendingMMLData then
+    self:loadMMLData(self.pendingMMLData)
+    self.pendingMMLData = nil
+  end
+
+  -- 如果有待設置的樂譜名稱，現在設置它
+  if self.pendingSheetName then
+    self.NameText:setText(self.pendingSheetName)
+    self.pendingSheetName = nil
+  end
 
   self:setResizable(false)
   self:addToUIManager()
@@ -399,7 +467,7 @@ function MMLComposeUI:onPlay()
   end
   self.mmlPlayers = {}
 
-  local tabNames = { "melody", "harmony", "chord", "graceNote", "rootNote" }
+  local tabNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
   local anyPlayed = false
   local playedCount = 0
 
@@ -416,15 +484,14 @@ function MMLComposeUI:onPlay()
         local combined = string.format("%s,%s,%s", mml1, mml2, mml3)
         local ok = player:loadMML(combined)
         if not ok then
-          controls.infoLabel:setName(getText("UI_MMLPlayer_ParseError") or "Parse error")
+          controls.infoLabel:setName(getText("UI_MML_ParseError") or "Parse error")
         else
           if player:play() then
             table.insert(self.mmlPlayers, player)
             anyPlayed = true
             playedCount = playedCount + 1
-            controls.infoLabel:setName(getText("UI_MMLPlayer_Playing") or "Playing")
           else
-            controls.infoLabel:setName(getText("UI_MMLPlayer_PlayFailed") or "Play failed")
+            controls.infoLabel:setName(getText("UI_MML_PlayFailed") or "Play failed")
           end
         end
       end
@@ -435,12 +502,12 @@ function MMLComposeUI:onPlay()
     self.isPlaying = true
     self.playButton.enable = false
     self.stopButton.enable = true
-    self.statusLabel:setName(string.format("%s (%d)", getText("UI_MMLPlayer_Playing") or "Playing", playedCount))
+    self.statusLabel:setName(string.format("%s (%d)", getText("UI_MML_Playing") or "Playing", playedCount))
   else
     self.isPlaying = false
     self.playButton.enable = true
     self.stopButton.enable = false
-    self.statusLabel:setName(getText("UI_MMLPlayer_EmptyInput") or "Please enter MML code")
+    self.statusLabel:setName(getText("UI_MML_EmptyInput") or "Please enter MML code")
   end
 end
 
@@ -456,9 +523,107 @@ function MMLComposeUI:onStop()
   end
   self.mmlPlayers = {}
   self.isPlaying = false
-  self.statusLabel:setName(getText("UI_MMLPlayer_Stopped") or "Stopped")
+  self.statusLabel:setName(getText("UI_MML_Stopped") or "Stopped")
   self.playButton.enable = true
   self.stopButton.enable = false
+end
+
+function MMLComposeUI:onComplete()
+  -- 停止播放（如果正在播放）
+  self:onStop()
+  local player = self.character
+
+  -- 檢查 item 是否還在背包中
+  if not self.item or not player:getInventory():contains(self.item) then
+    player:Say(getText("UI_MML_NoBlankSheet") or "No blank sheet music!")
+    return
+  end
+
+  -- 檢查是否有輸入名稱
+  local sheetName = self.NameText:getText()
+  if not sheetName or sheetName == "" then
+    self.statusLabel:setName(getText("UI_MML_EnterName") or "Please enter a name!")
+    return
+  end
+
+  -- 收集所有 tab 的 MML 數據
+  local mmlData = {
+    melody = {
+      mml1 = self.tabControls.melody.textArea1:getText() or "",
+      mml2 = self.tabControls.melody.textArea2:getText() or "",
+      mml3 = self.tabControls.melody.textArea3:getText() or "",
+    },
+    harmony = {
+      mml1 = self.tabControls.harmony.textArea1:getText() or "",
+      mml2 = self.tabControls.harmony.textArea2:getText() or "",
+      mml3 = self.tabControls.harmony.textArea3:getText() or "",
+    },
+    accompaniment = {
+      mml1 = self.tabControls.accompaniment.textArea1:getText() or "",
+      mml2 = self.tabControls.accompaniment.textArea2:getText() or "",
+      mml3 = self.tabControls.accompaniment.textArea3:getText() or "",
+    },
+    orchestra = {
+      mml1 = self.tabControls.orchestra.textArea1:getText() or "",
+      mml2 = self.tabControls.orchestra.textArea2:getText() or "",
+      mml3 = self.tabControls.orchestra.textArea3:getText() or "",
+    },
+    bassline = {
+      mml1 = self.tabControls.bassline.textArea1:getText() or "",
+      mml2 = self.tabControls.bassline.textArea2:getText() or "",
+      mml3 = self.tabControls.bassline.textArea3:getText() or "",
+    },
+  }
+
+  -- 檢查是否至少有一個 track 有內容
+  local hasContent = false
+  for _, trackData in pairs(mmlData) do
+    if trackData.mml1 ~= "" or trackData.mml2 ~= "" or trackData.mml3 ~= "" then
+      hasContent = true
+      break
+    end
+  end
+
+  if not hasContent then
+    self.statusLabel:setName(getText("UI_MML_EmptySheet") or "Cannot create empty sheet!")
+    return
+  end
+
+
+  -- 從背包中移除空白樂譜
+  if self.item:getFullType() == "MMLSheet.BlankSheetMusic" then
+    player:getInventory():Remove(self.item)
+    player:removeFromHands(self.item)
+  elseif self.item:getFullType() == "MMLSheet.BlankSheetBook" then
+    -- 處理空白樂譜書的情況
+    self.item:use() -- use = 減少 0.1
+  elseif self.item:getFullType() == "MMLSheet.SheetMusic" then
+    -- 如果是已存在的樂譜，則更新其內容
+    local itemmodData = self.item:getModData()
+    itemmodData.name = sheetName
+    itemmodData.mml = mmlData
+    player:Say(getText("UI_MML_Success") or "Sheet music updated!")
+    self.statusLabel:setName(getText("UI_MML_Success") or "Success! Created: ")
+    return
+  end
+
+  -- 創建新的樂譜物品
+  local newSheet = player:getInventory():AddItem("MMLSheet.SheetMusic")
+  if newSheet then
+    -- 設置樂譜名稱
+    newSheet:setName(getText("UI_MML_SongName") .. sheetName .. ")")
+    -- 將 MML 數據保存到物品的 ModData 中
+    local modData = newSheet:getModData()
+    modData.name = sheetName
+    modData.mml = mmlData
+
+    -- 顯示成功訊息
+    player:Say(getText("UI_MML_Success") or "Sheet music created!")
+    self.statusLabel:setName(getText("UI_MML_Success") or "Success! Created: ")
+  else
+    player:Say(getText("UI_MML_CreateFailed") or "Failed to create sheet music!")
+    self.statusLabel:setName(getText("UI_MML_Error") or "Error creating sheet!")
+  end
 end
 
 function MMLComposeUI:render()
@@ -525,11 +690,11 @@ function MMLComposeUI:onValidate(tabName)
   local mml3 = clampEntry(controls.textArea3)
 
   if mml1 == "" and mml2 == "" and mml3 == "" then
-    controls.infoLabel:setName(getText("UI_MMLPlayer_EmptyInput") or "Please enter MML code")
+    controls.infoLabel:setName(getText("UI_MML_EmptyInput") or "Please enter MML code")
     return
   end
 
-  local tmpPlayer = MMLPlayer:new(self.instrument, true)
+  local tmpPlayer = MMLPlayer:new("Piano", true)
   local results = tmpPlayer:parseTracks({ mml1, mml2, mml3 })
 
   local totalNotes = 0
@@ -556,6 +721,45 @@ function MMLComposeUI:onValidate(tabName)
     local msg = string.format("Valid: %d notes, %s | %s",
       totalNotes, formatDurationMs((maxDuration or 0)), table.concat(lines, " | "))
     controls.infoLabel:setName(msg)
+  end
+end
+
+-- 加載MML數據到對應的文本框中
+function MMLComposeUI:loadMMLData(mmlData)
+  if not mmlData or type(mmlData) ~= "table" then
+    return
+  end
+
+  local tabNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
+
+  for _, tabName in ipairs(tabNames) do
+    local trackData = mmlData[tabName]
+    local controls = self.tabControls[tabName]
+
+    if trackData and controls then
+      -- 加載每個track的數據
+      if trackData.mml1 then
+        controls.textArea1:setText(trackData.mml1)
+      end
+      if trackData.mml2 then
+        controls.textArea2:setText(trackData.mml2)
+      end
+      if trackData.mml3 then
+        controls.textArea3:setText(trackData.mml3)
+      end
+
+      -- 清空信息標籤
+      controls.infoLabel:setName("")
+    end
+  end
+end
+
+-- 清空所有標籤頁的內容
+function MMLComposeUI:clearAllTabs()
+  local tabNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
+
+  for _, tabName in ipairs(tabNames) do
+    self:onClear(tabName)
   end
 end
 

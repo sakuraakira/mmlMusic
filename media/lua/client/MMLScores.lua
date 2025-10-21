@@ -8,7 +8,7 @@ local MMLScores = {
         mml2 = "",
         mml3 = "",
       },
-      ["chord"] = {
+      ["accompaniment"] = {
         mml1 =
         "t196v14l4V13>d.<a2g2r8<ga>>d.<a2L1dr8<<ab>cdL1.<er2gr2f+r2>c1L8ddr4ddr4<e2.e2rL4eeL4.ggggg4g4f+L2f+f+f+f+4>ccL4<d1>c.c.cd.d.deeee8e4e<ga>e8cc8c.cd.dd.eeee8ee<gf+.>c.cc.ddddL2<gf+ed>c4.c8cl1.rrrrrrrrrrrrrrrrrrrrrrrR2v14>l4g2.gg.dg.g2.gg.gd.d2L8r>aed<af+4dL4dde2g2f+f+f+f+g.g.ga.a.agdgg8ggd8r8ba8gg8g.gf+.>d2r8<gdgg8ggdf+.g.gg.aaaag>d<f+>d<b2a2g.g8gL4.ggg8ga8a4a8a4a8a8>a1<gg4gag4f+ggL4gL8g>gf+d<agf+dg4rgg4rgg4rgg4r4f+f+rf+f+rf+f+r1g4.>d4<gL4>d<a2abbb.>d2d<f+.gg2gga2r8a.g.g>d8<ba8gL8f+gaf+eg4.g4gL4ga.a.ag>d<f+>d<b.ag.g.g>gf+d<b8a8L4.eaaa4a2agr1.r1.r4L8>ddr<g4>ed4<ba4>ed4<ba4>edc-4ed4<ede>d4<eaar4.b4.bbrbr>c2crcr<b2a4g4f+4gf+a2b4.bb4b4>c4.gd<b4.b2b+4b4.aa4g4a4g4.bag4abg4>d4<f+>d4.<a2ea4abag4a4>d4<b1a2>d2<g2raL4b>g.f+.d<g.gg.a>d<aab>d<a>d<b.b8b2g8g2g.ga8>d<g8a8>d8<a.a>f+8a>d1<<g8f+8g8bg8>ga.>d.<a<c8f+8g8b>d8f+8g8d.d.c-c.cc.d2c-cd<<a8aL8>df+abL4bag.>c2ccd.d8d2d<g8b8>d<a8>d8e.e8g<b8a8>cdcec.d8g8a8>d<d2L8ddf+a>d4<d4L2dc-d<a>d<bgr8f+4dr8gr8g4.ag4a4ggL4bagf+g.gg8ga.a.ag>d<f+>d<b.a>d.<g.g>gf+d<b8a8g.a2>d<a>f+2f+2L32<bagf+edc<ba+gf+edc<ba+L8O5f+f+r1r<g4gf+4g4gg4grgre4g4.f+4g4gg4grgrf+rfrgf+4g4gg4grgre4g4gf+4g4gg4grgrf+rf2.rcfc<f>f<f>f<f>f<f>f<ff2.r16e1",
         mml2 =
@@ -16,14 +16,14 @@ local MMLScores = {
         mml3 =
         "V14>g.f+2d1r16r16g.f+<c8d8>dL8gf+d<bagf+aecd4g4.a2>d4<dc-g4ab4ab>cd1<g1L4<c-f+g>d<b2.L8rd2r>d2<a1.r2>c1f+f+r4f+f+L4rg2.g2r8ggL4.ggggg4d4dd4e8d8d2d8dd4e2e2f+1ggg4aaL4aedee8e8r8ed8r8ee8ee8e.ed.dd.edee8eed8r8d.e.ee.f+e8f+8f+f+L2gf+gf+g4.L8gL4g>>cc<bagL8<aaraaraar1g4.g4gL4ga2abb2r8>d2d<f+.gg2ggf+.f+8f+f+g.ga8ba8gL8f+gaf+eg4.g4gL4ga.a.ag>d<f+>d<b.ag.g.g>gf+d<b8a8L4.eaaa4a2aL4gg8f+gg8gL8grgre4g4.f+4g4gg4grgrf+rg4gf+4g4gg4grgre4g4gf+4g4gg4gr2.g2r1r4.g2.rg4d4.r2d2.aedf+4.f+4.f+4g2g2f+f+r4f+f+f+4",
       },
-      ["graceNote"] = {
+      ["orchestra"] = {
         mml1 =
         "t196<v14l1.rrrrrrrrrrrrrrrrL2eef+dL4<edeg8eL8ergra4aL2>eef+dL4<edeg8eL8ergrf+4f+>e1f+1L4brargrargr>dc1&cL8<ddrddrddr1ggggggggf+f+f+f+f+f+f+f+ggggggggggggf+f+f+f+ggggggggf+f+f+f+f+f+f+f+ggggggggggggggggggggggggf+f+f+f+f+f+f+f+ggggf+f+f+f+ggggggggggggggggggggggggaaaaaaaaa2.&ae1&e4re16rL16ererereeee1.L4.c-e1.&e1.&e8r1.r1l8<r4.g4.gr4.gggr4f+rgrf+4f+f+f+r4f+rf+r4f+r4f+f+l8e4g4ggggf+f+f+f+ddddr1.r1.r1.r1.r1V14drdrdrL4dL2eef+dL4edeg8ee8r8gaa8L2eef+dL4edeg8eeg8r8f+f+8e1f+1brargrargg8g8de1&eL8ddddddddd1r1.r1.r1L4brbrbrbrL8aaraaraar1ggggggggf+f+f+f+f+f+f+f+ggggggggggggf+f+f+f+ggggggggf+f+f+f+f+f+f+f+ggggggggggggggggggggggggf+f+f+f+f+f+f+f+ggggf+f+f+f+ggggggggggggggggggggggggaaaaaaaaa2a4.g4.r1.r>e4eeeerL16.er16ere4.&e32L8ddr<e4gdea4re4b>df+16g16f+ed<e4gdea4re4bddr4.e4eeebbrb+1g2&gggr>d4d4d2<e4eeebbrb+1g2&ggggg>ddrL4<abb1&b8L1>d<ab2a2bagb2a2>dd<b2a2b2a4b4agf+>dr.r.r.r.r.r.r.r.L8<gagggggggggbbbbbL1a>dL2<<g>g<f+>f+eba1ccdf+g1gL8ggggggggggggf+f+f+f+f+f+f+f+ggggf+f+f+f+ggggggggggggggggggggggggaaaaaaaaa2a1aar1rbbbbbbbb4f+2g4.d1&dddggrf+rfre4.b2f+2g4.a1bbbrgrf+rf1rf&f16f8.r2L8ffff2&fre1",
         mml2 =
         "r1.r1.V15<d2e.d16c+16c1d2<a2ba8ba8b8b+8a1r1.r1.r1.r1.r1.V13d>dc-1.r.d1.R.L8rf+1ra1e2g2f+r2.rL1ef+r.r2ef+r.r2>ef+L2<bagf+e1.RL8f+f+rf+f+rf+f+L1rdf+L2gf+c-de1f+1g1de4g4d1d<abab1L4>ee8r8f+r8f+16r16ga.a8ba1d2>dL8r<R1.R1.R1R1.R1R>e4.<brbr1.r1.r1.r1.r1.r1r4g1.R2g1.R2f+1.r2g1grgrgrgrL1ef+r.r2ef+r.r2>ef+L2<bagf+e1.RL1>ddr.r.r.r.L8<f+f+rf+f+rf+f+L1rdf+L2gf+c-de1f+1g1de4g4d1d<abab1L4>ee8r8f+r8f+16r16ga.a8ba1d2>dL8r<b1.R1.R2Rddre1.R2e1R4.ddr4.L1<bgbabgbR8L8>ddrdrdrd1.R2RL2f+abab1a1g1ba>d1d1<baL1bbbaar.r.r2L8<<gegaL1>cdc-e>>dL2dedd<b1a1ab>d1dr<gbf+aebf+aegf+a>d1d1<d1d<abab1L4>ee8r8f+r8f+16r16ga.a8ba1d2>d1<f+8f+8r1r8e1.R2e1.R2re1.Re1",
         mml3 = "",
       },
-      ["rootNote"] = {
+      ["bassline"] = {
         mml1 =
         "t196v15l1.rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrl8<<ddddd<a>d4eedde4geeer<g4a4.>c4cccgcc>d<a>dddd<a4eedde4geeer<grf+4.>c4ccccccdddddf+ga<gg>dgf+df+4eef+ed<a>ddc4ccccccccg4bbg4d4ddd4da>d1<e1.L4f+bb+2.g>d2d2<<grgrgrgrL8>ddrddrddr1<g4ggggggf+4f+f+f+f+f+f+e4eeeegb>eebeddadc4ccccccddddd<a>dd<ggggggggg>dgaaggdccccccccddddd<a>dd<ggg4>f+df+f+ee<bbaagg>cccccccccb+bgecc-cddddddda>d2.&d<e4egeaeaeeb>dgf+ed<eeg+>d<baaaeebb+b>ddr<<e4egeaeaeeb>dgf+ed<e4g+>d<baaae4e>dd4.r<e4eebegb>c4ccccgc<g4ggggbb>d4d4dgf+de4>gee<b4c-c4c4cccd<g4gggggab>ddr<arbr>c4cc4cc4.cb+2&b+b4d4ddddddd<a>deeed4<g4gggg>g4f+4f+f+f+df+4<e4eeeb>deged<b4.eb>c4ccccccd4ddd<a>dd<g4ggf+4f+f+eeeeggbb>c4cccccccb+bgbgb>cd4ddddL4d>d1r1.r1.r2.<<gb+1L2>d<ab>dL4gf+e<bL8ccccccccdddddddd<ggggf+f+f+f+eeeeeeeb>cccc>g<cccccccccccddddddL4d>d2d2<<g2>gg<f+2>f+f+<eL8eb>ec-deL4gf+ec-cL8gab+gL4gdga2<gL8>dgdc-dgg4f+gdgf+f+c4ccccccddrdd<a>dd<gg>ggf+df+4e4f+4gf+d<a>c4c4cccccb+bgb4b>cd4dde4eef+4f+4<d2.g4>ddr1r<e4edde4ge4er<gra4>e4edde4ge4er<grf+rfr>edde4ge4er<gra4>e4edde4geeer<grf+rf2&f>f4fL8g+fff1&f4.r4.r16<e1",
         mml2 =
@@ -48,7 +48,7 @@ local MMLScores = {
         mml2 = "",
         mml3 = "",
       },
-      ["chord"] = {
+      ["accompaniment"] = {
         mml1 =
         "t135V13l1.rrrrrrrrrrrrrrr1r8L16d+g8d+<a+8>a8d+g8d+<a+8>a1.r1.r1.R1.R1.r8v10L32>ddddddddddddddddL8v13<a+d16a.aa+d16a.aa+d16a.aa+d16a.aa+d16a.aa+d16L8.aa1r8v10L32>>ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+L2v13f<ag>dc1<g1b+a>dc8.<f8.a+8a1>d1c<aa+>dc<ag1a+a<a+a+a+a+a+a+>d<a+>ggggggga+1.r1.r1.<a+1a1a+1v10L32>fffffffffffffffffffffffff4>ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+v13L2f<ag>dL4<aa+>cdL8.<a+af8g2b+2a2>d2c<fL8a+a1.r1.r1.r1.r1.r1.L16a+aa+ga+fafg8g4.a+aa+ga+fafg8b+4.a+aa+ga+fafg8g4.a+aa+ga+fafL8gg>c1.R1.R1R4v10L32ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+v13L2f<ag>dL4<aa+>cdL8.<a+af8g2b+2a2>d2c<fa+8a1>d1L2c<aa+>dc<ag1a+av10L32>ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+ddd+d+L2v13f<ag>dL4<aa+>cdL8.<a+af8g2b+2a2>d2c<fa+8L1a>dL2c<aa+>dc<ag1a+a1.r1.r1.r1.r1.r1.r1.r1<<a+1.",
         mml2 =
@@ -56,14 +56,14 @@ local MMLScores = {
         mml3 =
         "V12r8L1a+a+aa+a+a+aa+a+a+aa+a+a+a.r2ggL2v13dcd+ddcd+dd1.r1.r1.r1.r1.r1.r1.r1.r1L1d+cddd+cddd+cddd+cd+dcdd+dcdd+dcdd+dc.&c2d+cddd+cddd+cddd+cdddd+cddd+cd8.d8.d8d2d+cddd+cddd+cddd+cd+cddd+cddd+cddd+ca+a+aa+a+a+aa+a+a+.r2a+.r",
       },
-      ["graceNote"] = {
+      ["orchestra"] = {
         mml1 =
         "t135r1r1.r1.L8rV13>d<ga+>d<ga+>d<g>cd<a+b+ga+>cd<cfaa+faa+fb+gab+ga+>d<g>d<ga+>d<ga+>d<g>cd<a+b+ga+b+gb+faa+gaa+fb+gab+ga+>d<g>d<ga+>d<ga+>d<gb+ga+b+ga+b+gb+faa+faa+f1r1rL16ggrgrggrg4gL8.rggg8aaa8ggg8aaa8ggg8aaa8ggg8aaa8r1L4.>dc2&c8<a+2.&a+8a16a+16>cc2&c8cc2&c8dc2&c8<a+2.&a+8.a+16>cc2&c8cr1.r1.r1.r8L8.<a+a+a+8a+2>ccc8c2<a+a+a+8a+2aaa8a2a+a+a+8a+2>ccc8c2<a+a+a+8a+2aaL8aa2L1a+b+a+aa+>c2c2L8d<ga+>d<ga+>d<g>cd<a+b+ga+>cd<cfaa+faa+fb+gab+ga+>d<g>d<ga+>d<ga+>d<g>cd<a+b+ga+b+gb+faa+gaa+fb+gab+ga+>d<ga+.a+.a+a+.a+.a+a+.a+.a+a+.a+.a+a.a.aa.a.aa+.a+.a+a+.a+.a+L1a+a+aa+L8.a+a+a+8a+2>ccc8c2<a+a+a+8a+2aaa8a2a+a+a+8a+2>ccc8c2<a+a+a+8a+2aaa8a2a+a+a+8a+2>ccc8c2<a+a+a+8a+2aaa8a2a+1b+1a+1a1r1.r1.r1.r1.r1g8r16g8r16g8g4r4a+a+a+8a+2>ccc8c2<a+a+a+8a+2aaa8a2a+a+a+8a+2>ccc8c2<a+a+a+8a+2aaa8a2L1a+b+a+aa+L2>cc<a+8.a+8.a+8a+>c8.c8.c8c<a+8.a+8.a+8a+a8.a8.a8aa+8.a+8.a+8a+>c8.c8.c8c<a+8.a+8.a+8a+a8.a8.a8aL1a+b+a+aa+L2>ccL8d<ga+>d<ga+>d<gb+ga+b+ga+>cdc<faa+faa+fb+gab+ga+>d<g>d<ga+>d<ga+>d<g>cd<a+b+ga+b+gb+faa+gaa+fb+gab+ga+>d<g>d<ga+>d<ga+>d<gb+ga+b+ga+b+gL4b+2",
         mml2 =
         "v13l4r1.r1.r1r8<d+.d+.d+g.g.gf.f.fg.g.gd+.d+.d+g.g.gf.f.fg.g.gd+.d+.d+g.g.gf.f.fr1L16>>d<g<g>b+a+da+a>d<g<g>b+a+b+a+a<<ggrgrggrg4gL8.rggg8fff8d+d+d+8ddd8ggg8fff8d+d+d+8ddL8d>>g16a+g16c+b+g16a+g16c+b+L1<gd+f<a+>gd+f<a+r.r.rd+fg>d<d+fg>d<d+fg>d<d+f2f2L4.>d+d+d+4ggg4fff4ggg4d+d+d+4ggg4fff4ggg4L8.d+d+d+8d+d+d+8ggg8ggg8fff8fff8ggg8ggL8gL1d+gfg<d+fg>d<d+fg>d<d+fg>d<d+f2f2g>dr.r.rL16>>dc<aa+ga>dc<aa+ga>d<a+a8>dc<aa+ga>dc<aa+ga>f<a+f8>dc<aa+ga>dc<aa+ga>d<a+a8<<g8rg8rg8L4grL1d+fg>d<d+fg>d<d+fg>d<d+f2f2d+fg>d<d+fg>d<d+fg>d<d+f2f2L4.>d+d+d+4ggg4fff4ggg4d+d+d+4ggg4fff4ggg4d+d+d+4ggL4gr1>>d8.c8.<a+a+8>cd8.c8.<a+a+2",
         mml3 = "",
       },
-      ["rootNote"] = {
+      ["bassline"] = {
         mml1 =
         "t135r2r1.r1.r1.r1.r1.r8V15<d+r8d+2&d+8r1fr8f2&f8r.f8a+8.a8.f8d+r8d+1f8a+afL8rf2&f<g16gL16g>g<gg8gg8gg8f8>f2.d4<gg8g>g<gg8g>d<ggg4g8.g8.ggf8.f8.ffd+8.d+8.d+d+d8d8d8d8g8.g8.ggf8.f8.ffd+8.d+8.d+d+L8ddddr1.r1.r1.r1.r1.r1r4g4gggggggggggggggggggggggg2&gffa+4d+.d+.d+d+2f.f.ff.g16a+ag.g.gg2>d.d.dd.a16a+a<d+.d+.d+d+4d+d+f.f.ffd+L16>fggg8.ccd4L8.c<a+a8a+>cL8<a+>a+af4<d+d+d+d+d+d+a+affffffffgggggggg>ddddd.a16a+a<d+d+d+d+d+d+d+d+f2>f2d+r16d+r16d+r.d+.a+g2a+.a.f<ar16ar16ar.>f.<a+>g2a+af4<d+r16d+r16d+r.>d+.a+g2a+.a.f<ar16ar16ar.>f.<a+>g2<a+af4d+L16r>d+r<d+>d+r<d+8r>fr<f>fr<g8r>gr<g>gr<g8r>a+a8f8<f8r>fr<f>fr<f8r>a+a8f8<g8r>gr<g>grL4<g>gL8<d+d+d+d+d+d+d+d+gga+gaa+b+a>f4d+ddc4<a+a2r>f4.<d+.d+.d+d+2f.f.ff4a+ag.g.gg2>d.d.dd.a16a+a<d+.d+.d+d+2f.f.ff.>g16a+ag.g.g4>fgcd<a+b+aa+ga4<d+.d+.d+d+d+16a+16aff.f.ffa+afg.g.gga+afd.d.dfa+ab+d+d+d+d+d+d+d+d+ffffffffggggggggddddda+>d<aggggggggd+d+d+d+d+d+d+d+ffffffaa16a16gggggggL16gg>fd<g>a+r8fd<g>a+<g>b+r<g>a+rfd<g>a+r8fd<g>a+<g>b+r<g>a+rfd<g>a+r8fd<g>a+<g>b+r<g>a+r<g8rg8rg8g4r4L8.d+d+d+8d+2fff8fg16a+8a8ggg8g2>ddd8da16a+8a8<d+d+d+8d+2fff8fg16a+8a8gaa+8b+a+",
         mml2 =

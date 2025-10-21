@@ -1,5 +1,15 @@
 module MMLSheet
 {
+    item SheetMusic
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Sheet Music,
+        Icon             = MMLSheet_New.png,
+        Weight           = 0.05,
+        WorldStaticModel = SheetOfPaper,
+    }
+    
     item BlankSheetMusic
     {
         DisplayCategory  = Literature,
@@ -10,14 +20,24 @@ module MMLSheet
         WorldStaticModel = SheetOfPaper,
     }
     
-    item Courage
+    item BlankSheetBook
     {
         DisplayCategory  = Literature,
         Type             = Drainable,
+        DisplayName      = Blank Sheet Book,
+        Icon             = MMLSheet_Sheetbook.png,
+        Weight           = 0.5,
+        UseDelta         = 0.1,
+        UseWhileEquipped = false,
+        WorldStaticModel = EmptyNotebook,
+    }
+    
+    item Courage
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
         DisplayName      = Old Sheet (Courage),
         Icon             = MMLSheet_Old.png,
-        UseDelta         = 0.01,
-        UseWhileEquipped = false,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
     }
@@ -25,11 +45,9 @@ module MMLSheet
     item Unravel
     {
         DisplayCategory  = Literature,
-        Type             = Drainable,
+        Type             = Normal,
         DisplayName      = Old Sheet (unravel),
         Icon             = MMLSheet_Old.png,
-        UseDelta         = 0.01,
-        UseWhileEquipped = false,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
     }

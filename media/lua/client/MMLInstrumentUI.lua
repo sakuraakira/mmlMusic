@@ -23,8 +23,8 @@ local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 local TAPlayMMLFromWorld = require('TimedAction/TAPlayMMLFromWorld')
 local PlayerItemToMMLInstrument = require('MMLInstrument')
 local MMLScores = require('MMLScores')
-local WIDTH = 650
-local HEIGHT = 580
+local WIDTH = 600
+local HEIGHT = 420
 
 -- 儲存單例實例
 local instance = nil
@@ -48,7 +48,7 @@ function MMLInstrumentUI.getInstance(character, item)
     instance.character = character
     if item then
       instance.instrument = PlayerItemToMMLInstrument[item:getFullType()] or "Piano"
-      instance.title = getText("UI_MMLPlayer_Play") .. item:getName()
+      instance.title = getText("UI_MML_Play") .. item:getName()
       instance.facing = nil
       instance.upperSidePianoObject = nil
       instance.hasSeat = nil
@@ -61,7 +61,7 @@ function MMLInstrumentUI.getInstanceFromWorld(character, instrument, upperSidePi
   if not instance then
     instance = MMLInstrumentUI:new(character, nil)
     instance.instrument = instrument or "Piano"
-    instance.title = getText("UI_MMLPlayer_Play") .. instrument
+    instance.title = getText("UI_MML_Play") .. instrument
     instance.facing = facing
     instance.upperSidePianoObject = upperSidePianoObject
     instance.hasSeat = hasSeat
@@ -70,7 +70,7 @@ function MMLInstrumentUI.getInstanceFromWorld(character, instrument, upperSidePi
     instance.character = character
     if instrument then
       instance.instrument = instrument or "Piano"
-      instance.title = getText("UI_MMLPlayer_Play") .. instrument
+      instance.title = getText("UI_MML_Play") .. instrument
       instance.facing = facing
       instance.upperSidePianoObject = upperSidePianoObject
       instance.hasSeat = hasSeat
@@ -92,7 +92,7 @@ function MMLInstrumentUI:new(character, item)
 
   if item ~= nil then
     o.instrument = PlayerItemToMMLInstrument[item:getFullType()] or "Piano"
-    o.title = getText("UI_MMLPlayer_Play") .. item:getName()
+    o.title = getText("UI_MML_Play") .. item:getName()
   end
   o.TAPlay = nil
   o.isPlaying = false
@@ -107,19 +107,14 @@ function MMLInstrumentUI:onTrackCheckboxChanged(index, selected)
   -- 更新勾選狀態
   if index == 1 then
     self.selectedTracks.melody = selected
-    print("Melody: " .. tostring(selected))
   elseif index == 2 then
     self.selectedTracks.harmony = selected
-    print("Harmony: " .. tostring(selected))
   elseif index == 3 then
-    self.selectedTracks.chord = selected
-    print("Chord: " .. tostring(selected))
+    self.selectedTracks.accompaniment = selected
   elseif index == 4 then
-    self.selectedTracks.graceNote = selected
-    print("Grace Note: " .. tostring(selected))
+    self.selectedTracks.orchestra = selected
   elseif index == 5 then
-    self.selectedTracks.rootNote = selected
-    print("Root Note: " .. tostring(selected))
+    self.selectedTracks.bassline = selected
   end
 end
 
@@ -144,7 +139,7 @@ function MMLInstrumentUI:initialise()
   -- 輸入區標籤
   self.labelInput = ISLabel:new(
     padding, th + padding, buttonHeight,
-    getText("UI_MMLPlayer_UsedSheet") or "Enter MML:",
+    getText("UI_MML_UsedSheet") or "Enter MML:",
     1, 1, 1, 1, UIFont.Medium, true
   )
   self.labelInput:initialise()
@@ -154,7 +149,7 @@ function MMLInstrumentUI:initialise()
     padding,
     self.labelInput:getBottom() + 5,
     buttonHeight,
-    getText("UI_MMLPlayer_NoSheet") or "No Sheet (You can equip a sheet to primary hand)",
+    "",
     1, 1, 1, 1, UIFont.Small, true
   )
   self.labelInput2:initialise()
@@ -165,7 +160,7 @@ function MMLInstrumentUI:initialise()
     padding,
     self.labelInput2:getBottom() + padding + 5,
     buttonHeight,
-    getText("UI_MMLPlayer_SelectTracks") or "Select Tracks to Play:",
+    getText("UI_MML_SelectTracks") or "Select Tracks to Play:",
     1, 1, 1, 1, UIFont.Medium, true
   )
   self.labelSelectTracks:initialise()
@@ -185,38 +180,38 @@ function MMLInstrumentUI:initialise()
   self.trackCheckbox:instantiate()
 
   -- 添加 5 個選項
-  self.trackCheckbox:addOption(getText("UI_MMLPlayer_melody") or "Melody", nil)
-  self.trackCheckbox:addOption(getText("UI_MMLPlayer_harmony") or "Harmony", nil)
-  self.trackCheckbox:addOption(getText("UI_MMLPlayer_chord") or "Chord", nil)
-  self.trackCheckbox:addOption(getText("UI_MMLPlayer_graceNote") or "Grace Note", nil)
-  self.trackCheckbox:addOption(getText("UI_MMLPlayer_rootNote") or "Root Note", nil)
+  self.trackCheckbox:addOption(getText("UI_MML_melody") or "Melody", nil)
+  self.trackCheckbox:addOption(getText("UI_MML_harmony") or "Harmony", nil)
+  self.trackCheckbox:addOption(getText("UI_MML_accompaniment") or "Accompaniment", nil)
+  self.trackCheckbox:addOption(getText("UI_MML_orchestra") or "Orchestra", nil)
+  self.trackCheckbox:addOption(getText("UI_MML_bassline") or "Bassline", nil)
 
   -- 設定初始狀態（預設全部勾選）
   self.trackCheckbox:setSelected(1, true)  -- Melody
   self.trackCheckbox:setSelected(2, false) -- Harmony
-  self.trackCheckbox:setSelected(3, false) -- Chord
-  self.trackCheckbox:setSelected(4, false) -- Grace Note
-  self.trackCheckbox:setSelected(5, false) -- Root Note
+  self.trackCheckbox:setSelected(3, false) -- Accompaniment
+  self.trackCheckbox:setSelected(4, false) -- Orchestra
+  self.trackCheckbox:setSelected(5, false) -- Bassline
   self:addChild(self.trackCheckbox)
 
   -- 儲存勾選狀態（方便後續使用）
   self.selectedTracks = {
     melody = true,
     harmony = false,
-    chord = false,
-    graceNote = false,
-    rootNote = false
+    accompaniment = false,
+    orchestra = false,
+    bassline = false
   }
 
   -- 按鈕區
-  local buttonY = self.trackCheckbox:getBottom() + padding
+  local buttonY = self.trackCheckbox:getBottom() + padding * 3
   local buttonWidth = 80
   local buttonSpacing = 10
 
   -- 播放按鈕
   self.playButton = ISButton:new(
     padding, buttonY, buttonWidth, buttonHeight,
-    getText("UI_MMLPlayer_Play") or "Play",
+    getText("UI_MML_Play") or "Play",
     self, MMLInstrumentUI.onPlay
   )
   self.playButton:initialise()
@@ -228,7 +223,7 @@ function MMLInstrumentUI:initialise()
   self.stopButton = ISButton:new(
     self.playButton:getRight() + buttonSpacing, buttonY,
     buttonWidth, buttonHeight,
-    getText("UI_MMLPlayer_Stop") or "Stop",
+    getText("UI_MML_Stop") or "Stop",
     self, MMLInstrumentUI.onStop
   )
   self.stopButton:initialise()
@@ -254,7 +249,7 @@ function MMLInstrumentUI:initialise()
     padding,
     self.progressBar:getBottom() + 5,
     buttonHeight,
-    getText("UI_MMLPlayer_Ready") or "Ready",
+    getText("UI_MML_NoSheet") or "No Sheet (You can equip a sheet to primary hand)",
     1, 1, 1, 1, UIFont.Small, true
   )
   self.statusLabel:initialise()
@@ -274,13 +269,13 @@ function MMLInstrumentUI:setMML(mml, name)
     return
   end
   self.labelInput2:setName(name)
-  local trackNames = { "melody", "harmony", "chord", "graceNote", "rootNote" }
+  local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
   local trackDisplayNames = {
-    getText("UI_MMLPlayer_melody") or "Melody",
-    getText("UI_MMLPlayer_harmony") or "Harmony",
-    getText("UI_MMLPlayer_chord") or "Chord",
-    getText("UI_MMLPlayer_graceNote") or "Grace Note",
-    getText("UI_MMLPlayer_rootNote") or "Root Note"
+    (getText("UI_MML_melody") or "Melody") .. (getText("UI_MML_melody_tip") or ""),
+    getText("UI_MML_harmony") or "Harmony",
+    getText("UI_MML_accompaniment") or "Accompaniment",
+    getText("UI_MML_orchestra") or "Orchestra",
+    getText("UI_MML_bassline") or "Bassline"
   }
   local anyTrackAvailable = false
 
@@ -308,10 +303,10 @@ function MMLInstrumentUI:setMML(mml, name)
 
   -- 如果沒有任何軌道可用,顯示警告
   if not anyTrackAvailable then
-    self.statusLabel:setName(getText("UI_MMLPlayer_NoTracksAvailable") or "No tracks available in this sheet")
+    self.statusLabel:setName(getText("UI_MML_NoTracksAvailable") or "No tracks available in this sheet")
     self.playButton.enable = false
   else
-    self.statusLabel:setName(getText("UI_MMLPlayer_Ready") or "Ready")
+    self.statusLabel:setName(getText("UI_MML_Ready") or "Ready")
     self.playButton.enable = true
   end
 end
@@ -326,7 +321,14 @@ function MMLInstrumentUI:show()
   if self.character and self.character:getPrimaryHandItem() then
     local item = self.character:getPrimaryHandItem()
     local fullType = item:getFullType()
-    if string.sub(fullType, 1, 9) == "MMLSheet." then
+    if fullType == "MMLSheet.SheetMusic" then
+      local mmlData = item:getModData().mml
+      if not mmlData or type(mmlData) ~= "table" then
+        print("No MML data found in item", tostring(fullType))
+        return
+      end
+      self:setMML(mmlData, item:getName())
+    elseif string.sub(fullType, 1, 9) == "MMLSheet." then
       local sheet = MMLScores and MMLScores[fullType]
       if not sheet or type(sheet.mml) ~= "table" then
         print("No matching sheet for", tostring(fullType))
@@ -343,7 +345,7 @@ function MMLInstrumentUI:hide()
 end
 
 function MMLInstrumentUI:onPlay()
-  local trackNames = { "melody", "harmony", "chord", "graceNote", "rootNote" }
+  local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
   local allTracks = {}
   -- 遍歷所有勾選的軌道
   for i, trackName in ipairs(trackNames) do
@@ -358,7 +360,7 @@ function MMLInstrumentUI:onPlay()
 
   -- 檢查是否有任何內容
   if #allTracks == 0 then
-    self.statusLabel:setName(getText("UI_MMLPlayer_NoTrackSelected") or "Please select at least one track")
+    self.statusLabel:setName(getText("UI_MML_NoTrackSelected") or "Please select at least one track")
     return
   end
 
@@ -384,7 +386,7 @@ function MMLInstrumentUI:onPlay()
   local mml3 = table.concat(combined_mml3, ",")
 
   if mml1 == "" and mml2 == "" and mml3 == "" then
-    self.statusLabel:setName(getText("UI_MMLPlayer_EmptyInput") or "Please enter MML code")
+    self.statusLabel:setName(getText("UI_MML_NoTracksAvailable") or "No tracks available")
     return
   end
 
@@ -411,7 +413,7 @@ function MMLInstrumentUI:onPlay()
   ISTimedActionQueue.add(self.TAPlay)
 
   self.isPlaying = true
-  self.statusLabel:setName(getText("UI_MMLPlayer_Playing") or "Playing...")
+  self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
   self.playButton.enable = false
   self.stopButton.enable = true
 end
@@ -419,7 +421,7 @@ end
 -- 新增：播放完成時的回調
 function MMLInstrumentUI:onPlaybackComplete()
   self.isPlaying = false
-  self.statusLabel:setName(getText("UI_MMLPlayer_Finished") or "Finished")
+  self.statusLabel:setName(getText("UI_MML_Finished") or "Finished")
   self.playButton.enable = true
   self.stopButton.enable = false
 end
@@ -428,7 +430,7 @@ function MMLInstrumentUI:onStop()
   ISTimedActionQueue.clear(self.character)
 
   self.isPlaying = false
-  self.statusLabel:setName(getText("UI_MMLPlayer_Stopped") or "Stopped")
+  self.statusLabel:setName(getText("UI_MML_Stopped") or "Stopped")
   self.playButton.enable = true
   self.stopButton.enable = false
 end
