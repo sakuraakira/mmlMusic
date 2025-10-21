@@ -399,11 +399,9 @@ function MMLComposeUI:initialise()
   self.progressBar.backgroundColor = { r = 0.2, g = 0.2, b = 0.2, a = 0.8 }
   self:addChild(self.progressBar)
 
-
-
   -- 樂譜名稱輸入
   self.NameLabel = ISLabel:new(
-    WIDTH - 280 - buttonWidth - padding * 6,
+    WIDTH - 275 - buttonWidth - padding * 6,
     self.progressBar:getBottom() + padding * 2,
     buttonHeight,
     getText("UI_MML_SongTitle") or "Title:",
@@ -431,7 +429,7 @@ function MMLComposeUI:initialise()
     self.NameText:getRight() + padding,
     self.progressBar:getBottom() + padding * 2,
     buttonWidth + 20,
-    buttonHeight,
+    buttonHeight + 5,
     getText("UI_MML_Complete") or "Complete",
     self, MMLComposeUI.onComplete
   )

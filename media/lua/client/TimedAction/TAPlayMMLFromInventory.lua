@@ -5,15 +5,6 @@ local MMLPlayer = require('MMLPlayer')
 
 ---@class TAPlayMMLFromInventory: ISBaseTimedAction
 ---@field onComplete fun(): nil 顯示視窗
----@field instrument string
----@field item InventoryItem
----@field mml string
----@field Playing boolean
----@field lastCheckTime number
----@field checkInterval number
----@field mmlPlayer MMLPlayer
----@field handItem string
----@field walkSpeedModifier number
 local TAPlayMMLFromInventory = ISBaseTimedAction:derive('TAPlayMMLFromInventory')
 
 local ItemToAnimation = {
@@ -99,6 +90,15 @@ function TAPlayMMLFromInventory:start()
   end
 
   self.mmlPlayer:play()
+  if isClient() then
+    local MMLClientSendCommands = require("MMLClientSendCommands")
+    MMLClientSendCommands.sendStartMML(
+      self.character:getOnlineID(),
+      self.instrument,
+      self.mml,
+      { x = self.character:getX(), y = self.character:getY(), z = self.character:getZ() }
+    )
+  end
 end
 
 function TAPlayMMLFromInventory:restoreMoveSpeed()
@@ -155,6 +155,10 @@ end
 -- ============================================================
 function TAPlayMMLFromInventory:stop()
   self.playing = false
+  if isClient() then
+    local MMLClientSendCommands = require("MMLClientSendCommands")
+    MMLClientSendCommands.sendStopMML(self.character:getOnlineID())
+  end
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
@@ -162,6 +166,11 @@ function TAPlayMMLFromInventory:stop()
   self:restoreMoveSpeed()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
+  end
+  -- 發送停止命令
+  if isClient() then
+    local MMLClientSendCommands = require("MMLClientSendCommands")
+    MMLClientSendCommands.sendStopMML(self.character:getOnlineID())
   end
   ISBaseTimedAction.stop(self)
 end
@@ -191,6 +200,10 @@ end
 
 function TAPlayMMLFromInventory:perform()
   self.playing = false
+  if isClient() then
+    local MMLClientSendCommands = require("MMLClientSendCommands")
+    MMLClientSendCommands.sendStopMML(self.character:getOnlineID())
+  end
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
