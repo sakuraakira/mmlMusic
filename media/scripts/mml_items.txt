@@ -5,7 +5,7 @@ module MMLSheet
         DisplayCategory  = Literature,
         Type             = Normal,
         DisplayName      = Sheet Music,
-        Icon             = MMLSheet_New.png,
+        Icon             = Item_MMLSheet.png,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
     }

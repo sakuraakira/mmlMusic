@@ -191,7 +191,7 @@ function MMLInstrumentUI:initialise()
   }
 
   -- 按鈕區
-  local buttonY = self.trackCheckbox:getBottom() + padding * 3
+  local buttonY = self.trackCheckbox:getBottom() + 60 + padding * 3
   local buttonWidth = 80
   local buttonSpacing = 10
 

@@ -1,0 +1,78 @@
+module mmlMusic
+{
+    imports
+    {
+        Base
+    }
+    
+    item MusicSkill_Book1
+    {
+        DisplayCategory  = SkillBook,
+        NumberOfPages    = 220,
+        Weight           = 0.8,
+        Type             = Literature,
+        DisplayName      = MusicSkill_Book1,
+        Icon             = MusicBook,
+        SkillTrained     = Music,
+        LvlSkillTrained  = 1,
+        NumLevelsTrained = 2,
+        StaticModel      = Book,
+        WorldStaticModel = BookYellowBrown_Ground,
+    }
+    item MusicSkill_Book2
+    {
+        DisplayCategory  = SkillBook,
+        NumberOfPages    = 260,
+        Weight           = 0.8,
+        Type             = Literature,
+        DisplayName      = MusicSkill_Book2,
+        Icon             = MusicBook,
+        SkillTrained     = Music,
+        LvlSkillTrained  = 3,
+        NumLevelsTrained = 2,
+        StaticModel      = Book,
+        WorldStaticModel = BookYellowBrown_Ground,
+    }
+    item MusicSkill_Book3
+    {
+        DisplayCategory  = SkillBook,
+        NumberOfPages    = 300,
+        Weight           = 0.8,
+        Type             = Literature,
+        DisplayName      = MusicSkill_Book3,
+        Icon             = MusicBook,
+        SkillTrained     = Music,
+        LvlSkillTrained  = 5,
+        NumLevelsTrained = 2,
+        StaticModel      = Book,
+        WorldStaticModel = BookYellowBrown_Ground,
+    }
+    item MusicSkill_Book4
+    {
+        DisplayCategory  = SkillBook,
+        NumberOfPages    = 300,
+        Weight           = 0.8,
+        Type             = Literature,
+        DisplayName      = MusicSkill_Book4,
+        Icon             = MusicBook,
+        SkillTrained     = Music,
+        LvlSkillTrained  = 7,
+        NumLevelsTrained = 3,
+        StaticModel      = Book,
+        WorldStaticModel = BookYellowBrown_Ground,
+    }
+    item MusicSkill_Book5
+    {
+        DisplayCategory  = SkillBook,
+        NumberOfPages    = 300,
+        Weight           = 0.8,
+        Type             = Literature,
+        DisplayName      = MusicSkill_Book5,
+        Icon             = MusicBook,
+        SkillTrained     = Music,
+        LvlSkillTrained  = 9,
+        NumLevelsTrained = 3,
+        StaticModel      = Book,
+        WorldStaticModel = BookYellowBrown_Ground,
+    }
+}

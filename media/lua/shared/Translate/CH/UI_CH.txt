@@ -43,6 +43,12 @@ UI_MML_Success = "作曲完成",
 UI_MML_SongName = "樂譜(曲名:",
 UI_MML_SongTitle = "曲名:",
 UI_MML_SelectTracks = "選擇要演奏的項目:",
+UI_MusicSkill  = "音樂",
+UI_Musician = "音樂家",
+UI_prof_Singer = "創作歌手",
+UI_prof_Singerdesc = "剛出道的歌手，會各種樂器自己作詞作曲。<br>+4 音樂技能",
+UI_trait_Musician = "音樂家",
+UI_trait_Musiciandesc = "有音樂知識，會演奏各種樂器。<br>+2 音樂技能",
 
 // Context Menu
 UI_ContextMenu_PlayMusicSheet = "演奏樂器",

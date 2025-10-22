@@ -5,4 +5,10 @@ ItemName_CH = {
   ItemName_MMLSheet.SheetMusic = "樂譜",
   ItemName_MMLSheet.BlankSheetBook = "空白樂譜本",
   ItemName_MMLSheet.BlankSheetMusic = "空白樂譜",
+
+  ItemName_mmlMusic.MusicSkill_Book1 = "彈指之間",
+	ItemName_mmlMusic.MusicSkill_Book2 = "哈農鋼琴教本",
+	ItemName_mmlMusic.MusicSkill_Book3 = "史丹達爾管樂教程",
+	ItemName_mmlMusic.MusicSkill_Book4 = "蕭邦鋼琴名曲集",
+	ItemName_mmlMusic.MusicSkill_Book5 = "牛津小提琴進階教程",
 }

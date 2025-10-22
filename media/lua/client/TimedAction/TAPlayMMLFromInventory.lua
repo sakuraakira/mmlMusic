@@ -3,7 +3,7 @@
 
 local MMLPlayer = require('MMLPlayer')
 local MMLMusicBuff = require('MMLMusicBuff')
-
+local MMLMusicSkill = require('MMLMusicSkill')
 ---@class TAPlayMMLFromInventory: ISBaseTimedAction
 ---@field onComplete fun(): nil 顯示視窗
 local TAPlayMMLFromInventory = ISBaseTimedAction:derive('TAPlayMMLFromInventory')
@@ -43,9 +43,9 @@ function TAPlayMMLFromInventory:new(character, instrument, mml)
 
   self.MusicBuff = MMLMusicBuff:new(character, {
     interval = 10000, -- 每10秒觸發一次
-    applyUnhappyness = 5,
-    applyBoredom = 5,
-    applyPanic = 5,
+    applyUnhappyness = MMLMusicSkill.getLevel(character),
+    applyBoredom = MMLMusicSkill.getLevel(character),
+    applyPanic = MMLMusicSkill.getLevel(character),
   })
   return o
 end

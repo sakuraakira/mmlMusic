@@ -3,6 +3,12 @@
 local MMLContextMenu = require('MMLContextMenu')
 local MMLInstrumentUI = require('MMLInstrumentUI')
 local MMLScores = require('MMLScores')
+local MMLMusicSkill = require('MMLMusicSkill')
+
+
+-- 在遊戲啟動初期註冊 Perk，確保其他腳本呼叫 addXP/getLevel 時 Perk 已存在
+Events.OnGameBoot.Add(MMLMusicSkill.registerPerk)
+
 -- ================================
 -- 註冊物品右鍵選單
 -- ================================

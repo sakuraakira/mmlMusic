@@ -16,21 +16,26 @@ end
 -- 內部：在 client 端直接套用 stats（只改本地 player）
 local function applyLocalChangesToPlayer(player, changes)
   if not player or not changes then return end
-  local stats = player:getStats()
-  if not stats then return end
+
+  ---@class BodyDamage
+  local bodyDamage = player:getBodyDamage()
+  if not bodyDamage then return end
 
   if changes.unhappyness and type(changes.unhappyness) == "number" then
-    local cur = tonumber(stats:getUnhappyness()) or 0
+    local cur = bodyDamage:getUnhappynessLevel() or 0
     local new = clamp(cur - changes.unhappyness, 0, 100)
-    stats:setUnhappyness(new)
+    bodyDamage:setUnhappynessLevel(new)
   end
   if changes.boredom and type(changes.boredom) == "number" then
-    local cur = tonumber(stats:getBoredom()) or 0
+    local cur = bodyDamage:getBoredomLevel() or 0
     local new = clamp(cur - changes.boredom, 0, 100)
-    stats:setBoredom(new)
+    bodyDamage:setBoredomLevel(new)
   end
+
+  ---@class Stats
+  local stats = player:getStats()
   if changes.panic and type(changes.panic) == "number" then
-    local cur = tonumber(stats:getPanic()) or 0
+    local cur = stats:getPanic() or 0
     local new = clamp(cur - changes.panic, 0, 100)
     stats:setPanic(new)
   end
@@ -46,7 +51,7 @@ function MMLMusicEffectHandler.receiveEffect(args)
   local throttle = MMLMusicEffectHandler.throttleMs
 
   if last ~= 0 and now - last < throttle then
-    return false   -- 被節流
+    return false -- 被節流
   end
 
   -- 通過 throttle，套用本地變更

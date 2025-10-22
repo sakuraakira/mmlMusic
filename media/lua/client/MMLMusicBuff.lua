@@ -3,6 +3,8 @@
 local MMLMusicBuff = {}
 MMLMusicBuff.__index = MMLMusicBuff
 
+local MMLMusicSkill = require('MMLMusicSkill')
+
 local DEFAULTS = {
   interval = 10000, -- 每 10000 ms = 10 秒觸發一次
   applyUnhappyness = 0,
@@ -28,19 +30,16 @@ function MMLMusicBuff:new(character, cfg)
   end
   o._running = false
   o._last = 0
-  print("[MMLMusicBuff] Created with config: %d", o.character:getOnlineID())
   return o
 end
 
 function MMLMusicBuff:start()
   if not self.character then return end
-  print("[MMLMusicBuff] Started with config: %d", self.character:getOnlineID())
   self._running = true
   self._last = getTimestampMs()
 end
 
 function MMLMusicBuff:stop()
-  print("[MMLMusicBuff] Stopped for character: %d", self.character:getOnlineID())
   self._running = false
 end
 
@@ -50,6 +49,8 @@ function MMLMusicBuff:update()
   local now = getTimestampMs()
   if now - self._last < self.cfg.interval then return end
   self._last = now
+
+  MMLMusicSkill.addXP(self.character, 1)
   ---@class BodyDamage
   local bodyDamage = self.character:getBodyDamage() or nil
 
@@ -60,7 +61,6 @@ function MMLMusicBuff:update()
       local cur = bodyDamage:getUnhappynessLevel() or 0
       local new = clamp(cur - self.cfg.applyUnhappyness, 0, 100)
       bodyDamage:setUnhappynessLevel(new)
-      print(string.format("[MMLMusicBuff] unhappyness: %.3f -> %.3f", cur, new))
       changes.unhappyness = self.cfg.applyUnhappyness
     end
 
@@ -68,7 +68,6 @@ function MMLMusicBuff:update()
       local cur = bodyDamage:getBoredomLevel() or 0
       local new = clamp(cur - self.cfg.applyBoredom, 0, 100)
       bodyDamage:setBoredomLevel(new)
-      print(string.format("[MMLMusicBuff] boredom: %.3f -> %.3f", cur, new))
       changes.boredom = self.cfg.applyBoredom
     end
 
@@ -77,7 +76,6 @@ function MMLMusicBuff:update()
       local cur = stats:getPanic() or 0
       local new = clamp(cur - self.cfg.applyPanic, 0, 100)
       stats:setPanic(new)
-      print(string.format("[MMLMusicBuff] panic: %.3f -> %.3f", cur, new))
       changes.panic = self.cfg.applyPanic
     end
 

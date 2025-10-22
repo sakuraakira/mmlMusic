@@ -1,4 +1,6 @@
 local MMLPlayer = require('MMLPlayer')
+local MMLMusicBuff = require('MMLMusicBuff')
+local MMLMusicSkill = require('MMLMusicSkill')
 
 ---@class TAPlayMMLFromWorld: ISBaseTimedAction
 ---@field instrumentObject IsoObject
@@ -39,6 +41,13 @@ function TAPlayMMLFromWorld:new(character, instrument, instrumentObject, orienta
   o.mmlPlayer = MMLPlayer:new(o.instrument, false)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
+
+  self.MusicBuff = MMLMusicBuff:new(character, {
+    interval = 10000, -- 每10秒觸發一次
+    applyUnhappyness = MMLMusicSkill.getLevel(character),
+    applyBoredom = MMLMusicSkill.getLevel(character),
+    applyPanic = MMLMusicSkill.getLevel(character),
+  })
   return o
 end
 
@@ -110,6 +119,7 @@ function TAPlayMMLFromWorld:start()
       { x = self.character:getX(), y = self.character:getY(), z = self.character:getZ() }
     )
   end
+  self.MusicBuff:start()
 end
 
 function TAPlayMMLFromWorld:isValid()
@@ -151,6 +161,7 @@ function TAPlayMMLFromWorld:perform()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
+  self.MusicBuff:stop()
   ISBaseTimedAction.perform(self)
 end
 
@@ -170,6 +181,7 @@ function TAPlayMMLFromWorld:stop()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
+  self.MusicBuff:stop()
   ISBaseTimedAction.stop(self)
 end
 
@@ -198,6 +210,7 @@ function TAPlayMMLFromWorld:update()
   else
     self:forceStop()
   end
+  self.MusicBuff:update()
 end
 
 function TAPlayMMLFromWorld:getProgress()
