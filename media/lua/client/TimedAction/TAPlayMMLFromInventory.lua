@@ -2,6 +2,7 @@
 -- 播放樂譜的 TimedAction
 
 local MMLPlayer = require('MMLPlayer')
+local MMLMusicBuff = require('MMLMusicBuff')
 
 ---@class TAPlayMMLFromInventory: ISBaseTimedAction
 ---@field onComplete fun(): nil 顯示視窗
@@ -39,6 +40,13 @@ function TAPlayMMLFromInventory:new(character, instrument, mml)
   o.mmlPlayer = MMLPlayer:new(o.instrument, false)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
+
+  self.MusicBuff = MMLMusicBuff:new(character, {
+    interval = 10000, -- 每10秒觸發一次
+    applyUnhappyness = 5,
+    applyBoredom = 5,
+    applyPanic = 5,
+  })
   return o
 end
 
@@ -99,6 +107,8 @@ function TAPlayMMLFromInventory:start()
       { x = self.character:getX(), y = self.character:getY(), z = self.character:getZ() }
     )
   end
+
+  self.MusicBuff:start()
 end
 
 function TAPlayMMLFromInventory:restoreMoveSpeed()
@@ -137,6 +147,7 @@ function TAPlayMMLFromInventory:update()
   else
     self:forceStop()
   end
+  self.MusicBuff:update()
 end
 
 function TAPlayMMLFromInventory:getProgress()
@@ -172,6 +183,7 @@ function TAPlayMMLFromInventory:stop()
     local MMLClientSendCommands = require("MMLClientSendCommands")
     MMLClientSendCommands.sendStopMML(self.character:getOnlineID())
   end
+  self.MusicBuff:stop()
   ISBaseTimedAction.stop(self)
 end
 
@@ -213,6 +225,7 @@ function TAPlayMMLFromInventory:perform()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
+  self.MusicBuff:stop()
   ISBaseTimedAction.perform(self)
 end
 

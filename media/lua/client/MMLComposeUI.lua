@@ -594,7 +594,7 @@ function MMLComposeUI:onComplete()
     player:removeFromHands(self.item)
   elseif self.item:getFullType() == "MMLSheet.BlankSheetBook" then
     -- 處理空白樂譜書的情況
-    self.item:use() -- use = 減少 0.1
+    self.item:Use() -- use = 減少 0.1
   elseif self.item:getFullType() == "MMLSheet.SheetMusic" then
     -- 如果是已存在的樂譜，則更新其內容
     local itemmodData = self.item:getModData()

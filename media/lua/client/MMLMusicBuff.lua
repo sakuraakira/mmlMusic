@@ -8,7 +8,6 @@ local DEFAULTS = {
   applyUnhappyness = 0,
   applyBoredom = 0,
   applyPanic = 0,
-  sendToServer = true, -- client 模式是否送到 server（若 isClient() 才會送）
 }
 
 local function clamp(val, lo, hi)
@@ -17,11 +16,11 @@ local function clamp(val, lo, hi)
   return val
 end
 
+
 function MMLMusicBuff:new(character, cfg)
   local o = {}
   setmetatable(o, self)
   o.character = character
-  o.stats = character and character:getStats() or nil
   o.cfg = {}
   for k, v in pairs(DEFAULTS) do o.cfg[k] = v end
   if cfg then
@@ -29,56 +28,70 @@ function MMLMusicBuff:new(character, cfg)
   end
   o._running = false
   o._last = 0
+  print("[MMLMusicBuff] Created with config: %d", o.character:getOnlineID())
   return o
 end
 
 function MMLMusicBuff:start()
-  if not self.character or not self.stats then return end
+  if not self.character then return end
+  print("[MMLMusicBuff] Started with config: %d", self.character:getOnlineID())
   self._running = true
   self._last = getTimestampMs()
 end
 
 function MMLMusicBuff:stop()
+  print("[MMLMusicBuff] Stopped for character: %d", self.character:getOnlineID())
   self._running = false
 end
 
 -- call from TA:update() each tick (this function throttles by interval)
 function MMLMusicBuff:update()
-  if not self._running or not self.character or not self.stats then return end
+  if not self._running or not self.character then return end
   local now = getTimestampMs()
   if now - self._last < self.cfg.interval then return end
   self._last = now
+  ---@class BodyDamage
+  local bodyDamage = self.character:getBodyDamage() or nil
 
-  local changes = {}
-  changes.sourceId = self.character:getOnlineID()
-  if self.cfg.applyUnhappyness ~= 0 then
-    local cur = tonumber(self.stats:getUnhappyness()) or 0
-    local new = clamp(cur - self.cfg.applyUnhappyness, 0, 100)
-    self.stats:setUnhappyness(new)
-    changes.unhappyness = self.cfg.applyUnhappyness
-  end
+  if bodyDamage then
+    local changes = {}
+    changes.sourceId = self.character:getOnlineID()
+    if self.cfg.applyUnhappyness ~= 0 then
+      local cur = bodyDamage:getUnhappynessLevel() or 0
+      local new = clamp(cur - self.cfg.applyUnhappyness, 0, 100)
+      bodyDamage:setUnhappynessLevel(new)
+      print(string.format("[MMLMusicBuff] unhappyness: %.3f -> %.3f", cur, new))
+      changes.unhappyness = self.cfg.applyUnhappyness
+    end
 
-  if self.cfg.applyBoredom ~= 0 then
-    local cur = tonumber(self.stats:getBoredom()) or 0
-    local new = clamp(cur - self.cfg.applyBoredom, 0, 100)
-    self.stats:setBoredom(new)
-    changes.boredom = self.cfg.applyBoredom
-  end
+    if self.cfg.applyBoredom ~= 0 then
+      local cur = bodyDamage:getBoredomLevel() or 0
+      local new = clamp(cur - self.cfg.applyBoredom, 0, 100)
+      bodyDamage:setBoredomLevel(new)
+      print(string.format("[MMLMusicBuff] boredom: %.3f -> %.3f", cur, new))
+      changes.boredom = self.cfg.applyBoredom
+    end
 
-  if self.cfg.applyPanic ~= 0 then
-    local cur = tonumber(self.stats:getPanic()) or 0
-    local new = clamp(cur - self.cfg.applyPanic, 0, 100)
-    self.stats:setPanic(new)
-    changes.panic = self.cfg.applyPanic
-  end
+    if self.cfg.applyPanic ~= 0 then
+      local stats = self.character:getStats()
+      local cur = stats:getPanic() or 0
+      local new = clamp(cur - self.cfg.applyPanic, 0, 100)
+      stats:setPanic(new)
+      print(string.format("[MMLMusicBuff] panic: %.3f -> %.3f", cur, new))
+      changes.panic = self.cfg.applyPanic
+    end
 
-  -- 如果是 client 並且需要發給 server，發送一個簡短命令（包含實際改動數值）
-  if isClient() and self.cfg.sendToServer then
-    local SendMMLClientCommand = require("MMLClientSendCommands")
-    SendMMLClientCommand('ClientMusicBuff', {
-      sourceId = self.character:getOnlineID(),
-      args = changes -- 如 {unhappyness=5, boredom=10, panic=0}
-    })
+    -- 如果是 client 並且需要發給 server，發送一個簡短命令（包含實際改動數值）
+    if isClient() then
+      local SendMMLClientCommand = require("MMLClientSendCommands")
+      SendMMLClientCommand('ClientMusicBuff', {
+        sourceId = self.character:getOnlineID(),
+        args = changes -- 如 {unhappyness=5, boredom=10, panic=0}
+      })
+
+
+      return
+    end
   end
 end
 

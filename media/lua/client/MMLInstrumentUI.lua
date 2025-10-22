@@ -179,19 +179,6 @@ function MMLInstrumentUI:initialise()
   self.trackCheckbox:initialise()
   self.trackCheckbox:instantiate()
 
-  -- 添加 5 個選項
-  self.trackCheckbox:addOption(getText("UI_MML_melody") or "Melody", nil)
-  self.trackCheckbox:addOption(getText("UI_MML_harmony") or "Harmony", nil)
-  self.trackCheckbox:addOption(getText("UI_MML_accompaniment") or "Accompaniment", nil)
-  self.trackCheckbox:addOption(getText("UI_MML_orchestra") or "Orchestra", nil)
-  self.trackCheckbox:addOption(getText("UI_MML_bassline") or "Bassline", nil)
-
-  -- 設定初始狀態（預設全部勾選）
-  self.trackCheckbox:setSelected(1, true)  -- Melody
-  self.trackCheckbox:setSelected(2, false) -- Harmony
-  self.trackCheckbox:setSelected(3, false) -- Accompaniment
-  self.trackCheckbox:setSelected(4, false) -- Orchestra
-  self.trackCheckbox:setSelected(5, false) -- Bassline
   self:addChild(self.trackCheckbox)
 
   -- 儲存勾選狀態（方便後續使用）
@@ -272,13 +259,13 @@ function MMLInstrumentUI:setMML(mml, name)
   local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
   local trackDisplayNames = {
     (getText("UI_MML_melody") or "Melody") .. (getText("UI_MML_melody_tip") or ""),
-    getText("UI_MML_harmony") or "Harmony",
-    getText("UI_MML_accompaniment") or "Accompaniment",
-    getText("UI_MML_orchestra") or "Orchestra",
-    getText("UI_MML_bassline") or "Bassline"
+    (getText("UI_MML_harmony") or "Harmony") .. (getText("UI_MML_harmony_tip") or ""),
+    (getText("UI_MML_accompaniment") or "Accompaniment") .. (getText("UI_MML_accompaniment_tip") or ""),
+    (getText("UI_MML_orchestra") or "Orchestra") .. (getText("UI_MML_orchestra_tip") or ""),
+    (getText("UI_MML_bassline") or "Bassline") .. (getText("UI_MML_bassline_tip") or "")
   }
   local anyTrackAvailable = false
-
+  self.trackCheckbox:clearOptions()
   for i, trackName in ipairs(trackNames) do
     local hasContent = false
 
@@ -293,11 +280,8 @@ function MMLInstrumentUI:setMML(mml, name)
     end
     local optionName = trackDisplayNames[i]
     if hasContent then
-      self.trackCheckbox:disableOption(optionName, false)
-    else
-      self.trackCheckbox:disableOption(optionName, true)
+      self.trackCheckbox:addOption(optionName)
     end
-    self.trackCheckbox:setSelected(i, false)
     self.selectedTracks[trackName] = false
   end
 
