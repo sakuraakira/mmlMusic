@@ -7,6 +7,7 @@ local MMLMusicSkill = require('MMLMusicSkill')
 
 local DEFAULTS = {
   interval = 10000, -- 每 10000 ms = 10 秒觸發一次
+  xp = 1,
   applyUnhappyness = 0,
   applyBoredom = 0,
   applyPanic = 0,
@@ -50,7 +51,7 @@ function MMLMusicBuff:update()
   if now - self._last < self.cfg.interval then return end
   self._last = now
 
-  MMLMusicSkill.addXP(self.character, 1)
+  MMLMusicSkill.addXP(self.character, self.cfg.xp)
   ---@class BodyDamage
   local bodyDamage = self.character:getBodyDamage() or nil
 

@@ -38,14 +38,18 @@ local function applyMMLSelection(playerObj, item)
       return
     end
     ui:setMML(mmlData, item:getName())
-  else
+    return
+  elseif fullType:sub(1, 9) == "MMLSheet." then
     local sheet = MMLScores and MMLScores[fullType]
     if not sheet or type(sheet.mml) ~= "table" then
+      ui:clearMML()
       print("No matching sheet for", tostring(fullType))
       return
     end
     ui:setMML(sheet.mml, item:getName())
+    return
   end
+  ui:clearMML()
 end
 
 Events.OnEquipPrimary.Add(function(playerObj, item)

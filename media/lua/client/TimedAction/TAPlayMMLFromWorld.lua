@@ -43,7 +43,7 @@ function TAPlayMMLFromWorld:new(character, instrument, instrumentObject, orienta
   o.checkInterval = 100 -- 每100ms檢查一次狀態
 
   self.MusicBuff = MMLMusicBuff:new(character, {
-    interval = 10000, -- 每10秒觸發一次
+    xp = 2,
     applyUnhappyness = MMLMusicSkill.getLevel(character),
     applyBoredom = MMLMusicSkill.getLevel(character),
     applyPanic = MMLMusicSkill.getLevel(character),

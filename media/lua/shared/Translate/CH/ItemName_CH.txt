@@ -6,9 +6,9 @@ ItemName_CH = {
   ItemName_MMLSheet.BlankSheetBook = "空白樂譜本",
   ItemName_MMLSheet.BlankSheetMusic = "空白樂譜",
 
-  ItemName_mmlMusic.MusicSkill_Book1 = "彈指之間",
-	ItemName_mmlMusic.MusicSkill_Book2 = "哈農鋼琴教本",
-	ItemName_mmlMusic.MusicSkill_Book3 = "史丹達爾管樂教程",
-	ItemName_mmlMusic.MusicSkill_Book4 = "蕭邦鋼琴名曲集",
-	ItemName_mmlMusic.MusicSkill_Book5 = "牛津小提琴進階教程",
+  ItemName_MMLSheet.MusicSkill_Book1 = "音樂 第 1 集 - 入門",
+	ItemName_MMLSheet.MusicSkill_Book2 = "音樂 第 2 集 - 中級",
+	ItemName_MMLSheet.MusicSkill_Book3 = "音樂 第 3 集 - 進階",
+	ItemName_MMLSheet.MusicSkill_Book4 = "音樂 第 4 集 - 專家",
+	ItemName_MMLSheet.MusicSkill_Book5 = "音樂 第 5 集 - 大師",
 }

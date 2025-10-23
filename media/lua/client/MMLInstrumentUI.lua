@@ -93,6 +93,7 @@ function MMLInstrumentUI:new(character, item)
   if item ~= nil then
     o.instrument = PlayerItemToMMLInstrument[item:getFullType()] or "Piano"
     o.title = getText("UI_MML_Play") .. item:getName()
+    o.item = item
   end
   o.TAPlay = nil
   o.isPlaying = false
@@ -288,11 +289,21 @@ function MMLInstrumentUI:setMML(mml, name)
   -- 如果沒有任何軌道可用,顯示警告
   if not anyTrackAvailable then
     self.statusLabel:setName(getText("UI_MML_NoTracksAvailable") or "No tracks available in this sheet")
-    self.playButton.enable = false
   else
     self.statusLabel:setName(getText("UI_MML_Ready") or "Ready")
-    self.playButton.enable = true
   end
+end
+
+function MMLInstrumentUI:clearMML()
+  self.mml = nil
+  self.labelInput2:setName("")
+  self.trackCheckbox:clearOptions()
+  self.selectedTracks.accompaniment = false
+  self.selectedTracks.bassline = false
+  self.selectedTracks.harmony = false
+  self.selectedTracks.melody = false
+  self.selectedTracks.orchestra = false
+  self.statusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet (You can equip a sheet to primary hand)")
 end
 
 function MMLInstrumentUI:show()
@@ -329,6 +340,9 @@ function MMLInstrumentUI:hide()
 end
 
 function MMLInstrumentUI:onPlay()
+  if self.item ~= nil and self.character:getSecondaryHandItem() ~= self.item then
+    ISTimedActionQueue.add(ISEquipWeaponAction:new(self.character, self.item, 50, false))
+  end
   local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
   local allTracks = {}
   -- 遍歷所有勾選的軌道

@@ -1,4 +1,4 @@
-module mmlMusic
+module MMLSheet
 {
     imports
     {
