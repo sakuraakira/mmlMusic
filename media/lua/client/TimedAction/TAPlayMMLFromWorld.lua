@@ -8,7 +8,7 @@ local MMLMusicSkill = require('MMLMusicSkill')
 ---@field instrument string
 ---@field seated boolean
 ---@field onComplete fun(): nil 顯示視窗
----@field new fun(self: TAPlayMMLFromWorld,character: IsoPlayer, instrument: string, instrumentObject: IsoObject, orientation: string, seated: boolean , mml: string): TAPlayMMLFromWorld
+---@field new fun(self: TAPlayMMLFromWorld,character: IsoPlayer, instrument: string, instrumentObject: IsoObject, orientation: string, seated: boolean , mml: string , sendToServer: boolean): TAPlayMMLFromWorld
 local TAPlayMMLFromWorld = ISBaseTimedAction:derive('TAPlayMMLFromWorld')
 
 -- Normalize any orientation to east/south (mirror west->east, north->south)
@@ -21,7 +21,7 @@ local function normalizeOrientation(orientation)
   return 'south'
 end
 
-function TAPlayMMLFromWorld:new(character, instrument, instrumentObject, orientation, seated, mml)
+function TAPlayMMLFromWorld:new(character, instrument, instrumentObject, orientation, seated, mml, sendToServer)
   ---@class TAPlayMMLFromWorld
   local o = ISBaseTimedAction:new(character)
   setmetatable(o, self)
@@ -41,9 +41,9 @@ function TAPlayMMLFromWorld:new(character, instrument, instrumentObject, orienta
   o.mmlPlayer = MMLPlayer:new(o.instrument, false)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
-
+  o.sendToServer = sendToServer or false
   self.MusicBuff = MMLMusicBuff:new(character, {
-    xp = 2,
+    xp = sendToServer == false and 3 or 2,
     applyUnhappyness = MMLMusicSkill.getLevel(character),
     applyBoredom = MMLMusicSkill.getLevel(character),
     applyPanic = MMLMusicSkill.getLevel(character),
@@ -110,7 +110,7 @@ function TAPlayMMLFromWorld:start()
   end
 
   self.mmlPlayer:play()
-  if isClient() then
+  if isClient() and self.sendToServer then
     local MMLClientSendCommands = require("MMLClientSendCommands")
     MMLClientSendCommands.sendStartMML(
       self.character:getOnlineID(),

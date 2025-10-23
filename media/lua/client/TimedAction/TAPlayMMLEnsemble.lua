@@ -1,14 +1,11 @@
--- TAPlayMMLFromInventory.lua
--- 播放樂譜的 TimedAction
-
+-- TAPlayMMLEnsemble.lua
+-- 合奏準備動作
+require('TimedActions/ISBaseTimedAction')
 ---@class TAPlayMMLEnsemble: ISBaseTimedAction
----@field onComplete fun(): nil 顯示視窗
-local TAPlayMMLEnsemble = ISBaseTimedAction:derive('TAPlayMMLEnsemble')
+---@field character IsoPlayer
+TAPlayMMLEnsemble = ISBaseTimedAction:derive("TAPlayMMLEnsemble")
 
--- ============================================================
--- 創建新的 Action
--- ============================================================
-function TAPlayMMLEnsemble:new(character, instrument)
+function TAPlayMMLEnsemble:new(character, item)
   ---@class TAPlayMMLEnsemble
   local o = ISBaseTimedAction:new(character)
   setmetatable(o, self)
@@ -19,7 +16,7 @@ function TAPlayMMLEnsemble:new(character, instrument)
   o.maxTime = -1 -- 無限時間（直到播放完成或被打斷）
 
   o.instrument = instrument
-  o.item = character:getSecondaryHandItem()
+  o.item = item
 
   o.playing = true
   o.lastCheckTime = 0
@@ -28,56 +25,71 @@ function TAPlayMMLEnsemble:new(character, instrument)
 end
 
 function TAPlayMMLEnsemble:isValid()
-  return self.item ~= nil
+  return true
 end
 
--- ============================================================
--- 開始動作
--- ============================================================
 function TAPlayMMLEnsemble:start()
-  --if self.item then
-  --  self:equipInstrumentOnSecondaryHand()
-  --end
+  -- 發送合奏準備完成指令
 
   self:setActionAnim("PrepareEnsemble")
 
-  if isClient() then
-    local MMLClientSendCommands = require("MMLClientSendCommands")
+  local instrument = nil
+  if self.item then
+    local PlayerItemToMMLInstrument = require('MMLInstrument')
+    instrument = PlayerItemToMMLInstrument[self.item:getFullType()] or "Piano"
+  else
+    instrument = "Piano"
   end
+
+  if isClient() then
+    local MMLClientSendCommands = require('MMLClientSendCommands')
+    MMLClientSendCommands.sendEnsembleReady(
+      self.character:getOnlineID(),
+      self.character:getDisplayName(),
+      instrument,
+      {
+        x = self.character:getX(),
+        y = self.character:getY(),
+        z = self.character:getZ()
+      }
+    )
+  end
+
+  -- 本地也添加自己到準備列表
+  local MMLEnsembleManager = require("MMLEnsembleManager")
+  MMLEnsembleManager.addEnsemblePlayer(
+    self.character:getOnlineID(),
+    self.character:getDisplayName(),
+    instrument
+  )
 end
 
--- ============================================================
--- 更新
--- ============================================================
-
-function TAPlayMMLEnsemble:isPlaying()
-  return self.playing
-end
-
--- ============================================================
--- 停止
--- ============================================================
 function TAPlayMMLEnsemble:stop()
-  self.playing = false
+  self:sendCancelCommand()
   ISBaseTimedAction.stop(self)
 end
 
--- ============================================================
--- 完成
--- ============================================================
 function TAPlayMMLEnsemble:perform()
-  self.playing = false
   ISBaseTimedAction.perform(self)
 end
 
--- ============================================================
--- 強制完成
--- ============================================================
+function TAPlayMMLEnsemble:sendCancelCommand()
+  -- 發送取消合奏準備指令
+  if isClient() then
+    local MMLClientSendCommands = require('MMLClientSendCommands')
+    MMLClientSendCommands.sendEnsembleCancel(
+      self.character:getOnlineID(),
+      {
+        x = self.character:getX(),
+        y = self.character:getY(),
+        z = self.character:getZ()
+      }
+    )
+  end
 
-
--- Graceful forceStop to match callers in update()
-function TAPlayMMLEnsemble:forceStop()
-  self:stop()
+  -- 本地也移除自己
+  local MMLEnsembleManager = require("MMLEnsembleManager")
+  MMLEnsembleManager.removeEnsemblePlayer(self.character:getOnlineID())
 end
 
 return TAPlayMMLEnsemble

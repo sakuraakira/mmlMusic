@@ -51,7 +51,7 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
   end
 end
 
--- 新增：按下「演奏」時開啟 UI
+-- 按下「演奏」時開啟 UI
 function MMLContextMenu.onOpenMMLInstrumentUI(player, item)
   if player:getSecondaryHandItem() ~= item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, false))
@@ -61,7 +61,7 @@ function MMLContextMenu.onOpenMMLInstrumentUI(player, item)
   ui:show()
 end
 
--- 新增：按下「作曲」時開啟 UI
+-- 按下「作曲」時開啟 UI
 function MMLContextMenu.onOpenMMLComposeUI(player, item)
   if player:getPrimaryHandItem() ~= item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, true))
@@ -71,10 +71,10 @@ function MMLContextMenu.onOpenMMLComposeUI(player, item)
   ui:show()
 end
 
--- 新增：按下「準備合奏」
+-- 按下「準備合奏」
 function MMLContextMenu.onPrepareEnsemble(player, item)
   if player:getPrimaryHandItem() ~= nil then
-    ISTimedActionQueue.add(ISEquipWeaponAction:new(player, player:getPrimaryHandItem(), 50, false))
+    player:setPrimaryHandItem(nil)
   end
   if player:getSecondaryHandItem() ~= item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, false))

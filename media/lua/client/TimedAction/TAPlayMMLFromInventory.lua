@@ -21,7 +21,7 @@ local ItemToAnimation = {
 -- ============================================================
 -- 創建新的 Action
 -- ============================================================
-function TAPlayMMLFromInventory:new(character, instrument, mml)
+function TAPlayMMLFromInventory:new(character, instrument, mml, sendToServer)
   ---@class TAPlayMMLFromInventory
   local o = ISBaseTimedAction:new(character)
   setmetatable(o, self)
@@ -40,8 +40,9 @@ function TAPlayMMLFromInventory:new(character, instrument, mml)
   o.mmlPlayer = MMLPlayer:new(o.instrument, false)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
-
+  o.sendToServer = sendToServer or false
   self.MusicBuff = MMLMusicBuff:new(character, {
+    xp = sendToServer == false and 2 or 1,
     applyUnhappyness = MMLMusicSkill.getLevel(character),
     applyBoredom = MMLMusicSkill.getLevel(character),
     applyPanic = MMLMusicSkill.getLevel(character),
@@ -97,7 +98,7 @@ function TAPlayMMLFromInventory:start()
   end
 
   self.mmlPlayer:play()
-  if isClient() then
+  if isClient() and self.sendToServer then
     local MMLClientSendCommands = require("MMLClientSendCommands")
     MMLClientSendCommands.sendStartMML(
       self.character:getOnlineID(),

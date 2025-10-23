@@ -82,13 +82,10 @@ function MMLMusicBuff:update()
 
     -- 如果是 client 並且需要發給 server，發送一個簡短命令（包含實際改動數值）
     if isClient() then
+      changes.x = self.character:getX()
+      changes.y = self.character:getY()
       local SendMMLClientCommand = require("MMLClientSendCommands")
-      SendMMLClientCommand('ClientMusicBuff', {
-        sourceId = self.character:getOnlineID(),
-        args = changes -- 如 {unhappyness=5, boredom=10, panic=0}
-      })
-
-
+      SendMMLClientCommand.sendMusicBuff(self.character, changes)
       return
     end
   end

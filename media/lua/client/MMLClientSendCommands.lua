@@ -39,4 +39,61 @@ MMLClientSendCommands.sendAskRange = function()
   SendMMLClientCommand('ClientAskRange', {})
 end
 
+-- 發送合奏準備狀態
+MMLClientSendCommands.sendEnsembleReady = function(sourceId, playerName, instrument, position)
+  if not isClient() then return end
+
+  SendMMLClientCommand('ClientEnsembleReady', {
+    sourceId = sourceId,
+    playerName = playerName,
+    instrument = instrument,
+    x = position.x,
+    y = position.y,
+    z = position.z
+  })
+
+  print("[MMLClient] Sent ensemble ready to server")
+end
+
+-- 發送取消合奏準備狀態
+MMLClientSendCommands.sendEnsembleCancel = function(sourceId, position)
+  if not isClient() then return end
+
+  SendMMLClientCommand('ClientEnsembleCancel', {
+    sourceId = sourceId,
+    x = position.x,
+    y = position.y,
+    z = position.z
+  })
+
+  print("[MMLClient] Sent ensemble cancel to server")
+end
+
+-- 發送合奏開始指令
+MMLClientSendCommands.sendEnsembleStart = function(assignments, position)
+  if not isClient() then return end
+
+  SendMMLClientCommand('ClientEnsembleStart', {
+    assignments = assignments,
+    x = position.x,
+    y = position.y,
+    z = position.z
+  })
+
+  print("[MMLClient] Sent ensemble start to server")
+end
+
+
+--發送buff效果改變
+MMLClientSendCommands.sendMusicBuff = function(character, changes)
+  if not isClient() then return end
+
+  SendMMLClientCommand('ClientMusicBuff', {
+    sourceId = character:getOnlineID(),
+    args = changes
+  })
+
+  print("[MMLClient] Sent MusicBuff to server")
+end
+
 return MMLClientSendCommands

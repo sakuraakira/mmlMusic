@@ -33,19 +33,12 @@ function MMLMusicSkill.addXP(character, xpAmount)
   if not character or not xpAmount or xpAmount == 0 then return end
   local toAdd = xpAmount
   character:getXp():AddXP(Perks.Music, toAdd)
-
-  -- 若沒有可用的 XP API，則不作任何事（可在除錯時輸出提示）
-  print("MMLMusic: NO XP API " .. tostring(character:getXp():getXP(Perks.Music)) .. " Music XP")
 end
 
 -- 取得指定角色的 Music 等級
 function MMLMusicSkill.getLevel(character)
-  print("MMLMusic: character " .. character:getDisplayName())
   if not character then return 0 end
-
   local lvl = character:getPerkLevel(Perks.Music)
-  print("MMLMusic: Music lv." .. tostring(lvl))
-
   if lvl == 0 then return 2 end
   return lvl * 2.5
 end

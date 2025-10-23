@@ -42,7 +42,6 @@ local function applyLocalChangesToPlayer(player, changes)
 end
 
 -- public: 收到 server 廣播/通知要套用效果時呼叫
--- args: { sourceId = <num>, changes = {unhappyness=10, boredom=10, panic=10}, timestamp = <ms, optional> }
 function MMLMusicEffectHandler.receiveEffect(args)
   if not args then return false end
 
@@ -57,11 +56,7 @@ function MMLMusicEffectHandler.receiveEffect(args)
   -- 通過 throttle，套用本地變更
   local player = getPlayer()
   if not player then return false end
-
-  -- 套用（client 視覺/音效回饋可在此觸發）
   applyLocalChangesToPlayer(player, args)
-
-  -- 更新 timestamp
   MMLMusicEffectHandler.lastApplied = now
 
   -- 回傳 true 表示有套用（caller 可用來觸發 UI/音效）

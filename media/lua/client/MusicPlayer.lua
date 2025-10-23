@@ -31,9 +31,9 @@ function MusicPlayer:new()
   o.soundsPlaying = {}
   o.soundsStopping = {}
   o.baseVolume = 0.7
-  o.maxDistance = 40   -- tiles
+  o.maxDistance = 40 -- tiles
   o.range = nil
-  o.playCounter = 0    -- 唯一播放計數器
+  o.playCounter = 0  -- 唯一播放計數器
 
   -- 安全地獲取沙盒變數，如果不存在則使用預設值
   if not isClient() then
@@ -41,7 +41,7 @@ function MusicPlayer:new()
       self.range = SandboxVars.BardInteractiveMusic.SoundRange
       print("[MusicPlayer] Sound range set from SandboxVars: " .. self.range)
     else
-      self.range = 40       -- 預設值
+      self.range = 40 -- 預設值
       print("[MusicPlayer] SandboxVars not found, using default sound range: 40")
     end
   end
@@ -64,7 +64,7 @@ function MusicPlayer:setEmitterVolume(emitter, soundId, volume, sourceId)
   local player = getPlayer()
   local source = getPlayerByOnlineID(sourceId)
   local modifiedVolume = volume
-  if isClient() and player:getOnlineID() ~= sourceId then
+  if isClient() and source ~= nil and player:getOnlineID() ~= sourceId then
     local distance = player:DistTo(source:getX(), source:getY())
     modifiedVolume = math.max(0, volume - volume * (distance / self.range))
   end
@@ -74,7 +74,7 @@ end
 function MusicPlayer:playNote(sourcePlayerId, instrument, note, velocity, isSilent)
   if self.range == nil then
     print('[MusicPlayer] ERROR: sound range not set')
-    self.range = 40     -- 緊急預設值
+    self.range = 40 -- 緊急預設值
   end
   local instrumentNote = GetFileName(instrument, note)
   assert(instrumentNote ~= nil, string.format("Unknown note %s", note))

@@ -10,13 +10,12 @@
 ---@field hasSeat boolean
 local MMLInstrumentUI = ISCollapsableWindow:derive("MMLInstrumentUI")
 
-
 local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 local TAPlayMMLFromWorld = require('TimedAction/TAPlayMMLFromWorld')
 local PlayerItemToMMLInstrument = require('MMLInstrument')
 local MMLScores = require('MMLScores')
 local WIDTH = 600
-local HEIGHT = 420
+local HEIGHT = 500 -- 增加高度以容納 Tab
 
 -- 儲存單例實例
 local instance = nil
@@ -129,14 +128,46 @@ function MMLInstrumentUI:initialise()
   local padding = 10
   local buttonHeight = 25
 
+  -- 創建 Tab 面板
+  self.tabPanel = ISTabPanel:new(padding, th + padding, self.width - padding * 2, self.height - th - padding * 2)
+  self.tabPanel:initialise()
+  self.tabPanel:instantiate()
+  self:addChild(self.tabPanel)
+
+  -- 創建第一個 Tab：樂器演奏
+  self.playTab = ISPanel:new(0, 0, self.tabPanel.width, self.tabPanel.height)
+  self.playTab:initialise()
+  self.playTab:instantiate()
+  self.tabPanel:addView(getText("UI_MML_Play") or "Play", self.playTab)
+
+  -- 創建第二個 Tab：合奏
+  self.ensembleTab = ISPanel:new(0, 0, self.tabPanel.width, self.tabPanel.height)
+  self.ensembleTab:initialise()
+  self.ensembleTab:instantiate()
+  self.tabPanel:addView(getText("UI_MML_Ensemble") or "Ensemble", self.ensembleTab)
+
+  -- 初始化第一個 Tab 內容
+  self:initPlayTab()
+
+  -- 初始化第二個 Tab 內容
+  self:initEnsembleTab()
+
+  self:setResizable(false)
+  self:addToUIManager()
+end
+
+function MMLInstrumentUI:initPlayTab()
+  local padding = 10
+  local buttonHeight = 25
+
   -- 輸入區標籤
   self.labelInput = ISLabel:new(
-    padding, th + padding, buttonHeight,
+    padding, padding, buttonHeight,
     getText("UI_MML_UsedSheet") or "Enter MML:",
     1, 1, 1, 1, UIFont.Medium, true
   )
   self.labelInput:initialise()
-  self:addChild(self.labelInput)
+  self.playTab:addChild(self.labelInput)
 
   self.labelInput2 = ISLabel:new(
     padding,
@@ -146,7 +177,7 @@ function MMLInstrumentUI:initialise()
     1, 1, 1, 1, UIFont.Small, true
   )
   self.labelInput2:initialise()
-  self:addChild(self.labelInput2)
+  self.playTab:addChild(self.labelInput2)
 
   -- 選擇演奏樂譜標籤
   self.labelSelectTracks = ISLabel:new(
@@ -157,7 +188,7 @@ function MMLInstrumentUI:initialise()
     1, 1, 1, 1, UIFont.Medium, true
   )
   self.labelSelectTracks:initialise()
-  self:addChild(self.labelSelectTracks)
+  self.playTab:addChild(self.labelSelectTracks)
 
   -- 創建 TickBox (可複選的 checkbox 群組)
   self.trackCheckbox = ISTickBox:new(
@@ -171,8 +202,7 @@ function MMLInstrumentUI:initialise()
   )
   self.trackCheckbox:initialise()
   self.trackCheckbox:instantiate()
-
-  self:addChild(self.trackCheckbox)
+  self.playTab:addChild(self.trackCheckbox)
 
   -- 儲存勾選狀態（方便後續使用）
   self.selectedTracks = {
@@ -197,7 +227,7 @@ function MMLInstrumentUI:initialise()
   self.playButton:initialise()
   self.playButton:instantiate()
   self.playButton.borderColor = { r = 1, g = 1, b = 1, a = 0.3 }
-  self:addChild(self.playButton)
+  self.playTab:addChild(self.playButton)
 
   -- 停止按鈕
   self.stopButton = ISButton:new(
@@ -210,19 +240,19 @@ function MMLInstrumentUI:initialise()
   self.stopButton:instantiate()
   self.stopButton.borderColor = { r = 1, g = 1, b = 1, a = 0.3 }
   self.stopButton.enable = false
-  self:addChild(self.stopButton)
+  self.playTab:addChild(self.stopButton)
 
   -- 進度條背景
   self.progressBar = ISPanel:new(
     padding,
     self.playButton:getBottom() + padding,
-    WIDTH - padding * 2,
+    self.playTab.width - padding * 2,
     20
   )
   self.progressBar:initialise()
   self.progressBar:instantiate()
   self.progressBar.backgroundColor = { r = 0.2, g = 0.2, b = 0.2, a = 0.8 }
-  self:addChild(self.progressBar)
+  self.playTab:addChild(self.progressBar)
 
   -- 狀態標籤
   self.statusLabel = ISLabel:new(
@@ -233,69 +263,266 @@ function MMLInstrumentUI:initialise()
     1, 1, 1, 1, UIFont.Small, true
   )
   self.statusLabel:initialise()
-  self:addChild(self.statusLabel)
+  self.playTab:addChild(self.statusLabel)
+end
 
+function MMLInstrumentUI:initEnsembleTab()
+  local padding = 10
+  local buttonHeight = 25
 
-  self.mml =
-      self:setResizable(false)
+  -- 輸入區標籤
+  self.ensembleLabelInput = ISLabel:new(
+    padding, padding, buttonHeight,
+    getText("UI_MML_UsedSheet") or "Enter MML:",
+    1, 1, 1, 1, UIFont.Medium, true
+  )
+  self.ensembleLabelInput:initialise()
+  self.ensembleTab:addChild(self.ensembleLabelInput)
 
-  -- 只有第一次初始化才加入 UIManager
-  self:addToUIManager()
+  self.ensembleLabelInput2 = ISLabel:new(
+    padding,
+    self.ensembleLabelInput:getBottom() + 5,
+    buttonHeight,
+    "",
+    1, 1, 1, 1, UIFont.Small, true
+  )
+  self.ensembleLabelInput2:initialise()
+  self.ensembleTab:addChild(self.ensembleLabelInput2)
+
+  -- 合奏分配標籤
+  self.ensembleLabelAssignment = ISLabel:new(
+    padding,
+    self.ensembleLabelInput2:getBottom() + padding + 5,
+    buttonHeight,
+    getText("UI_MML_EnsembleAssignment") or "Track Assignment:",
+    1, 1, 1, 1, UIFont.Medium, true
+  )
+  self.ensembleLabelAssignment:initialise()
+  self.ensembleTab:addChild(self.ensembleLabelAssignment)
+
+  -- 創建 5 個 ComboBox
+  local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
+  local trackDisplayNames = {
+    getText("UI_MML_melody") or "Melody",
+    getText("UI_MML_harmony") or "Harmony",
+    getText("UI_MML_accompaniment") or "Accompaniment",
+    getText("UI_MML_orchestra") or "Orchestra",
+    getText("UI_MML_bassline") or "Bassline"
+  }
+
+  self.ensembleComboBoxes = {}
+  self.ensembleAssignments = {}
+
+  local yPos = self.ensembleLabelAssignment:getBottom() + 10
+
+  for i, trackName in ipairs(trackNames) do
+    -- 標籤
+    local label = ISLabel:new(
+      padding + 10, yPos, buttonHeight,
+      trackDisplayNames[i] .. ":",
+      1, 1, 1, 1, UIFont.Small, true
+    )
+    label:initialise()
+    self.ensembleTab:addChild(label)
+
+    -- ComboBox
+    local comboBox = ISComboBox:new(
+      padding + 120, yPos - 2, 200, buttonHeight,
+      self, self.onEnsembleAssignmentChanged
+    )
+    comboBox:initialise()
+    comboBox:instantiate()
+    comboBox.trackName = trackName
+    self.ensembleComboBoxes[trackName] = comboBox
+    self.ensembleAssignments[trackName] = nil
+    self.ensembleTab:addChild(comboBox)
+
+    yPos = yPos + 30
+  end
+
+  -- 按鈕區
+  local buttonY = yPos + padding * 2
+  local buttonWidth = 80
+  local buttonSpacing = 10
+
+  -- 合奏按鈕
+  self.ensembleButton = ISButton:new(
+    padding, buttonY, buttonWidth, buttonHeight,
+    getText("UI_MML_Ensemble") or "Ensemble",
+    self, MMLInstrumentUI.onEnsemble
+  )
+  self.ensembleButton:initialise()
+  self.ensembleButton:instantiate()
+  self.ensembleButton.borderColor = { r = 1, g = 1, b = 1, a = 0.3 }
+  self.ensembleTab:addChild(self.ensembleButton)
+
+  -- 停止按鈕
+  self.ensembleStopButton = ISButton:new(
+    self.ensembleButton:getRight() + buttonSpacing, buttonY,
+    buttonWidth, buttonHeight,
+    getText("UI_MML_Stop") or "Stop",
+    self, MMLInstrumentUI.onStop
+  )
+  self.ensembleStopButton:initialise()
+  self.ensembleStopButton:instantiate()
+  self.ensembleStopButton.borderColor = { r = 1, g = 1, b = 1, a = 0.3 }
+  self.ensembleStopButton.enable = false
+  self.ensembleTab:addChild(self.ensembleStopButton)
+
+  -- 進度條背景
+  self.ensembleProgressBar = ISPanel:new(
+    padding,
+    self.ensembleButton:getBottom() + padding,
+    self.ensembleTab.width - padding * 2,
+    20
+  )
+  self.ensembleProgressBar:initialise()
+  self.ensembleProgressBar:instantiate()
+  self.ensembleProgressBar.backgroundColor = { r = 0.2, g = 0.2, b = 0.2, a = 0.8 }
+  self.ensembleTab:addChild(self.ensembleProgressBar)
+
+  -- 狀態標籤
+  self.ensembleStatusLabel = ISLabel:new(
+    padding,
+    self.ensembleProgressBar:getBottom() + 5,
+    buttonHeight,
+    getText("UI_MML_NoSheet") or "No Sheet (You can equip a sheet to primary hand)",
+    1, 1, 1, 1, UIFont.Small, true
+  )
+  self.ensembleStatusLabel:initialise()
+  self.ensembleTab:addChild(self.ensembleStatusLabel)
+
+  -- 更新合奏玩家列表
+  self:updateEnsemblePlayers()
+end
+
+-- 更新合奏玩家列表
+function MMLInstrumentUI:updateEnsemblePlayers()
+  if not self.ensembleComboBoxes then
+    return
+  end
+
+  -- 獲取準備合奏的玩家列表
+  local MMLEnsembleManager = require("MMLEnsembleManager")
+  local ensemblePlayers = MMLEnsembleManager.getEnsemblePlayers()
+
+  -- 添加自己（如果不在列表中）
+  local myId = self.character:getOnlineID()
+  local myName = self.character:getDisplayName()
+  local foundSelf = false
+
+  for _, player in ipairs(ensemblePlayers) do
+    if player.id == myId then
+      foundSelf = true
+      break
+    end
+  end
+
+  if not foundSelf then
+    table.insert(ensemblePlayers, {
+      id = myId,
+      name = myName,
+      instrument = self.instrument or "Piano"
+    })
+  end
+
+  -- 更新所有 ComboBox
+  for trackName, comboBox in pairs(self.ensembleComboBoxes) do
+    comboBox:clear()
+    comboBox:addOption(getText("UI_MML_None") or "None")
+
+    for _, player in ipairs(ensemblePlayers) do
+      comboBox:addOption(player.name .. " (" .. player.instrument .. ")")
+    end
+  end
+end
+
+-- ComboBox 變更回調
+function MMLInstrumentUI:onEnsembleAssignmentChanged(comboBox)
+  local selectedIndex = comboBox.selected
+  local trackName = comboBox.trackName
+
+  if selectedIndex == 1 then
+    -- "None" 選項
+    self.ensembleAssignments[trackName] = nil
+  else
+    -- 玩家選項
+    self.ensembleAssignments[trackName] = comboBox:getOptionText(selectedIndex)
+  end
 end
 
 function MMLInstrumentUI:setMML(mml, name)
   self.mml = mml
-  if not self.trackCheckbox then
-    return
-  end
-  self.labelInput2:setName(name)
-  local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
-  local trackDisplayNames = {
-    (getText("UI_MML_melody") or "Melody") .. (getText("UI_MML_melody_tip") or ""),
-    (getText("UI_MML_harmony") or "Harmony") .. (getText("UI_MML_harmony_tip") or ""),
-    (getText("UI_MML_accompaniment") or "Accompaniment") .. (getText("UI_MML_accompaniment_tip") or ""),
-    (getText("UI_MML_orchestra") or "Orchestra") .. (getText("UI_MML_orchestra_tip") or ""),
-    (getText("UI_MML_bassline") or "Bassline") .. (getText("UI_MML_bassline_tip") or "")
-  }
-  local anyTrackAvailable = false
-  self.trackCheckbox:clearOptions()
-  for i, trackName in ipairs(trackNames) do
-    local hasContent = false
 
-    if self.mml[trackName] then
-      local track = self.mml[trackName]
-      if (track.mml1 and track.mml1 ~= "") or
-          (track.mml2 and track.mml2 ~= "") or
-          (track.mml3 and track.mml3 ~= "") then
-        hasContent = true
-        anyTrackAvailable = true
+  -- 更新演奏頁面
+  if self.trackCheckbox then
+    self.labelInput2:setName(name)
+    local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
+    local trackDisplayNames = {
+      (getText("UI_MML_melody") or "Melody") .. (getText("UI_MML_melody_tip") or ""),
+      (getText("UI_MML_harmony") or "Harmony") .. (getText("UI_MML_harmony_tip") or ""),
+      (getText("UI_MML_accompaniment") or "Accompaniment") .. (getText("UI_MML_accompaniment_tip") or ""),
+      (getText("UI_MML_orchestra") or "Orchestra") .. (getText("UI_MML_orchestra_tip") or ""),
+      (getText("UI_MML_bassline") or "Bassline") .. (getText("UI_MML_bassline_tip") or "")
+    }
+    local anyTrackAvailable = false
+    self.trackCheckbox:clearOptions()
+    for i, trackName in ipairs(trackNames) do
+      local hasContent = false
+
+      if self.mml[trackName] then
+        local track = self.mml[trackName]
+        if (track.mml1 and track.mml1 ~= "") or
+            (track.mml2 and track.mml2 ~= "") or
+            (track.mml3 and track.mml3 ~= "") then
+          hasContent = true
+          anyTrackAvailable = true
+        end
       end
+      local optionName = trackDisplayNames[i]
+      if hasContent then
+        self.trackCheckbox:addOption(optionName)
+      end
+      self.selectedTracks[trackName] = false
     end
-    local optionName = trackDisplayNames[i]
-    if hasContent then
-      self.trackCheckbox:addOption(optionName)
+
+    -- 如果沒有任何軌道可用,顯示警告
+    if not anyTrackAvailable then
+      self.statusLabel:setName(getText("UI_MML_NoTracksAvailable") or "No tracks available in this sheet")
+    else
+      self.statusLabel:setName(getText("UI_MML_Ready") or "Ready")
     end
-    self.selectedTracks[trackName] = false
   end
 
-  -- 如果沒有任何軌道可用,顯示警告
-  if not anyTrackAvailable then
-    self.statusLabel:setName(getText("UI_MML_NoTracksAvailable") or "No tracks available in this sheet")
-  else
-    self.statusLabel:setName(getText("UI_MML_Ready") or "Ready")
+  -- 更新合奏頁面
+  if self.ensembleLabelInput2 then
+    self.ensembleLabelInput2:setName(name)
+    self.ensembleStatusLabel:setName(getText("UI_MML_Ready") or "Ready")
   end
 end
 
 function MMLInstrumentUI:clearMML()
   self.mml = nil
-  self.labelInput2:setName("")
-  self.trackCheckbox:clearOptions()
-  self.selectedTracks.accompaniment = false
-  self.selectedTracks.bassline = false
-  self.selectedTracks.harmony = false
-  self.selectedTracks.melody = false
-  self.selectedTracks.orchestra = false
-  self.statusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet (You can equip a sheet to primary hand)")
+
+  -- 清除演奏頁面
+  if self.labelInput2 then
+    self.labelInput2:setName("")
+    self.statusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet (You can equip a sheet to primary hand)")
+  end
+  if self.trackCheckbox then
+    self.trackCheckbox:clearOptions()
+    self.selectedTracks.accompaniment = false
+    self.selectedTracks.bassline = false
+    self.selectedTracks.harmony = false
+    self.selectedTracks.melody = false
+    self.selectedTracks.orchestra = false
+  end
+
+  -- 清除合奏頁面
+  if self.ensembleLabelInput2 then
+    self.ensembleLabelInput2:setName("")
+    self.ensembleStatusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet (You can equip a sheet to primary hand)")
+  end
 end
 
 function MMLInstrumentUI:show()
@@ -404,7 +631,7 @@ function MMLInstrumentUI:onPlay()
       self.upperSidePianoObject, self.facing, self.hasSeat, combined
     )
   else
-    self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, combined)
+    self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, combined, true)
   end
 
   self.TAPlay.onComplete = function()
@@ -425,6 +652,9 @@ function MMLInstrumentUI:onPlaybackComplete()
   self.statusLabel:setName(getText("UI_MML_Finished") or "Finished")
   self.playButton.enable = true
   self.stopButton.enable = false
+  self.ensembleStatusLabel:setName(getText("UI_MML_Finished") or "Finished")
+  self.ensembleButton.enable = true
+  self.ensembleStopButton.enable = false
 end
 
 function MMLInstrumentUI:onStop()
@@ -434,12 +664,16 @@ function MMLInstrumentUI:onStop()
   self.statusLabel:setName(getText("UI_MML_Stopped") or "Stopped")
   self.playButton.enable = true
   self.stopButton.enable = false
+  self.ensembleStatusLabel:setName(getText("UI_MML_Stopped") or "Stopped")
+  self.ensembleButton.enable = true
+  self.ensembleStopButton.enable = false
 end
 
 function MMLInstrumentUI:render()
   ISCollapsableWindow.render(self)
-  -- 繪製進度條
-  if self.isPlaying and self.TAPlay then
+
+  -- 繪製演奏頁面進度條
+  if self.isPlaying and self.TAPlay and self.progressBar then
     if self.TAPlay:isPlaying() then
       local progress = self.TAPlay:getProgress()
       local barWidth = (self.progressBar.width - 4) * progress
@@ -448,6 +682,21 @@ function MMLInstrumentUI:render()
         self.progressBar.y + 2,
         barWidth,
         self.progressBar.height - 4,
+        1.0, 0.3, 0.7, 0.3
+      )
+    end
+  end
+
+  -- 繪製合奏頁面進度條
+  if self.isPlaying and self.TAPlay and self.ensembleProgressBar then
+    if self.TAPlay:isPlaying() then
+      local progress = self.TAPlay:getProgress()
+      local barWidth = (self.ensembleProgressBar.width - 4) * progress
+      self:drawRect(
+        self.ensembleProgressBar.x + 2,
+        self.ensembleProgressBar.y + 2,
+        barWidth,
+        self.ensembleProgressBar.height - 4,
         1.0, 0.3, 0.7, 0.3
       )
     end
@@ -465,6 +714,142 @@ function MMLInstrumentUI.cleanup()
     instance:removeFromUIManager()
     instance = nil
   end
+end
+
+-- 新增：合奏功能
+function MMLInstrumentUI:onEnsemble()
+  if not self.mml then
+    self.ensembleStatusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet")
+    return
+  end
+
+  -- 準備合奏指令資料
+  local ensembleData = {
+    assignments = {}
+  }
+
+  local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
+  local MMLEnsembleManager = require("MMLEnsembleManager")
+  local ensemblePlayers = MMLEnsembleManager.getEnsemblePlayers()
+
+  -- 添加自己到玩家列表
+  local myId = self.character:getOnlineID()
+  local myName = self.character:getDisplayName()
+  local myInstrument = self.instrument or "Piano"
+
+  local playerMap = {}
+  playerMap[myName .. " (" .. myInstrument .. ")"] = {
+    id = myId,
+    instrument = myInstrument
+  }
+
+  for _, player in ipairs(ensemblePlayers) do
+    playerMap[player.name .. " (" .. player.instrument .. ")"] = {
+      id = player.id,
+      instrument = player.instrument
+    }
+  end
+
+  -- 遍歷所有軌道分配
+  for _, trackName in ipairs(trackNames) do
+    local comboBox = self.ensembleComboBoxes[trackName]
+    if comboBox and comboBox.selected > 1 then -- 不是 "None"
+      local selectedText = comboBox:getOptionText(comboBox.selected)
+      local playerInfo = playerMap[selectedText]
+
+      if playerInfo and self.mml[trackName] then
+        local track = self.mml[trackName]
+        local mmlParts = {}
+
+        if track.mml1 and track.mml1 ~= "" then
+          table.insert(mmlParts, track.mml1)
+        end
+        if track.mml2 and track.mml2 ~= "" then
+          table.insert(mmlParts, track.mml2)
+        end
+        if track.mml3 and track.mml3 ~= "" then
+          table.insert(mmlParts, track.mml3)
+        end
+
+        if #mmlParts > 0 then
+          local mmlString = table.concat(mmlParts, ",")
+
+          if not ensembleData.assignments[playerInfo.id] then
+            ensembleData.assignments[playerInfo.id] = {
+              instrument = playerInfo.instrument,
+              mmlParts = {}
+            }
+          end
+
+          table.insert(ensembleData.assignments[playerInfo.id].mmlParts, mmlString)
+        end
+      end
+    end
+  end
+
+  -- 檢查是否有分配
+  local hasAssignments = false
+  for _ in pairs(ensembleData.assignments) do
+    hasAssignments = true
+    break
+  end
+
+  if not hasAssignments then
+    self.ensembleStatusLabel:setName(getText("UI_MML_NoAssignments") or "Please assign tracks to players")
+    return
+  end
+
+  -- 發送合奏開始指令
+  if isClient() then
+    local MMLClientSendCommands = require('MMLClientSendCommands')
+    MMLClientSendCommands.sendEnsembleStart(
+      ensembleData.assignments,
+      {
+        x = self.character:getX(),
+        y = self.character:getY(),
+        z = self.character:getZ()
+      }
+    )
+  end
+
+  print("[MMLInstrumentUI] Ensemble started")
+end
+
+-- 新增：執行合奏播放
+function MMLInstrumentUI:onEnsemblePlay(mml)
+  if not mml or mml == "" then
+    return
+  end
+
+  -- 直接移動物品到副手，不使用 TimedAction 以避免聲音誤差
+  if self.item ~= nil and self.character:getSecondaryHandItem() ~= self.item then
+    self.character:setSecondaryHandItem(self.item)
+  end
+
+  -- Use world TA if there is a world instrument object (covers Piano/GrandPiano)
+  if self.upperSidePianoObject then
+    local squareFacingPiano = self.facing == "south" and self.upperSidePianoObject:getSquare():getS()
+        or self.upperSidePianoObject:getSquare():getE()
+    ISTimedActionQueue.add(ISWalkToTimedAction:new(self.character, squareFacingPiano))
+
+    self.TAPlay = TAPlayMMLFromWorld:new(
+      self.character, self.instrument,
+      self.upperSidePianoObject, self.facing, self.hasSeat, mml, false
+    )
+  else
+    self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, mml, false)
+  end
+
+  self.TAPlay.onComplete = function()
+    self:onPlaybackComplete()
+  end
+
+  ISTimedActionQueue.add(self.TAPlay)
+
+  self.isPlaying = true
+  self.ensembleStatusLabel:setName(getText("UI_MML_Playing") or "Playing...")
+  self.ensembleButton.enable = false
+  self.ensembleStopButton.enable = true
 end
 
 return MMLInstrumentUI

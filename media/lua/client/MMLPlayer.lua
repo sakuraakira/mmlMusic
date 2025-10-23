@@ -288,6 +288,23 @@ end
 -- ============================================================
 function MMLPlayer:update()
   if not self.isPlaying then return end
+  
+  -- 檢查 sourcePlayer 是否還存在（是否已下線）
+  if self.sourcePlayer then
+    -- 檢查玩家是否還在遊戲中
+    local sourceId = self.sourcePlayer:getOnlineID()
+    local currentSourcePlayer = getPlayerByOnlineID(sourceId)
+    
+    if not currentSourcePlayer then
+      print("[MMLPlayer] Source player disconnected, stopping playback")
+      self:stop()
+      return
+    end
+    
+    -- 更新 sourcePlayer 引用
+    self.sourcePlayer = currentSourcePlayer
+  end
+  
   local currentTime = GetCurrentTimeInMs() - self.startTime
   local player = getPlayer()
 
