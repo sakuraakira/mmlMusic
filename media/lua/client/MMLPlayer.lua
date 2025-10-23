@@ -1,31 +1,6 @@
 -- MMLPlayer.lua
 ---@class MMLPlayer
 ---@field new fun(self: MMLPlayer ,instrument: string , isSilent:boolean): MMLPlayer
----@field play fun(self: MMLPlayer): nil
----@field stop fun(self: MMLPlayer): nil
----@field isPlaying fun(self: MMLPlayer): boolean
----@field pause fun(self: MMLPlayer): nil
----@field getProgress fun(self: MMLPlayer): number
----@field getRemainingTime fun(self: MMLPlayer): number
----@field loadMML fun(self: MMLPlayer ,mmlInput: string): boolean
----@field setSourcePlayer fun(self: MMLPlayer ,player: IsoPlayer): nil
----@field getMMLString fun(self: MMLPlayer): string
----@field parseTracks fun(self: MMLPlayer,mmlArray: string): table
----@field stopAll fun(self: MMLPlayer): nil
----@field getActivePlayerCount fun(self: MMLPlayer): number
----@field activePlayers table<number, MMLPlayer>
----@field soundRange number
----@field instrument string
----@field totalDuration number
----@field isPlaying boolean
----@field startTime number
----@field updateFunc fun(): nil
----@field sourcePlayer IsoPlayer
----@field originalMML string
----@field playerId number
----@field PPQ number
----@field totalTicks number
----@field isSilent boolean
 local MMLPlayer = {}
 
 local MMLParser = require("MMLParser")

@@ -4,15 +4,7 @@
 ---@class MMLInstrumentUI: ISCollapsableWindow
 ---@field show fun(self: MMLInstrumentUI): nil 顯示視窗
 ---@field hide fun(self: MMLInstrumentUI): nil 隱藏視窗（不移除）
----@field instrument string
----@field isPlaying boolean
----@field character IsoPlayer
----@field playButton ISButton
----@field stopButton ISButton
----@field progressBar ISPanel
----@field statusLabel ISLabel
 ---@field TAPlay TAPlayMMLFromInventory|TAPlayMMLFromWorld
----@field isInitialized boolean
 ---@field facing string
 ---@field upperSidePianoObject IsoObject
 ---@field hasSeat boolean
@@ -340,6 +332,17 @@ function MMLInstrumentUI:hide()
 end
 
 function MMLInstrumentUI:onPlay()
+  -- 檢查是否有其他玩家正在演奏
+  if MMLPlayer and MMLPlayer.activePlayers and #MMLPlayer.activePlayers > 0 then
+    for _, activePlayer in ipairs(MMLPlayer.activePlayers) do
+      if activePlayer:isPlayingMusic() then
+        self.character:Say(getText("UI_MML_WaitForOthers") or
+          "Someone is already playing, please wait for them to finish.")
+        return
+      end
+    end
+  end
+
   if self.item ~= nil and self.character:getSecondaryHandItem() ~= self.item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(self.character, self.item, 50, false))
   end

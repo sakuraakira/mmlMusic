@@ -53,5 +53,6 @@ UI_trait_Musiciandesc = "有音樂知識，會演奏各種樂器。<br>+2 音樂
 // Context Menu
 UI_ContextMenu_PlayMusicSheet = "演奏樂器",
 UI_ContextMenu_EditMusicSheet = "樂譜作曲",
+UI_ContextMenu_PrepareEnsemble = "準備合奏",
 
 }

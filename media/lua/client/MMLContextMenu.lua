@@ -33,6 +33,12 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
       MMLContextMenu.onOpenMMLInstrumentUI,
       item
     )
+    context:addOption(
+      getText("UI_ContextMenu_PrepareEnsemble") or "Prepare An ensemble",
+      player,
+      MMLContextMenu.onPrepareEnsemble,
+      item
+    )
     return
   elseif itemType == "MMLSheet.BlankSheetMusic" or itemType == "MMLSheet.BlankSheetBook" or itemType == "MMLSheet.SheetMusic" then
     context:addOption(
@@ -63,6 +69,18 @@ function MMLContextMenu.onOpenMMLComposeUI(player, item)
   -- 建立並初始化 UI
   local ui = MMLComposeUI.getInstance(player, item)
   ui:show()
+end
+
+-- 新增：按下「準備合奏」
+function MMLContextMenu.onPrepareEnsemble(player, item)
+  if player:getPrimaryHandItem() ~= nil then
+    ISTimedActionQueue.add(ISEquipWeaponAction:new(player, player:getPrimaryHandItem(), 50, false))
+  end
+  if player:getSecondaryHandItem() ~= item then
+    ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, false))
+  end
+  TAPlayMMLEnsemble = require("TimedAction/TAPlayMMLEnsemble")
+  ISTimedActionQueue.add(TAPlayMMLEnsemble:new(player, item))
 end
 
 -- ============================================================
