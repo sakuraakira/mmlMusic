@@ -1,0 +1,646 @@
+module mmlMusic {
+    sound TrumpetB2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetC3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound TrumpetCs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetD3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetDs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound TrumpetE3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetF3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetFs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound TrumpetG3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetGs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetA3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound TrumpetAs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetB3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    sound TrumpetC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound TrumpetCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound TrumpetE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound TrumpetG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound TrumpetAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound TrumpetCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound TrumpetE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound TrumpetG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound TrumpetAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetC6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound TrumpetCs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetD6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetDs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound TrumpetE6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetF6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetFs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound TrumpetG6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetGs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetA6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound TrumpetAs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound TrumpetB6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound TrumpetC7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound TrumpetCs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/trumpet/Trumpet_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+}

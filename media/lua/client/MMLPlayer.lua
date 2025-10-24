@@ -54,64 +54,81 @@ local function trim(s)
 end
 
 
--- ============================================================
--- 統一入口:loadMML
--- 支援單字符串或逗號分隔的多軌字符串
--- ============================================================
 function MMLPlayer:loadMML(mmlInput)
   if not mmlInput or mmlInput == "" then
     print("[MMLPlayer] Error: Empty MML input")
     return false
   end
 
-  -- 將輸入字符串按逗號分割成最多個 track
+  local MAX_TRACKS = 15
+
+  -- 1) 切成多軌（最多 15 軌）
   local rawTracks = {}
   for token in mmlInput:gmatch("([^,]+)") do
     table.insert(rawTracks, trim(token))
-    if #rawTracks >= 15 then break end
+    if #rawTracks >= MAX_TRACKS then break end
   end
+  if #rawTracks == 0 then table.insert(rawTracks, "") end
 
-  -- 補齊到 3 個 track
-  while #rawTracks < 3 do
-    table.insert(rawTracks, "")
-  end
-
-  -- ========== 提取 Track 1 的 tempo ==========
-  local tempoToken = nil
-  local track1 = rawTracks[1]
-  if track1 and track1 ~= "" then
-    tempoToken = track1:match('[tT]%s*%d+')
-    if tempoToken then
-      tempoToken = tempoToken:gsub('%s+', '') -- 移除空白: "t 120" -> "t120"
+  -- 2) 從 1~15 軌「開頭」找初始 tempo
+  local initialTempoToken, tempoCarrierIndex = nil, nil
+  for i = 1, #rawTracks do
+    local headTempo = rawTracks[i]:match('^%s*([tT]%s*%d+)')
+    if headTempo then
+      initialTempoToken = headTempo:gsub('%s+', '') -- "t 120" -> "t120"
+      tempoCarrierIndex = i
+      break
     end
   end
-  -- 如果 Track 1 沒有 tempo,檢查 Track 2/3
-  if not tempoToken then
-    for i = 2, 3 do
-      tempoToken = rawTracks[i]:match('[tT]%s*%d+')
-      if tempoToken then
-        tempoToken = tempoToken:gsub('%s+', '')
-        break
-      end
-    end
-  end
-  -- ========== 清理並補充預設值 ==========
+
+  -- 3) 建立共用狀態
   self.tracks = {}
   self.totalDuration = 0
-  local sharedTempo = { value = 120 } -- 共享的 tempo reference
+  self.originalMML = ""
+  local sharedTempo = { value = 120 } -- 全域 tempo 參照
   local anyNotes = 0
 
-  for i = 1, 3 do
+  -- 4) 先整理各軌文字：
+  --    - 只有第 1 軌允許保留 tempo（包含中途變速）
+  --    - 若初始 tempo 在第 1 軌之外，移到第 1 軌最前面，並從原軌移除「開頭 tempo」
+  local cleanedTracks = {}
+  for i = 1, #rawTracks do
     local s = rawTracks[i] or ""
 
-    -- 移除所有 tempo 指令 (稍後只在 Track 1 加回)
-    s = s:gsub('[tT]%s*%d+', '')
-    s = trim(s)
+    if i == 1 then
+      -- 第 1 軌：預設保留所有 tempo（包含中途變速）
+      -- 如果初始 tempo 不在第 1 軌，將它插入到最前面；為避免重覆，不要移除第 1 軌原有的頭部 tempo
+      if initialTempoToken and tempoCarrierIndex ~= 1 then
+        -- 只在最前面插一次
+        s = initialTempoToken .. " " .. s
+        -- 並把來源軌的「開頭 tempo」移掉（僅移除開頭一次）
+        if tempoCarrierIndex then
+          local src = rawTracks[tempoCarrierIndex] or ""
+          src = src:gsub('^%s*[tT]%s*%d+%s*', '', 1)
+          rawTracks[tempoCarrierIndex] = trim(src)
+        end
+      end
+      cleanedTracks[i] = trim(s)
+    else
+      -- 非第 1 軌：移除所有 tempo 指令
+      s = s:gsub('[tT]%s*%d+', '')
+      cleanedTracks[i] = trim(s)
+    end
+  end
 
-    -- 檢查並補充 l4 和 o4
+  -- 若初始 tempo 在第 1 軌本來就有，就保留原樣；若完全沒有找到，沿用 sharedTempo.value=120
+
+  -- 5) 逐軌解析：**先解析第 1 軌**（讓中途變速填入 sharedTempo），再解析其餘軌
+  local parseOrder = {}
+  if #cleanedTracks >= 1 then table.insert(parseOrder, 1) end
+  for i = 2, #cleanedTracks do table.insert(parseOrder, i) end
+
+  for _, i in ipairs(parseOrder) do
+    local s = cleanedTracks[i] or ""
+
+    -- 補上軌頭 l4 / o4
     local hasL = s:match('^%s*[lL]%d+') ~= nil
-    local hasO = false
-
+    local hasO
     if hasL then
       local lToken = s:match('^%s*([lL]%d+)')
       local rest = s:sub((lToken and #lToken or 0) + 1)
@@ -119,38 +136,30 @@ function MMLPlayer:loadMML(mmlInput)
     else
       hasO = s:match('^%s*[oO]%d+') ~= nil
     end
+    if not hasL then s = "l4 " .. s end
+    if not hasO then s = "o4 " .. s end
 
-    if not hasL then
-      s = "l4 " .. s
-    end
-
-    -- 重新檢查是否有 o
-    local checkO = (s:match('^%s*[lL]%d+%s*([oO]%d+)') or s:match('^%s*[oO]%d+'))
-    if not checkO then
-      s = "o4 " .. s
-    end
-
-    -- ========== 只在 Track 1 前面加上 tempo ==========
-    local parseInput = s
-    if i == 1 and tempoToken and parseInput ~= "" then
-      parseInput = tempoToken .. " " .. parseInput
-    end
-    -- ==============================================
-
-    -- ========== 創建 parser 並解析 ==========
+    -- 建立 Parser：第 1 軌建立 tempoRef，其餘軌共享
     local parser
     if i == 1 then
-      -- Track 1: 創建自己的 tempo reference
-      parser = MMLParser:new()
-      sharedTempo = parser.tempoRef -- 獲取 Track 1 的 tempo 引用
+      parser = MMLParser:new() -- 由第 1 軌建立 tempoRef
+      -- 若 parser 內有 tempoRef，從 initialTempoToken / 預設同步到 sharedTempo
+      if parser.tempoRef then
+        sharedTempo = parser.tempoRef
+        if initialTempoToken then
+          -- 把初始 tempo 寫入 parser（若 MML 有 tXXX 會自行覆蓋；若沒有，就用這個）
+          -- 多半 parse 時會自行處理，這裡不強制插入指令，保持來源字串已經有正確開頭 tempo
+        else
+          -- 沒有初始 tempo：可由 parser 的預設 120 決定；無需改字串
+        end
+      end
     else
-      -- Track 2/3: 共享 Track 1 的 tempo
-      parser = MMLParser:new(sharedTempo)
+      parser = MMLParser:new(sharedTempo) -- 非第 1 軌共享全域 tempo
     end
 
     local seq, dur = {}, 0
-    if parseInput ~= "" then
-      seq, dur = parser:parse(parseInput, self.instrument)
+    if s ~= "" then
+      seq, dur = parser:parse(s, self.instrument)
 
       -- 確保 note.played 欄位存在
       for _, note in ipairs(seq) do
@@ -158,58 +167,27 @@ function MMLPlayer:loadMML(mmlInput)
       end
 
       anyNotes = anyNotes + #seq
-
       if dur and dur > self.totalDuration then
         self.totalDuration = dur
       end
     end
 
-    table.insert(self.tracks, {
+    self.tracks[i] = {
       sequence = seq or {},
       totalDuration = dur or 0,
       currentIndex = 1
-    })
-    -- ========================================
+    }
+
+    cleanedTracks[i] = trim(s)
   end
 
-  -- ========== 儲存標準化後的 MML 字符串 ==========
-  local displayTracks = {}
-  for i = 1, 3 do
-    local s = rawTracks[i]:gsub('[tT]%s*%d+', '')
-    s = trim(s)
+  -- 6) originalMML：tempo 只出現在第 1 軌；其他軌不帶 tempo
+  self.originalMML = table.concat(cleanedTracks, ",")
 
-    if s == "" then
-      displayTracks[i] = ""
-    else
-      local hasL = s:match('^%s*[lL]%d+') ~= nil
-      local checkO = nil
-
-      if hasL then
-        local lToken = s:match('^%s*([lL]%d+)')
-        local rest = s:sub((lToken and #lToken or 0) + 1)
-        checkO = rest:match('^%s*[oO]%d+')
-      else
-        checkO = s:match('^%s*[oO]%d+')
-      end
-
-      if not hasL then s = "l4 " .. s end
-      if not checkO then s = "o4 " .. s end
-
-      displayTracks[i] = trim(s)
-    end
-  end
-
-  local combinedDisplay = ""
-  if tempoToken and tempoToken ~= "" then
-    combinedDisplay = tempoToken .. " " .. table.concat(displayTracks, ",")
-  else
-    combinedDisplay = table.concat(displayTracks, ",")
-  end
-  self.originalMML = combinedDisplay
-  -- ============================================
-
-  print(string.format("[MMLPlayer] Loaded %d tracks, %d total notes, duration: %.2fs",
-    #self.tracks, anyNotes, self.totalDuration / 1000))
+  print(string.format(
+    "[MMLPlayer] Loaded %d tracks, %d total notes, duration: %.2fs",
+    #self.tracks, anyNotes, self.totalDuration / 1000
+  ))
 
   return anyNotes > 0
 end
@@ -288,23 +266,18 @@ end
 -- ============================================================
 function MMLPlayer:update()
   if not self.isPlaying then return end
-  
+
   -- 檢查 sourcePlayer 是否還存在（是否已下線）
-  if self.sourcePlayer then
+  if isClient() and self.sourcePlayer ~= getPlayer() then
     -- 檢查玩家是否還在遊戲中
     local sourceId = self.sourcePlayer:getOnlineID()
     local currentSourcePlayer = getPlayerByOnlineID(sourceId)
-    
     if not currentSourcePlayer then
-      print("[MMLPlayer] Source player disconnected, stopping playback")
       self:stop()
       return
     end
-    
-    -- 更新 sourcePlayer 引用
-    self.sourcePlayer = currentSourcePlayer
   end
-  
+
   local currentTime = GetCurrentTimeInMs() - self.startTime
   local player = getPlayer()
 
@@ -429,8 +402,6 @@ function MMLPlayer:stop()
   if self.playerId then
     MMLPlayer.activePlayers[self.playerId] = nil
   end
-
-  print("[MMLPlayer] Stopped playback")
 end
 
 -- ============================================================
@@ -473,7 +444,6 @@ function MMLPlayer.stopAll()
   for playerId, player in pairs(MMLPlayer.activePlayers) do
     player:stop()
   end
-  print("[MMLPlayer] Stopped all playback")
 end
 
 -- ============================================================
@@ -488,72 +458,84 @@ function MMLPlayer.getActivePlayerCount()
 end
 
 -- ============================================================
--- 嘗試解析多個 MML 字符串,回傳每軌解析細節
--- ============================================================
+-- 嘗試解析多個 MML 字符串, 回傳每軌解析細節（支援最多 15 軌，TMP 規則同上）
 function MMLPlayer:parseTracks(mmlArray)
-  -- 讓驗證流程與播放一致：只採用 Track 1 的 tempo，並讓 2/3 軌共享 tempo
-  local results = {}
+  local MAX_TRACKS = 15
   local rawTracks = {}
-
-  for i = 1, 3 do
+  local n = math.min(MAX_TRACKS, (mmlArray and #mmlArray or 0))
+  if n == 0 then n = 1 end
+  for i = 1, n do
     local s = (mmlArray and mmlArray[i]) or ""
-    -- 與 loadMML 一樣先淨化、去頭尾空白
-    s = trim(s)
-    rawTracks[i] = s or ""
+    rawTracks[i] = trim(s)
   end
 
-  -- 取出 Track 1 的 tempo（若有），並標準化格式
-  local tempoToken = nil
-  local track1 = rawTracks[1]
-  if track1 ~= "" then
-    tempoToken = track1:match('[tT]%s*%d+')
-    if tempoToken then
-      tempoToken = tempoToken:gsub('%s+', '')
+  -- 1) 找初始 tempo（只看開頭）
+  local initialTempoToken, tempoCarrierIndex = nil, nil
+  for i = 1, #rawTracks do
+    local headTempo = rawTracks[i]:match('^%s*([tT]%s*%d+)')
+    if headTempo then
+      initialTempoToken = headTempo:gsub('%s+', '')
+      tempoCarrierIndex = i
+      break
     end
   end
 
-  -- 建立共享 tempo 的 parser
-  local sharedTempo = { value = 120 }
-  local parsers = {}
-
-  for i = 1, 3 do
+  -- 2) 清理：只讓第 1 軌保留 tempo；若初始 tempo 不在第 1 軌，移到第 1 軌
+  local cleanedTracks = {}
+  for i = 1, #rawTracks do
     local s = rawTracks[i] or ""
+    if i == 1 then
+      if initialTempoToken and tempoCarrierIndex ~= 1 then
+        s = initialTempoToken .. " " .. s
+        -- 移除來源軌的開頭 tempo
+        local src = rawTracks[tempoCarrierIndex] or ""
+        src = src:gsub('^%s*[tT]%s*%d+%s*', '', 1)
+        rawTracks[tempoCarrierIndex] = trim(src)
+      end
+      cleanedTracks[i] = trim(s)
+    else
+      s = s:gsub('[tT]%s*%d+', '')
+      cleanedTracks[i] = trim(s)
+    end
+  end
 
-    -- 移除各軌上的 tempo 指令（只保留 Track 1 的）
-    s = s:gsub('[tT]%s*%d+', '')
-    s = trim(s)
-
-    -- 若缺少 L/O，補上與 loadMML 相同的預設
+  -- 3) 共用 tempo，先跑第 1 軌
+  local results = {}
+  local sharedTempo = { value = 120 }
+  local function normalizeTrackText(s)
     local hasL = s:match('^%s*[lL]%d+') ~= nil
-    local checkO
+    local hasO
     if hasL then
       local lToken = s:match('^%s*([lL]%d+)')
       local rest = s:sub((lToken and #lToken or 0) + 1)
-      checkO = rest:match('^%s*[oO]%d+')
+      hasO = rest:match('^%s*[oO]%d+') ~= nil
     else
-      checkO = s:match('^%s*[oO]%d+')
+      hasO = s:match('^%s*[oO]%d+') ~= nil
     end
     if not hasL then s = "l4 " .. s end
-    if not checkO then s = "o4 " .. s end
+    if not hasO then s = "o4 " .. s end
+    return s
+  end
 
-    -- 只在 Track 1 前面加回 tempo
-    local parseInput = s
-    if i == 1 and tempoToken and parseInput ~= "" then
-      parseInput = tempoToken .. " " .. parseInput
-    end
+  local order = {}
+  if #cleanedTracks >= 1 then table.insert(order, 1) end
+  for i = 2, #cleanedTracks do table.insert(order, i) end
 
-    -- Track 1 建立 tempoRef，其他軌共享
+  for _, i in ipairs(order) do
+    local s = normalizeTrackText(cleanedTracks[i] or "")
+
     local parser
     if i == 1 then
       parser = MMLParser:new()
-      sharedTempo = parser.tempoRef
+      if parser.tempoRef then
+        sharedTempo = parser.tempoRef
+      end
     else
       parser = MMLParser:new(sharedTempo)
     end
 
-    -- 解析，並捕捉錯誤
     local ok, seq, dur = pcall(function()
-      local seq1, dur1 = parser:parse(parseInput, self.instrument)
+      local seq1, dur1 = parser:parse(s, self.instrument)
       return seq1 or {}, dur1 or 0
     end)
 

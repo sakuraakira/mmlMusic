@@ -240,12 +240,18 @@ function MMLComposeUI:addTabContainer(TabPanel, tabName, displayName)
   instrumentCombo:initialise()
   instrumentCombo:instantiate()
   instrumentCombo:addOption("Piano")
+  instrumentCombo:addOption("Keytar")
+  instrumentCombo:addOption("Flute")
   instrumentCombo:addOption("Violin")
+  instrumentCombo:addOption("Saxophone")
+  instrumentCombo:addOption("Trumpet")
   instrumentCombo:addOption("GuitarDistortion")
   instrumentCombo:addOption("GuitarClean")
   instrumentCombo:addOption("GuitarSteel")
   instrumentCombo:addOption("BassFinger")
-  instrumentCombo:addOption("Flute")
+  instrumentCombo:addOption("BassPick")
+  instrumentCombo:addOption("Banjo")
+
   instrumentCombo.selected = 1
   container:addChild(instrumentCombo)
 
@@ -324,8 +330,7 @@ function MMLComposeUI:initialise()
   self.nested:instantiate()
   self.nested:setAnchorLeft(true)
   self.nested:setAnchorRight(true)
-  self.nested:setAnchorTop(true)
-  self.nested:setAnchorBottom(true)
+
   self:addChild(self.nested)
 
   local padding = 10

@@ -33,6 +33,9 @@ function TAPlayMMLEnsemble:start()
 
   self:setActionAnim("PrepareEnsemble")
 
+  self:setOverrideHandModels(nil, self.item)
+
+
   local instrument = nil
   if self.item then
     local PlayerItemToMMLInstrument = require('MMLInstrument')
@@ -54,14 +57,6 @@ function TAPlayMMLEnsemble:start()
       }
     )
   end
-
-  -- 本地也添加自己到準備列表
-  local MMLEnsembleManager = require("MMLEnsembleManager")
-  MMLEnsembleManager.addEnsemblePlayer(
-    self.character:getOnlineID(),
-    self.character:getDisplayName(),
-    instrument
-  )
 end
 
 function TAPlayMMLEnsemble:stop()
@@ -70,6 +65,7 @@ function TAPlayMMLEnsemble:stop()
 end
 
 function TAPlayMMLEnsemble:perform()
+  self:sendCancelCommand()
   ISBaseTimedAction.perform(self)
 end
 
@@ -86,10 +82,6 @@ function TAPlayMMLEnsemble:sendCancelCommand()
       }
     )
   end
-
-  -- 本地也移除自己
-  local MMLEnsembleManager = require("MMLEnsembleManager")
-  MMLEnsembleManager.removeEnsemblePlayer(self.character:getOnlineID())
 end
 
 return TAPlayMMLEnsemble

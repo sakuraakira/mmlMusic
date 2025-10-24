@@ -1,0 +1,775 @@
+module mmlMusic {
+    
+    sound SaxophoneB1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneC2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound SaxophoneCs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneD2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneDs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+        }
+    }
+    
+    sound SaxophoneE2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneF2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneFs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+        }
+    }
+    
+    sound SaxophoneG2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneGs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneA2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+        }
+    }
+    
+    sound SaxophoneAs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneB2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneC3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound SaxophoneCs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneD3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneDs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound SaxophoneE3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneF3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneFs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound SaxophoneG3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneGs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneA3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound SaxophoneAs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneB3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound SaxophoneCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound SaxophoneE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound SaxophoneG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound SaxophoneAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound SaxophoneCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound SaxophoneE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound SaxophoneG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound SaxophoneAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneC6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound SaxophoneCs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneD6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneDs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound SaxophoneE6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneF6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneFs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound SaxophoneG6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneGs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound SaxophoneA6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound SaxophoneAs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound SaxophoneB6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+}

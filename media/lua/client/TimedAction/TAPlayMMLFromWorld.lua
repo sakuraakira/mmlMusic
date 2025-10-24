@@ -39,6 +39,7 @@ function TAPlayMMLFromWorld:new(character, instrument, instrumentObject, orienta
   o.seated = seated
   o.playing = true
   o.mmlPlayer = MMLPlayer:new(o.instrument, false)
+  o.mmlPlayer:loadMML(mml)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
   o.sendToServer = sendToServer or false
@@ -80,6 +81,7 @@ function TAPlayMMLFromWorld:startAnimation()
           and parameters.orientation == pref then
         self.orientation = pref
         self:setActionAnim(parameters.animation)
+        self:setOverrideHandModels(nil, nil)
         return
       end
     end
@@ -98,18 +100,10 @@ function TAPlayMMLFromWorld:unequipHandItems()
 end
 
 function TAPlayMMLFromWorld:start()
-  print("[MML] Starting playback")
+  self.mmlPlayer:play()
   self.character:faceThisObject(self.instrumentObject)
   self:startAnimation()
-  self:unequipHandItems()
-  local ok = self.mmlPlayer:loadMML(self.mml)
-  if not ok then
-    print("[MML] Error: Failed to load MML data")
-    self.playing = false
-    return
-  end
 
-  self.mmlPlayer:play()
   if isClient() and self.sendToServer then
     local MMLClientSendCommands = require("MMLClientSendCommands")
     MMLClientSendCommands.sendStartMML(
@@ -138,7 +132,7 @@ function TAPlayMMLFromWorld:equipHandItemsAsBefore()
 end
 
 function TAPlayMMLFromWorld:terminateAction()
-  self:equipHandItemsAsBefore()
+
 end
 
 -- ============================================================
@@ -157,7 +151,6 @@ function TAPlayMMLFromWorld:perform()
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
-  self:equipHandItemsAsBefore()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
@@ -176,8 +169,6 @@ function TAPlayMMLFromWorld:stop()
     self.mmlPlayer:stop()
   end
 
-
-  self:equipHandItemsAsBefore()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end

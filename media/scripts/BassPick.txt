@@ -1,0 +1,763 @@
+module mmlMusic {
+    
+    sound BassPickC1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickCs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickD1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickDs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickE1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickF1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickFs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickG1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickGs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickA1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickAs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickB1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickC2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickCs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickD2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickDs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound BassPickE2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickF2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickFs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound BassPickG2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickGs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickA2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound BassPickAs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickB2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickC3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound BassPickCs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickD3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickDs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickE3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickF3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickFs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickG3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickGs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickA3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickAs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickB3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound BassPickA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+        }
+    }
+    
+    sound BassPickAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound BassPickB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/bassPick/BassPick_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.75,
+            pitch = 0.9438743127,
+        }
+    }
+    
+}

@@ -9,7 +9,7 @@ local MMLWorldItemInfo = require('MMLWorldItemInfo')
 -- 創建選單
 -- ============================================================
 function MMLContextMenu.createMenu(playerIndex, context, items)
-  local player = getSpecificPlayer(playerIndex)
+  local player = getPlayer()
 
   -- 獲取物品
   local item
@@ -33,12 +33,15 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
       MMLContextMenu.onOpenMMLInstrumentUI,
       item
     )
-    context:addOption(
-      getText("UI_ContextMenu_PrepareEnsemble") or "Prepare An ensemble",
-      player,
-      MMLContextMenu.onPrepareEnsemble,
-      item
-    )
+    if isClient() then
+      context:addOption(
+        getText("UI_ContextMenu_PrepareEnsemble") or "Prepare An ensemble",
+        player,
+        MMLContextMenu.onPrepareEnsemble,
+        item
+      )
+    end
+
     return
   elseif itemType == "MMLSheet.BlankSheetMusic" or itemType == "MMLSheet.BlankSheetBook" or itemType == "MMLSheet.SheetMusic" then
     context:addOption(
@@ -52,11 +55,15 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
 end
 
 -- 按下「演奏」時開啟 UI
+---comment
+---@param player IsoPlayer
+---@param item InventoryItem
 function MMLContextMenu.onOpenMMLInstrumentUI(player, item)
   if player:getSecondaryHandItem() ~= item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, false))
   end
   -- 建立並初始化 UI
+  print("Opening MML Instrument UI for  Player ID:", player:getOnlineID())
   local ui = MMLInstrumentUI.getInstance(player, item)
   ui:show()
 end
@@ -148,7 +155,7 @@ end
 
 function MMLContextMenu.OnPreFillWorldObjectContextMenu(playerIndex, context, worldobjects, test)
   local addedContext = {}
-  local player = getSpecificPlayer(playerIndex)
+  local player = getPlayer()
   for _, worldobject in ipairs(worldobjects) do
     local square = worldobject:getSquare()
     for i = 0, square:getObjects():size() - 1 do
@@ -160,7 +167,7 @@ function MMLContextMenu.OnPreFillWorldObjectContextMenu(playerIndex, context, wo
           -- for some unknown reason the pianos are listed twice so we filter the duplicate
           if addedContext[item:getWorldObjectIndex()] == nil then
             addedContext[item:getWorldObjectIndex()] = true
-            context:addOption(getText("UI_ContextMenu_PlayMusicSheet") or "Play", worldobjects,
+            context:addOption(getText("UI_ContextMenu_PlayPiano") or "Play piano", worldobjects,
               onPlayPiano,
               player, square, MMLWorldItemInfo[spriteName])
           end

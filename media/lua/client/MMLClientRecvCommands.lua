@@ -1,6 +1,7 @@
 -- MMLClientRecvCommands.lua
 local MMLClientRecvCommands = {}
 local MMLPlayer = require('MMLPlayer')
+local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 
 -- 接收MML 播放命令
 MMLClientRecvCommands['ServerStartMML'] = function(args)
@@ -79,6 +80,13 @@ end
 -- 接收取消合奏準備狀態
 MMLClientRecvCommands['ServerEnsembleCancel'] = function(args)
   print("[MMLClient] Received ensemble cancel for player: " .. args.sourceId)
+
+  local playerId = getPlayer():getOnlineID()
+  if args.sourceId == playerId then
+    print("[MMLClient] Canceling own ensemble preparation, no action needed.")
+    return
+  end
+
   local MMLEnsembleManager = require("MMLEnsembleManager")
   MMLEnsembleManager.removeEnsemblePlayer(args.sourceId)
 
@@ -92,38 +100,32 @@ end
 
 -- 接收合奏開始指令
 MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
-  print("[MMLClient] Received ensemble start command")
+  print("[MMLClient] Received ensemble start command count ", tostring(#args.assignments))
 
   local player = getPlayer()
   local myId = player:getOnlineID()
 
-  -- 檢查是否有分配給自己的部分
-  if args.assignments[myId] then
-    local assignment = args.assignments[myId]
+  -- 預加載所有玩家的 MML Player
+  local myMMLPlayer = nil
+  local otherPlayers = {}
+
+  -- 1. 先預加載所有 MML（包括自己的）
+  for playerId, assignment in pairs(args.assignments) do
+    -- 停止之前的播放
+    print("[MMLClient] Preloading MML for player: ", tostring(playerId))
+    if MMLPlayer.activePlayers[playerId] then
+      MMLPlayer.activePlayers[playerId]:stop()
+    end
     local mml = table.concat(assignment.mmlParts, ",")
 
-    print("[MMLClient] Playing my ensemble part")
-
-    -- 如果有 UI，通過 UI 播放
-    local MMLInstrumentUI = require('MMLInstrumentUI')
-    local ui = MMLInstrumentUI.getExistingInstance()
-    if ui then
-      ui:onEnsemblePlay(mml)
+    if playerId == myId then
+      -- 預加載自己的
+      myMMLPlayer = {
+        mml = mml,
+        instrument = assignment.instrument
+      }
     else
-      -- 否則直接播放
-      ISTimedActionQueue.clear(player)
-      ISTimedActionQueue.add(MMLFromInventory:new(
-        player,
-        assignment.instrument,
-        mml,
-        false -- 不發送給服務器，因為已經是合奏了
-      ))
-    end
-  end
-
-  -- 播放其他玩家的音效
-  for playerId, assignment in pairs(args.assignments) do
-    if playerId ~= myId then
+      -- 預加載其他玩家的
       local sourcePlayer = getPlayerByOnlineID(playerId)
 
       if sourcePlayer then
@@ -131,24 +133,40 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
         local maxRange = MMLPlayer.getRange()
 
         if distance <= maxRange + 10 then
-          local mml = table.concat(assignment.mmlParts, ",")
-
-          -- 停止玩家之前的播放
-          if MMLPlayer.activePlayers[playerId] then
-            MMLPlayer.activePlayers[playerId]:stop()
-          end
-
-          -- 新的播放器實例
+          -- 創建並預加載播放器
           local mmlPlayer = MMLPlayer:new(assignment.instrument, true)
           mmlPlayer:setSourcePlayer(sourcePlayer)
 
           if mmlPlayer:loadMML(mml) then
-            mmlPlayer:play()
-            print("[MMLClient] Playing ensemble part for player: " .. playerId)
+            table.insert(otherPlayers, mmlPlayer)
+            print("[MMLClient] Preloaded ensemble part for player: " .. playerId)
           end
         end
       end
     end
+  end
+
+
+  -- 3. 最後通過 UI 播放自己的部分
+  if myMMLPlayer then
+    print("[MMLClient] Playing my ensemble part")
+
+    local MMLInstrumentUI = require('MMLInstrumentUI')
+    local ui = MMLInstrumentUI.getExistingInstance() or nil
+    local isOpen = ui and
+        ((ui.getIsVisible and ui:getIsVisible()) or (ui.isVisible and ui:isVisible()) or ui.visible == true)
+    if (ui and isOpen) then
+      print("[MMLClient] EnsemblePla for player: ", tostring(playerId))
+      ui:onEnsemblePlay(myMMLPlayer.mml)
+    else
+      print("[MMLClient] TAPlayMMLFromInventory for player: ", tostring(playerId))
+      ISTimedActionQueue.clear(player)
+      ISTimedActionQueue.add(TAPlayMMLFromInventory:new(player, myMMLPlayer.instrument, myMMLPlayer.mml, false))
+    end
+  end
+  -- 統一開始播放（先播放其他玩家，最後播放自己以確保 UI 更新）
+  for _, mmlPlayer in ipairs(otherPlayers) do
+    mmlPlayer:play()
   end
 end
 

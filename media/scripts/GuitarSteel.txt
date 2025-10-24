@@ -540,7 +540,7 @@ module mmlMusic {
             file = media/sound/guitarSteel/GuitarSteel_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 1.0,
+            volume = 0.72,
         }
     }
     

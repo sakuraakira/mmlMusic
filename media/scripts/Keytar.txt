@@ -1,0 +1,939 @@
+module mmlMusic {
+    
+    sound KeytarC1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound KeytarCs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarD1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarDs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound KeytarE1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarF1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarFs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound KeytarG1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarGs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarA1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound KeytarAs1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A1.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarB1 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarC2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound KeytarCs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarD2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarDs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+        }
+    }
+    
+    sound KeytarE2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarF2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarFs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+        }
+    }
+    
+    sound KeytarG2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarGs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarA2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume =  0.7,
+        }
+    }
+    
+    sound KeytarAs2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A2.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarB2 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarC3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound KeytarCs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarD3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarDs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound KeytarE3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarF3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarFs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+        }
+    }
+    
+    sound KeytarG3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarGs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.65,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarA3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound KeytarAs3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A3.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarB3 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarC4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound KeytarCs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarD4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarDs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+        }
+    }
+    
+    sound KeytarE4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarF4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.7,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarFs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound KeytarG4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarGs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarA4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound KeytarAs4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A4.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarB4 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarC5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound KeytarCs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarD5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarDs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound KeytarE5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarF5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarFs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound KeytarG5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarGs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarA5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+        }
+    }
+    
+    sound KeytarAs5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A5.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarB5 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.8,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarC6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound KeytarCs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarD6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarDs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound KeytarE6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarF6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarFs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound KeytarG6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarGs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarA6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound KeytarAs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound KeytarB6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound KeytarC7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
+    
+    sound KeytarCs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/keytar/Keytar_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+            pitch = 1.0594630944,
+        }
+    }
+}

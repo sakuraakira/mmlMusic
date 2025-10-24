@@ -11,6 +11,8 @@ local TAPlayMMLFromInventory = ISBaseTimedAction:derive('TAPlayMMLFromInventory'
 local ItemToAnimation = {
   ['BassFinger'] = 'BardPlayGuitarBass',
   ['GuitarDistortion'] = 'BardPlayGuitarElectric',
+  ['GuitarClean'] = 'BardPlayGuitarElectric',
+  ['GuitarSteel'] = 'BardPlayGuitarElectric',
   ['Keytar'] = 'BardPlaySynthesizer',
   ['Flute'] = 'BardPlayFlute',
   ['Saxophone'] = 'BardPlaySaxophone',
@@ -27,7 +29,6 @@ function TAPlayMMLFromInventory:new(character, instrument, mml, sendToServer)
   setmetatable(o, self)
   self.__index = self
   o.stopOnWalk = false
-  o.walkSpeedModifier = 0.3
   o.stopOnRun = true
   o.stopOnAim = true
   o.maxTime = -1 -- 無限時間（直到播放完成或被打斷）
@@ -38,6 +39,7 @@ function TAPlayMMLFromInventory:new(character, instrument, mml, sendToServer)
 
   o.playing = true
   o.mmlPlayer = MMLPlayer:new(o.instrument, false)
+  o.mmlPlayer:loadMML(mml)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
   o.sendToServer = sendToServer or false
@@ -70,25 +72,8 @@ end
 -- 開始動作
 -- ============================================================
 function TAPlayMMLFromInventory:start()
-  local ok = self.mmlPlayer:loadMML(self.mml)
-  if not ok then
-    print("[MML] Error: Failed to load MML data")
-    self.playing = false
-    return
-  end
-  local ok2, orig = pcall(function() return self.character:getMoveSpeed() end)
-  if ok2 and orig then
-    self._origMoveSpeed = orig
-    -- 使用倍率
-    local mul = self.walkSpeedModifier or 1.0
-    self.character:setMoveSpeed(orig * mul)
-  else
-    print("[MML] Warning: failed to read player:getMoveSpeed()")
-  end
+  self.mmlPlayer:play()
 
-  --if self.item then
-  --  self:equipInstrumentOnSecondaryHand()
-  --end
   local animName = ItemToAnimation[self.instrument]
   if animName then
     print("[MML] Setting animation: " .. animName)
@@ -97,7 +82,6 @@ function TAPlayMMLFromInventory:start()
     print("[MML] Warning: No animation found for instrument: " .. tostring(self.instrument))
   end
 
-  self.mmlPlayer:play()
   if isClient() and self.sendToServer then
     local MMLClientSendCommands = require("MMLClientSendCommands")
     MMLClientSendCommands.sendStartMML(
@@ -109,14 +93,6 @@ function TAPlayMMLFromInventory:start()
   end
 
   self.MusicBuff:start()
-end
-
-function TAPlayMMLFromInventory:restoreMoveSpeed()
-  if self._origMoveSpeed then
-    local ok = pcall(function() self.character:setMoveSpeed(self._origMoveSpeed) end)
-    if not ok then print("[MML] Warning: failed to restore move speed") end
-    self._origMoveSpeed = nil
-  end
 end
 
 -- ============================================================
@@ -173,8 +149,7 @@ function TAPlayMMLFromInventory:stop()
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
-  --self:EquipInstrumentAsBefore()
-  self:restoreMoveSpeed()
+
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
@@ -219,9 +194,7 @@ function TAPlayMMLFromInventory:perform()
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
-  --self:EquipInstrumentAsBefore()
-  -- 恢復移動速度
-  self:restoreMoveSpeed()
+
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end

@@ -59,4 +59,15 @@ Events.OnEquipPrimary.Add(function(playerObj, item)
   end
 end)
 
+Events.OnEquipSecondary.Add(function(playerObj, item)
+  if isServer() then return end
+  if item then
+    local ui = MMLInstrumentUI.getExistingInstance and MMLInstrumentUI.getExistingInstance() or nil
+    local isOpen = ui and
+        ((ui.getIsVisible and ui:getIsVisible()) or (ui.isVisible and ui:isVisible()) or ui.visible == true)
+    if not (ui and isOpen) then return end
+    MMLInstrumentUI.getInstance(playerObj, item)
+  end
+end)
+
 print("[MML] MML system initialized successfully")
