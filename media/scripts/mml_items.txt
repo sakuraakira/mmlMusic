@@ -62,6 +62,16 @@ module MMLSheet
         WorldStaticModel = SheetOfPaper,
     }
     
+    item Bluebird
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Old Sheet (Bluebird),
+        Icon             = MMLSheet_Old.png,
+        Weight           = 0.05,
+        WorldStaticModel = SheetOfPaper,
+    }
+    
     item Magnet
     {
         DisplayCategory  = Literature,

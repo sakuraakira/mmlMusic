@@ -1,7 +1,8 @@
 ItemName_CH = {
   ItemName_MMLSheet.Courage = "泛黃樂譜(曲名:Courage)",
   ItemName_MMLSheet.Unravel = "泛黃樂譜(曲名:unravel)",
-  ItemName_MMLSheet.Tokyo_teddy_bear = "泛黃樂譜(曲名:東京泰迪熊)",
+  ItemName_MMLSheet.Tokyo_teddy_bear = "泛黃樂譜(曲名:東京Teddy bear)",
+  ItemName_MMLSheet.Bluebird = "泛黃樂譜(曲名:Bluebird)",
   ItemName_MMLSheet.Magnet = "泛黃樂譜(曲名:Magnet)",
 
   ItemName_MMLSheet.SheetMusic = "樂譜",
