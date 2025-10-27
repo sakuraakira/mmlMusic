@@ -52,5 +52,24 @@ module MMLSheet
         WorldStaticModel = SheetOfPaper,
     }
     
+    item Tokyo_teddy_bear
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Old Sheet (Tokyo teddy bear),
+        Icon             = MMLSheet_Old.png,
+        Weight           = 0.05,
+        WorldStaticModel = SheetOfPaper,
+    }
+    
+    item Magnet
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Old Sheet (Magnet),
+        Icon             = MMLSheet_Old.png,
+        Weight           = 0.05,
+        WorldStaticModel = SheetOfPaper,
+    }
     
 }

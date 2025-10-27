@@ -16,9 +16,11 @@ local InstrumentParameters = {
   ["GuitarClean"] = { baseTime = 250, fadingTime = 150, polyphonic = true },
   ["GuitarSteel"] = { baseTime = 200, fadingTime = 150, polyphonic = true },
   ["BassFinger"] = { baseTime = 350, fadingTime = 150, polyphonic = true },
+  ["BassPick"] = { baseTime = 350, fadingTime = 150, polyphonic = true },
   ["Flute"] = { baseTime = 100, fadingTime = 20, polyphonic = true },
   ["Saxophone"] = { baseTime = 0, fadingTime = 50, polyphonic = true },
   ["Trumpet"] = { baseTime = 0, fadingTime = 50, polyphonic = true },
+  ["Banjo"] = { baseTime = 200, fadingTime = 150, polyphonic = true },
 }
 
 function MusicPlayer:new()

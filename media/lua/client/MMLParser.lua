@@ -428,7 +428,7 @@ function MMLParser:parseAbsoluteNote(mml, pos)
   local noteNumber, newPos = self:parseNumber(mml, pos)
   pos = newPos
 
-  if noteNumber < 0 or noteNumber > 127 then
+  if noteNumber + 12 < 0 or noteNumber + 12 > 127 then
     print(string.format("[MMLParser] Warning: Invalid MIDI note number %d", noteNumber))
     return pos
   end
@@ -448,7 +448,7 @@ function MMLParser:parseAbsoluteNote(mml, pos)
   end
 
   -- 添加音符 (直接使用 MIDI note number)
-  self:addNote(noteNumber, duration, self.currentVelocity)
+  self:addNote(noteNumber + 12, duration, self.currentVelocity)
 
   return pos
 end

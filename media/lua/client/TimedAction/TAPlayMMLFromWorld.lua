@@ -65,6 +65,7 @@ local AnimationsParameters = {
 
 function TAPlayMMLFromWorld:startAnimation()
   -- Full match first
+  self:setOverrideHandModels(nil, nil)
   for _, parameters in ipairs(AnimationsParameters) do
     if parameters.seated == self.seated
         and parameters.orientation == self.orientation
@@ -81,7 +82,6 @@ function TAPlayMMLFromWorld:startAnimation()
           and parameters.orientation == pref then
         self.orientation = pref
         self:setActionAnim(parameters.animation)
-        self:setOverrideHandModels(nil, nil)
         return
       end
     end

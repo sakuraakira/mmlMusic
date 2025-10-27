@@ -1,0 +1,14 @@
+Tooltip_CH = {
+  Tooltip_MMLSheet_Courage = "刀劍神域的OP曲聽完感覺會獲得勇氣",
+  Tooltip_MMLSheet_Unravel = "東京喰種的OP曲聽完覺得靈魂都被撕碎了",
+  Tooltip_MMLSheet_Tokyo_teddy_bear = "VOCALOID創作者 Neru 的名曲",
+  Tooltip_MMLSheet_Magnet = "VOCALOID創作者 流星P 的名曲",
+  Tooltip_MMLSheet_MusicSkill_Book1 = "《彈指之間》吉他初學者的最愛",
+  Tooltip_MMLSheet_MusicSkill_Book2 = "《Funk Bass Fills》貝斯的完美教材",
+  Tooltip_MMLSheet_MusicSkill_Book3 = "《史丹達爾最佳管樂教程》進階的管樂技巧",
+  Tooltip_MMLSheet_MusicSkill_Book4 = "《流行鋼琴的彈奏奧秘》完美的合弦",
+  Tooltip_MMLSheet_MusicSkill_Book5 = "《牛津小提琴進階教程》提升絕對音感",
+  Tooltip_MMLSheet_SheetMusic = "裝備在主手可以讓樂器演奏",
+  Tooltip_MMLSheet_BlankSheetMusic = "右鍵可以開始作曲寫成樂譜",
+  Tooltip_MMLSheet_BlankSheetBook = "右鍵可以開始作曲寫成樂譜，可作10份樂譜",
+}

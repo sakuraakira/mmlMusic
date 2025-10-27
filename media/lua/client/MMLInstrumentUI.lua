@@ -57,6 +57,7 @@ function MMLInstrumentUI.getInstanceFromWorld(character, instrument, upperSidePi
     instance.facing = facing
     instance.upperSidePianoObject = upperSidePianoObject
     instance.hasSeat = hasSeat
+    instance.item = nil
   else
     -- 更新現有實例的資料
     instance.character = character
@@ -66,6 +67,7 @@ function MMLInstrumentUI.getInstanceFromWorld(character, instrument, upperSidePi
       instance.facing = facing
       instance.upperSidePianoObject = upperSidePianoObject
       instance.hasSeat = hasSeat
+      instance.item = nil
     end
   end
   return instance
@@ -519,14 +521,14 @@ function MMLInstrumentUI:show()
     if fullType == "MMLSheet.SheetMusic" then
       local mmlData = item:getModData().mml
       if not mmlData or type(mmlData) ~= "table" then
-        print("No MML data found in item", tostring(fullType))
+        self:clearMML()
         return
       end
       self:setMML(mmlData, item:getName())
     elseif string.sub(fullType, 1, 9) == "MMLSheet." then
-      local sheet = MMLScores and MMLScores[fullType]
+      local sheet = MMLScores and MMLScores.get(fullType)
       if not sheet or type(sheet.mml) ~= "table" then
-        print("No matching sheet for", tostring(fullType))
+        self:clearMML()
         return
       end
       self:setMML(sheet.mml, item:getName())
@@ -542,6 +544,11 @@ function MMLInstrumentUI:hide()
 end
 
 function MMLInstrumentUI:onPlay()
+  if not self.mml then
+    self.statusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet")
+    return
+  end
+
   -- 檢查是否有其他玩家正在演奏
   if MMLPlayer and MMLPlayer.activePlayers and #MMLPlayer.activePlayers > 0 then
     for _, activePlayer in ipairs(MMLPlayer.activePlayers) do
@@ -685,6 +692,17 @@ function MMLInstrumentUI:onEnsemble()
     return
   end
 
+  -- 檢查是否有其他玩家正在演奏
+  if MMLPlayer and MMLPlayer.activePlayers and #MMLPlayer.activePlayers > 0 then
+    for _, activePlayer in ipairs(MMLPlayer.activePlayers) do
+      if activePlayer:isPlayingMusic() then
+        self.character:Say(getText("UI_MML_WaitForOthers") or
+          "Someone is already playing, please wait for them to finish.")
+        return
+      end
+    end
+  end
+
   -- 準備合奏指令資料
   local ensembleData = {
     assignments = {}
@@ -789,13 +807,15 @@ function MMLInstrumentUI:onEnsemblePlay(mml)
   end
 
   -- Use world TA if there is a world instrument object (covers Piano/GrandPiano)
+  local myInstrument = self.instrument or "Piano"
+
   if self.upperSidePianoObject then
     self.TAPlay = TAPlayMMLFromWorld:new(
-      self.character, self.instrument,
+      self.character, myInstrument,
       self.upperSidePianoObject, self.facing, self.hasSeat, mml, false
     )
   else
-    self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, mml, false)
+    self.TAPlay = TAPlayMMLFromInventory:new(self.character, myInstrument, mml, false)
   end
 
   self.TAPlay.onComplete = function()

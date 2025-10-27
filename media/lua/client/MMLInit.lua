@@ -24,9 +24,20 @@ Events.OnPreFillWorldObjectContextMenu.Add(MMLContextMenu.OnPreFillWorldObjectCo
 
 local function applyMMLSelection(playerObj, item)
   if not playerObj or not item then return end
+
   local ui = MMLInstrumentUI.getExistingInstance and MMLInstrumentUI.getExistingInstance() or nil
-  local isOpen = ui and
-      ((ui.getIsVisible and ui:getIsVisible()) or (ui.isVisible and ui:isVisible()) or ui.visible == true)
+
+  -- 更安全的 isOpen 檢查：避免嘗試呼叫非函式欄位（會導致 "tried to call nil"）
+  local isOpen = false
+  if ui then
+    if type(ui.getIsVisible) == "function" then
+      isOpen = ui:getIsVisible()
+    elseif type(ui.isVisible) == "function" then
+      isOpen = ui:isVisible()
+    else
+      isOpen = (ui.isVisible == true) or (ui.visible == true)
+    end
+  end
   if not (ui and isOpen) then return end
 
   local fullType = item:getFullType()
@@ -34,13 +45,19 @@ local function applyMMLSelection(playerObj, item)
   if fullType == "MMLSheet.SheetMusic" then
     local mmlData = item:getModData().mml
     if not mmlData or type(mmlData) ~= "table" then
+      ui:clearMML()
       print("No MML data found in item", tostring(fullType))
       return
     end
     ui:setMML(mmlData, item:getName())
     return
   elseif fullType:sub(1, 9) == "MMLSheet." then
-    local sheet = MMLScores and MMLScores[fullType]
+    local sheet = nil
+    -- 優先用 MMLScores API
+    if MMLScores and type(MMLScores.get) == "function" then
+      sheet = MMLScores.get(fullType)
+    end
+
     if not sheet or type(sheet.mml) ~= "table" then
       ui:clearMML()
       print("No matching sheet for", tostring(fullType))
