@@ -170,6 +170,32 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
   end
 end
 
+-- 接收合奏停止指令
+MMLClientRecvCommands['ServerEnsembleStop'] = function(args)
+  print("[MMLClient] Received ensemble stop for player: " .. tostring(args.sourceId))
+
+
+  -- 停止並清除所有活躍的 MMLPlayer 實例
+  if MMLPlayer and type(MMLPlayer.activePlayers) == "table" then
+    for id, player in pairs(MMLPlayer.activePlayers) do
+      if player and type(player.stop) == "function" then
+        local ok, err = pcall(function() player:stop() end)
+        if not ok then
+          print("[MMLClient] Error stopping player " .. tostring(id) .. ": " .. tostring(err))
+        else
+          print("[MMLClient] Stopped player " .. tostring(id))
+        end
+      end
+      -- 移除快取
+      MMLPlayer.activePlayers[id] = nil
+    end
+  end
+
+  local player = getPlayer()
+
+  ISTimedActionQueue.clear(player)
+end
+
 -- 事件處理
 local function OnServerCommand(module, command, args)
   if module == 'MMLMusic' and MMLClientRecvCommands[command] then

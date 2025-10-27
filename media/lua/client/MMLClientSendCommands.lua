@@ -83,6 +83,19 @@ MMLClientSendCommands.sendEnsembleStart = function(assignments, position)
   print("[MMLClient] Sent ensemble start to server")
 end
 
+-- 發送合奏停止指令
+MMLClientSendCommands.sendEnsembleStop = function(position)
+  if not isClient() then return end
+
+  SendMMLClientCommand('ClientEnsembleStop', {
+    x = position.x,
+    y = position.y,
+    z = position.z
+  })
+
+  print("[MMLClient] Sent ensemble stop to server")
+end
+
 
 --發送buff效果改變
 MMLClientSendCommands.sendMusicBuff = function(character, changes)

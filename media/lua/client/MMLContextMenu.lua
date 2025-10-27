@@ -41,15 +41,37 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
         item
       )
     end
-
     return
   elseif itemType == "MMLSheet.BlankSheetMusic" or itemType == "MMLSheet.BlankSheetBook" or itemType == "MMLSheet.SheetMusic" then
-    context:addOption(
-      getText("UI_ContextMenu_EditMusicSheet") or "Edit",
-      player,
-      MMLContextMenu.onOpenMMLComposeUI,
-      item
-    )
+    -- 檢查玩家背包是否有「筆」類物品（簡單用 fullType 名稱包含 Pen/Pencil 判斷）
+    local function playerHasPen(p)
+      if not p or not p:getInventory() then return false end
+      local invItems = p:getInventory():getItems()
+      for i = 0, invItems:size() - 1 do
+        local it = invItems:get(i)
+        if it and it:getFullType() then
+          local ft = it:getFullType()
+          if ft:find("Pen") or ft:find("Pencil") then
+            return true
+          end
+        end
+      end
+      return false
+    end
+
+    local hasPen = playerHasPen(player)
+    if hasPen then
+      context:addOption(
+        getText("UI_ContextMenu_EditMusicSheet") or "Edit",
+        player,
+        MMLContextMenu.onOpenMMLComposeUI,
+        item
+      )
+    else
+      local label = getText("UI_ContextMenu_EditMusicSheetNoPen") or "Edit (need a pen)"
+      local option = context:addOption(label, player, nil, item)
+      option.notAvailable = true
+    end
     return
   end
 end

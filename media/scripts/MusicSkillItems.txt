@@ -8,7 +8,7 @@ module MMLSheet
     item MusicSkill_Book1
     {
         DisplayCategory  = SkillBook,
-        NumberOfPages    = 220,
+        NumberOfPages    = 100,
         Weight           = 0.8,
         Type             = Literature,
         DisplayName      = MusicSkill_Book1,
@@ -22,7 +22,7 @@ module MMLSheet
     item MusicSkill_Book2
     {
         DisplayCategory  = SkillBook,
-        NumberOfPages    = 260,
+        NumberOfPages    = 150,
         Weight           = 0.8,
         Type             = Literature,
         DisplayName      = MusicSkill_Book2,
@@ -36,7 +36,7 @@ module MMLSheet
     item MusicSkill_Book3
     {
         DisplayCategory  = SkillBook,
-        NumberOfPages    = 300,
+        NumberOfPages    = 150,
         Weight           = 0.8,
         Type             = Literature,
         DisplayName      = MusicSkill_Book3,
@@ -50,7 +50,7 @@ module MMLSheet
     item MusicSkill_Book4
     {
         DisplayCategory  = SkillBook,
-        NumberOfPages    = 300,
+        NumberOfPages    = 150,
         Weight           = 0.8,
         Type             = Literature,
         DisplayName      = MusicSkill_Book4,
@@ -64,7 +64,7 @@ module MMLSheet
     item MusicSkill_Book5
     {
         DisplayCategory  = SkillBook,
-        NumberOfPages    = 300,
+        NumberOfPages    = 200,
         Weight           = 0.8,
         Type             = Literature,
         DisplayName      = MusicSkill_Book5,

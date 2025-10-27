@@ -43,11 +43,13 @@ function TAPlayMMLFromInventory:new(character, instrument, mml, sendToServer)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
   o.sendToServer = sendToServer or false
+  local musicSkill = MMLMusicSkill.getLevel(character)
   self.MusicBuff = MMLMusicBuff:new(character, {
     xp = sendToServer == false and 2 or 1,
-    applyUnhappyness = MMLMusicSkill.getLevel(character),
-    applyBoredom = MMLMusicSkill.getLevel(character),
-    applyPanic = MMLMusicSkill.getLevel(character),
+    applyUnhappyness = musicSkill,
+    applyBoredom = musicSkill,
+    applyPanic = musicSkill,
+    applyStress = musicSkill,
   })
   return o
 end

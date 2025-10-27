@@ -120,6 +120,7 @@ MMLServerCommands['ClientEnsembleStart'] = function(player, args)
   local soundRange = SandboxVars.MMLMusic and SandboxVars.MMLMusic.SoundRange or 40
   local connectedPlayers = getOnlinePlayers()
   local broadcastCount = 0
+  args.sourceId = player:getOnlineID()
 
   for i = 0, connectedPlayers:size() - 1 do
     local connectedPlayer = connectedPlayers:get(i)
@@ -132,6 +133,27 @@ MMLServerCommands['ClientEnsembleStart'] = function(player, args)
   end
 
   print(string.format("[MMLServer] Broadcasted ensemble start to %d players", broadcastCount))
+end
+
+MMLServerCommands['ClientEnsembleStop'] = function(player, args)
+  print("[MMLServer] Broadcasting ensemble stop")
+
+  local soundRange = SandboxVars.MMLMusic and SandboxVars.MMLMusic.SoundRange or 40
+  local connectedPlayers = getOnlinePlayers()
+  local broadcastCount = 0
+  args.sourceId = player:getOnlineID()
+
+  for i = 0, connectedPlayers:size() - 1 do
+    local connectedPlayer = connectedPlayers:get(i)
+
+    -- 廣播給範圍內的所有玩家（包括自己）
+    if connectedPlayer:DistTo(args.x, args.y) < soundRange + 20 then
+      SendMMLServerCommand(connectedPlayer, 'ServerEnsembleStop', args)
+      broadcastCount = broadcastCount + 1
+    end
+  end
+
+  print(string.format("[MMLServer] Broadcasted ensemble stop to %d players", broadcastCount))
 end
 
 -- 註冊事件處理

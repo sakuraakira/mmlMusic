@@ -39,6 +39,11 @@ local function applyLocalChangesToPlayer(player, changes)
     local new = clamp(cur - changes.panic, 0, 100)
     stats:setPanic(new)
   end
+  if changes.stress and type(changes.stress) == "number" then
+    local cur = stats:getStress() or 0
+    local new = clamp(cur - (self.cfg.applyStress / 100), 0, 1)
+    stats:setStress(new)
+  end
 end
 
 -- public: 收到 server 廣播/通知要套用效果時呼叫

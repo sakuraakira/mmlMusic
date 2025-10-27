@@ -4,6 +4,7 @@ local MMLContextMenu = require('MMLContextMenu')
 local MMLInstrumentUI = require('MMLInstrumentUI')
 local MMLScores = require('MMLScores')
 local MMLMusicSkill = require('MMLMusicSkill')
+local PlayerItemToMMLInstrument = require('MMLInstrument')
 
 
 -- 在遊戲啟動初期註冊 Perk，確保其他腳本呼叫 addXP/getLevel 時 Perk 已存在
@@ -49,7 +50,7 @@ local function applyMMLSelection(playerObj, item)
       print("No MML data found in item", tostring(fullType))
       return
     end
-    ui:setMML(mmlData, item:getName())
+    ui:setMML(mmlData, item)
     return
   elseif fullType:sub(1, 9) == "MMLSheet." then
     local sheet = nil
@@ -63,7 +64,7 @@ local function applyMMLSelection(playerObj, item)
       print("No matching sheet for", tostring(fullType))
       return
     end
-    ui:setMML(sheet.mml, item:getName())
+    ui:setMML(sheet.mml, item)
     return
   end
   ui:clearMML()
@@ -78,7 +79,7 @@ end)
 
 Events.OnEquipSecondary.Add(function(playerObj, item)
   if isServer() then return end
-  if item then
+  if item and PlayerItemToMMLInstrument[item:getFullType()] then
     local ui = MMLInstrumentUI.getExistingInstance and MMLInstrumentUI.getExistingInstance() or nil
     local isOpen = ui and
         ((ui.getIsVisible and ui:getIsVisible()) or (ui.isVisible and ui:isVisible()) or ui.visible == true)

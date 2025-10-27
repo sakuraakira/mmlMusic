@@ -32,7 +32,6 @@ function TAPlayMMLEnsemble:start()
   -- 發送合奏準備完成指令
 
   self:setActionAnim("PrepareEnsemble")
-
   self:setOverrideHandModels(nil, self.item)
 
 
@@ -65,7 +64,6 @@ function TAPlayMMLEnsemble:stop()
 end
 
 function TAPlayMMLEnsemble:perform()
-  self:sendCancelCommand()
   ISBaseTimedAction.perform(self)
 end
 

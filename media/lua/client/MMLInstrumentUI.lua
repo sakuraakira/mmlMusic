@@ -14,6 +14,7 @@ local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 local TAPlayMMLFromWorld = require('TimedAction/TAPlayMMLFromWorld')
 local PlayerItemToMMLInstrument = require('MMLInstrument')
 local MMLScores = require('MMLScores')
+local SheetIconSlot = require('IconSlot')
 local WIDTH = 600
 local HEIGHT = 470 -- 增加高度以容納 Tab
 
@@ -91,6 +92,7 @@ function MMLInstrumentUI:new(character, item)
   end
   o.TAPlay = nil
   o.isPlaying = false
+  o.isEnsemble = false
   o.character = character
   o.isInitialized = false -- 追蹤是否已初始化
   o.mml = nil
@@ -223,15 +225,18 @@ function MMLInstrumentUI:initPlayTab()
   -- 輸入區標籤
   self.labelInput = ISLabel:new(
     padding, padding, buttonHeight,
-    getText("UI_MML_UsedSheet") or "Enter MML:",
+    getText("UI_MML_UsedSheet") or "Used Sheet:",
     1, 1, 1, 1, UIFont.Medium, true
   )
   self.labelInput:initialise()
   self.playTab:addChild(self.labelInput)
 
+  self.iconSlot = SheetIconSlot:new(padding, self.labelInput:getBottom() + 5, 48, self)
+  self.playTab:addChild(self.iconSlot)
+
   self.labelInput2 = ISLabel:new(
-    padding,
-    self.labelInput:getBottom() + 5,
+    padding * 3 + 48,
+    self.labelInput:getBottom() + 29,
     buttonHeight,
     "",
     1, 1, 1, 1, UIFont.Small, true
@@ -242,7 +247,7 @@ function MMLInstrumentUI:initPlayTab()
   -- 選擇演奏樂譜標籤
   self.labelSelectTracks = ISLabel:new(
     padding,
-    self.labelInput2:getBottom() + padding + 5,
+    self.iconSlot:getBottom() + padding + 5,
     buttonHeight,
     getText("UI_MML_SelectTracks") or "Select Tracks to Play:",
     1, 1, 1, 1, UIFont.Medium, true
@@ -287,9 +292,12 @@ function MMLInstrumentUI:initEnsembleTab()
   self.ensembleLabelInput:initialise()
   self.ensembleTab:addChild(self.ensembleLabelInput)
 
+  self.ensembleIconSlot = SheetIconSlot:new(padding, self.ensembleLabelInput:getBottom() + 5, 48, self)
+  self.ensembleTab:addChild(self.ensembleIconSlot)
+
   self.ensembleLabelInput2 = ISLabel:new(
-    padding,
-    self.ensembleLabelInput:getBottom() + 5,
+    padding * 3 + 48,
+    self.ensembleLabelInput:getBottom() + 29,
     buttonHeight,
     "",
     1, 1, 1, 1, UIFont.Small, true
@@ -384,16 +392,19 @@ function MMLInstrumentUI:onEnsembleAssignmentChanged(comboBox)
   end
 end
 
-function MMLInstrumentUI:setMML(mml, name)
+function MMLInstrumentUI:setMML(mml, item)
   self.mml = mml
 
   -- 更新演奏頁面
   if self.labelInput2 then
-    self.labelInput2:setName(name)
+    self.labelInput2:setName(item:getName())
+    self.iconSlot:setItem(item)
   end
   if self.ensembleLabelInput2 then
-    self.ensembleLabelInput2:setName(name)
+    self.ensembleLabelInput2:setName(item:getName())
+    self.ensembleIconSlot:setItem(item)
   end
+
   local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
   local trackDisplayNames = {
     getText("UI_MML_melody") or "Melody",
@@ -492,9 +503,11 @@ function MMLInstrumentUI:clearMML()
   -- 清除演奏頁面
   if self.labelInput2 then
     self.labelInput2:setName("")
+    self.iconSlot:setItem(nil)
   end
   if self.ensembleLabelInput2 then
     self.ensembleLabelInput2:setName("")
+    self.ensembleIconSlot:setItem(nil)
   end
   if self.trackCheckbox then
     self.trackCheckbox:clearOptions()
@@ -524,14 +537,14 @@ function MMLInstrumentUI:show()
         self:clearMML()
         return
       end
-      self:setMML(mmlData, item:getName())
+      self:setMML(mmlData, item)
     elseif string.sub(fullType, 1, 9) == "MMLSheet." then
       local sheet = MMLScores and MMLScores.get(fullType)
       if not sheet or type(sheet.mml) ~= "table" then
         self:clearMML()
         return
       end
-      self:setMML(sheet.mml, item:getName())
+      self:setMML(sheet.mml, item)
     else
       self:clearMML()
     end
@@ -563,6 +576,7 @@ function MMLInstrumentUI:onPlay()
   if self.item ~= nil and self.character:getSecondaryHandItem() ~= self.item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(self.character, self.item, 50, false))
   end
+
   local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
   local allTracks = {}
   -- 遍歷所有勾選的軌道
@@ -631,6 +645,7 @@ function MMLInstrumentUI:onPlay()
   ISTimedActionQueue.add(self.TAPlay)
 
   self.isPlaying = true
+  self.isEnsemble = false
   self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
   self.playButton.enable = false
   self.stopButton.enable = true
@@ -651,6 +666,16 @@ function MMLInstrumentUI:onStop()
   self.statusLabel:setName(getText("UI_MML_Stopped") or "Stopped")
   self.playButton.enable = true
   self.stopButton.enable = false
+
+  if isClient() and self.isEnsemble then
+    -- 發送停止合奏指令
+    local MMLClientSendCommands = require('MMLClientSendCommands')
+    MMLClientSendCommands.sendEnsembleStop({
+      x = self.character:getX(),
+      y = self.character:getY(),
+      z = self.character:getZ()
+    })
+  end
 end
 
 function MMLInstrumentUI:render()
@@ -822,6 +847,7 @@ function MMLInstrumentUI:onEnsemblePlay(mml)
     self:onPlaybackComplete()
   end
   self.isPlaying = true
+  self.isEnsemble = true
   self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
   self.playButton.enable = false
   self.stopButton.enable = true
@@ -842,6 +868,61 @@ function MMLInstrumentUI:clearEnsembleAssignmentsUI()
   self.ensembleControls = {}
   self.ensembleComboBoxes = nil
   self.ensembleAssignments = {}
+end
+
+-- 拖放物品處理
+function MMLInstrumentUI:onMouseUp(x, y)
+  local handled = false
+  if ISMouseDrag and ISMouseDrag.dragging and #ISMouseDrag.dragging > 0 then
+    -- 一般情況 dragging 會是「實際物品陣列」或「堆疊的包裝」，這裡逐一攤平
+    local droppedItems = {}
+    for _, v in ipairs(ISMouseDrag.dragging) do
+      if type(v) == "table" and v.items then
+        -- 來自堆疊（inventory pane 堆疊）時 v.items[1] 是可見項，其餘是實際物品
+        for i = 1, #v.items do table.insert(droppedItems, v.items[i]) end
+      else
+        table.insert(droppedItems, v)
+      end
+    end
+
+    -- 篩選或直接處理
+    for _, item in ipairs(droppedItems) do
+      local fullType = item:getFullType() -- 例如 "Base.RippedSheetsDirty"
+      if fullType == "MMLSheet.SheetMusic" then
+        local md = item:getModData() or {}
+        local mmlData = md.mml
+        if not mmlData or type(mmlData) ~= "table" then
+          self:clearMML()
+          print("No MML data found in item", tostring(fullType))
+        end
+        self:setMML(mmlData, item)
+        break
+      end
+
+      if fullType:sub(1, 9) == "MMLSheet." then
+        local sheet = nil
+        -- 優先：MMLScores API
+        if MMLScores and type(MMLScores.get) == "function" then
+          sheet = MMLScores.get(fullType)
+        end
+        if sheet then
+          local mmlData = sheet.mml
+          if mmlData and type(mmlData) == "table" then
+            self:setMML(mmlData, item)
+            break
+          end
+        end
+      end
+    end
+    handled = true
+  end
+
+  -- 清掉拖拽（避免殘留），並讓父類處理其餘邏輯
+  if handled then
+    ISMouseDrag.dragging = nil
+    return true
+  end
+  return ISCollapsableWindow.onMouseUp(self, x, y)
 end
 
 return MMLInstrumentUI

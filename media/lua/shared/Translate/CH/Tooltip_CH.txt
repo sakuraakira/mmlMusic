@@ -11,4 +11,5 @@ Tooltip_CH = {
   Tooltip_MMLSheet_SheetMusic = "裝備在主手可以讓樂器演奏",
   Tooltip_MMLSheet_BlankSheetMusic = "右鍵可以開始作曲寫成樂譜",
   Tooltip_MMLSheet_BlankSheetBook = "右鍵可以開始作曲寫成樂譜，可作10份樂譜",
+  Tooltip_BookTitle_Music = "提升樂器演奏能力",
 }

@@ -8,6 +8,7 @@ module MMLSheet
         Icon             = MMLSheet.png,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_SheetMusic,
     }
     
     item BlankSheetMusic
@@ -18,6 +19,7 @@ module MMLSheet
         Icon             = MMLSheet_New.png,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_BlankSheetMusic,
     }
     
     item BlankSheetBook
@@ -30,6 +32,7 @@ module MMLSheet
         UseDelta         = 0.1,
         UseWhileEquipped = false,
         WorldStaticModel = EmptyNotebook,
+        Tooltip          = Tooltip_MMLSheet_BlankSheetBook,
     }
     
     item Courage
@@ -40,6 +43,7 @@ module MMLSheet
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_Courage,
     }
     
     item Unravel
@@ -50,6 +54,7 @@ module MMLSheet
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_Unravel,
     }
     
     item Tokyo_teddy_bear
@@ -60,6 +65,7 @@ module MMLSheet
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_Tokyo_teddy_bear,
     }
     
     item Bluebird
@@ -70,6 +76,7 @@ module MMLSheet
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_Bluebird,
     }
     
     item Magnet
@@ -80,6 +87,7 @@ module MMLSheet
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
         WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_Magnet,
     }
     
 }

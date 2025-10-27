@@ -11,6 +11,7 @@ local DEFAULTS = {
   applyUnhappyness = 0,
   applyBoredom = 0,
   applyPanic = 0,
+  applyStress = 0,
 }
 
 local function clamp(val, lo, hi)
@@ -79,6 +80,15 @@ function MMLMusicBuff:update()
       stats:setPanic(new)
       changes.panic = self.cfg.applyPanic
     end
+
+    if self.cfg.applyStress ~= 0 then
+      local stats = self.character:getStats()
+      local cur = stats:getStress() or 0
+      local new = clamp(cur - (self.cfg.applyStress / 100), 0, 1)
+      stats:setStress(new)
+      changes.stress = self.cfg.applyStress
+    end
+
 
     -- 如果是 client 並且需要發給 server，發送一個簡短命令（包含實際改動數值）
     if isClient() then
