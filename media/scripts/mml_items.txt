@@ -90,4 +90,47 @@ module MMLSheet
         Tooltip          = Tooltip_MMLSheet_Magnet,
     }
     
+    item God_knows
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Old Sheet (God knows..),
+        Icon             = MMLSheet_Old.png,
+        Weight           = 0.05,
+        WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_God_knows,
+    }
+    
+    item Butterfly
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Old Sheet (Butterfly),
+        Icon             = MMLSheet_Old.png,
+        Weight           = 0.05,
+        WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_Butterfly,
+    }
+    
+    item Senbonzakura
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Old Sheet (Senbonzakura),
+        Icon             = MMLSheet_Old.png,
+        Weight           = 0.05,
+        WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_Senbonzakura,
+    }
+    
+    item ThoughMySongHasNoShape
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Old Sheet (Though My Song Has No Shape),
+        Icon             = MMLSheet_Old.png,
+        Weight           = 0.05,
+        WorldStaticModel = SheetOfPaper,
+        Tooltip          = Tooltip_MMLSheet_ThoughMySongHasNoShape,
+    }
 }

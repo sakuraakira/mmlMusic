@@ -1,5 +1,5 @@
 local MMLScores = require("MMLScores")
-MMLScores.register('MMLSheet.simple',
+MMLScores.register('MMLSheet.Tokyo_teddy_bear',
   function()
     return {
       name = "Tokyo teddy bear",

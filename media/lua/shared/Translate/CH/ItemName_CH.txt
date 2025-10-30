@@ -4,6 +4,10 @@ ItemName_CH = {
   ItemName_MMLSheet.Tokyo_teddy_bear = "泛黃樂譜(曲名:東京Teddy bear)",
   ItemName_MMLSheet.Bluebird = "泛黃樂譜(曲名:Bluebird)",
   ItemName_MMLSheet.Magnet = "泛黃樂譜(曲名:Magnet)",
+  ItemName_MMLSheet.God_knows = "泛黃樂譜(曲名:God knows..)",
+  ItemName_MMLSheet.Senbonzakura  = "泛黃樂譜(曲名:千本櫻)",
+  ItemName_MMLSheet.Butterfly  = "泛黃樂譜(曲名:Butterfly)",
+  ItemName_MMLSheet.ThoughMySongHasNoShape  = "泛黃樂譜(曲名:雖然歌聲無形)",
 
   ItemName_MMLSheet.SheetMusic = "樂譜",
   ItemName_MMLSheet.BlankSheetBook = "空白樂譜本",
