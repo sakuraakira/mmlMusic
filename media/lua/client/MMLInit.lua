@@ -72,6 +72,9 @@ end
 
 Events.OnEquipPrimary.Add(function(playerObj, item)
   if isServer() then return end
+  local me = getPlayer()
+  if playerObj ~= me then return end
+
   if item then
     applyMMLSelection(playerObj, item)
   end
@@ -79,6 +82,8 @@ end)
 
 Events.OnEquipSecondary.Add(function(playerObj, item)
   if isServer() then return end
+  local me = getPlayer()
+  if playerObj ~= me then return end
   if item and PlayerItemToMMLInstrument[item:getFullType()] then
     local ui = MMLInstrumentUI.getExistingInstance and MMLInstrumentUI.getExistingInstance() or nil
     local isOpen = ui and

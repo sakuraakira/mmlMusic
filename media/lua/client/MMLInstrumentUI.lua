@@ -10,6 +10,7 @@
 ---@field hasSeat boolean
 local MMLInstrumentUI = ISCollapsableWindow:derive("MMLInstrumentUI")
 
+local MMLPlayer = require('MMLPlayer')
 local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 local TAPlayMMLFromWorld = require('TimedAction/TAPlayMMLFromWorld')
 local PlayerItemToMMLInstrument = require('MMLInstrument')
@@ -564,13 +565,9 @@ function MMLInstrumentUI:onPlay()
 
   -- 檢查是否有其他玩家正在演奏
   if MMLPlayer and MMLPlayer.activePlayers and #MMLPlayer.activePlayers > 0 then
-    for _, activePlayer in ipairs(MMLPlayer.activePlayers) do
-      if activePlayer:isPlayingMusic() then
-        self.character:Say(getText("UI_MML_WaitForOthers") or
-          "Someone is already playing, please wait for them to finish.")
-        return
-      end
-    end
+    self.character:Say(getText("UI_MML_WaitForOthers") or
+      "Someone is already playing, please wait for them to finish.")
+    return
   end
 
   if self.item ~= nil and self.character:getSecondaryHandItem() ~= self.item then
@@ -719,13 +716,9 @@ function MMLInstrumentUI:onEnsemble()
 
   -- 檢查是否有其他玩家正在演奏
   if MMLPlayer and MMLPlayer.activePlayers and #MMLPlayer.activePlayers > 0 then
-    for _, activePlayer in ipairs(MMLPlayer.activePlayers) do
-      if activePlayer:isPlayingMusic() then
-        self.character:Say(getText("UI_MML_WaitForOthers") or
-          "Someone is already playing, please wait for them to finish.")
-        return
-      end
-    end
+    self.character:Say(getText("UI_MML_WaitForOthers") or
+      "Someone is already playing, please wait for them to finish.")
+    return
   end
 
   -- 準備合奏指令資料
@@ -821,7 +814,7 @@ function MMLInstrumentUI:onEnsemble()
 end
 
 -- 新增：執行合奏播放
-function MMLInstrumentUI:onEnsemblePlay(mml)
+function MMLInstrumentUI:onEnsemblePlay(mml, isMain)
   if not mml or mml == "" then
     return
   end
@@ -850,7 +843,11 @@ function MMLInstrumentUI:onEnsemblePlay(mml)
   self.isEnsemble = true
   self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
   self.playButton.enable = false
-  self.stopButton.enable = true
+  if isMain then
+    self.stopButton.enable = true
+  else
+    self.stopButton.enable = false
+  end
   ISTimedActionQueue.add(self.TAPlay)
 end
 

@@ -16,7 +16,7 @@ function TAPlayMMLEnsemble:new(character, item)
   o.maxTime = -1 -- 無限時間（直到播放完成或被打斷）
 
   o.item = item
-  o.playing = true
+  o.isReady = true
   o.isEnsemble = false
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態

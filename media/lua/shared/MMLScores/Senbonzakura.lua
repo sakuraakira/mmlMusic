@@ -1,8 +1,8 @@
 local MMLScores = require("MMLScores")
-MMLScores.register('MMLSheet.simple',
+MMLScores.register('MMLSheet.Senbonzakura',
   function()
     return {
-      name = "simple",
+      name = "Senbonzakura",
       mml = {
         melody = {
           mml1 =

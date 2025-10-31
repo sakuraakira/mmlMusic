@@ -146,27 +146,24 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
     end
   end
 
-
   -- 3. 最後通過 UI 播放自己的部分
   if myMMLPlayer then
-    print("[MMLClient] Playing my ensemble part")
-    local cur = ISTimedActionQueue.getCurrent(player)
-    if cur and instanceof(cur, "TAPlayMMLEnsemble") then
-      cur.isEnsemble = true
-      ISTimedActionQueue.remove(cur)
-      return
-    end
-    local ui = MMLInstrumentUI.getExistingInstance() or nil
-    local isOpen = ui and
-        ((ui.getIsVisible and ui:getIsVisible()) or (ui.isVisible and ui:isVisible()) or ui.visible == true)
-    if (ui and isOpen) then
-      ui:onEnsemblePlay(myMMLPlayer.mml)
+    if args.sourceId == myId then
+      print("[MMLClient] EnsemblePlay for myself: ", tostring(myId))
+      local ui = MMLInstrumentUI.getExistingInstance()
+      ui:onEnsemblePlay(myMMLPlayer.mml, true)
     else
+      local queue = ISTimedActionQueue.getTimedActionQueue(player)
+      local cur = queue.current
+      if cur and cur.isReady then
+        cur.isEnsemble = true
+        cur:stop()
+      end
       ui = MMLInstrumentUI.getInstance(player, player:getSecondaryHandItem())
       ui:show()
-      ui:onEnsemblePlay(myMMLPlayer.mml)
+      ui:onEnsemblePlay(myMMLPlayer.mml, false)
+      print("[MMLClient] EnsemblePlay for me: ", tostring(myId))
     end
-    print("[MMLClient] EnsemblePlay for me: ", tostring(myId))
   end
   -- 統一開始播放（先播放其他玩家，最後播放自己以確保 UI 更新）
   for _, mmlPlayer in ipairs(otherPlayers) do
@@ -195,9 +192,10 @@ MMLClientRecvCommands['ServerEnsembleStop'] = function(args)
       MMLPlayer.activePlayers[id] = nil
 
       if id == myId then
-        local cur = ISTimedActionQueue.getCurrent(myPlayer)
-        if cur and instanceof(cur, "TAPlayMMLFromInventory") then
-          ISTimedActionQueue.remove(cur)
+        local queue = ISTimedActionQueue.getTimedActionQueue(myPlayer)
+        local cur = queue.current;
+        if cur and cur.playing then
+          cur:stop()
           local item = myPlayer:getSecondaryHandItem()
           ISTimedActionQueue.add(TAPlayMMLEnsemble:new(myPlayer, item))
           return
