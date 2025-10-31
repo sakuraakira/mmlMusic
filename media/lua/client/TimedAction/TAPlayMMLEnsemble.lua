@@ -15,10 +15,9 @@ function TAPlayMMLEnsemble:new(character, item)
   o.stopOnAim = true
   o.maxTime = -1 -- 無限時間（直到播放完成或被打斷）
 
-  o.instrument = instrument
   o.item = item
-
   o.playing = true
+  o.isEnsemble = false
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
   return o
@@ -26,6 +25,10 @@ end
 
 function TAPlayMMLEnsemble:isValid()
   return true
+end
+
+function TAPlayMMLEnsemble:setIsEnsemble(isEnsemble)
+  self.isEnsemble = isEnsemble
 end
 
 function TAPlayMMLEnsemble:start()
@@ -59,7 +62,9 @@ function TAPlayMMLEnsemble:start()
 end
 
 function TAPlayMMLEnsemble:stop()
-  self:sendCancelCommand()
+  if not self.isEnsemble then
+    self:sendCancelCommand()
+  end
   ISBaseTimedAction.stop(self)
 end
 

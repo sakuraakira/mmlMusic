@@ -108,7 +108,7 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
   -- 預加載所有玩家的 MML Player
   local myMMLPlayer = nil
   local otherPlayers = {}
-
+  local MMLInstrumentUI = require('MMLInstrumentUI')
   -- 1. 先預加載所有 MML（包括自己的）
   for playerId, assignment in pairs(args.assignments) do
     -- 停止之前的播放
@@ -150,19 +150,23 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
   -- 3. 最後通過 UI 播放自己的部分
   if myMMLPlayer then
     print("[MMLClient] Playing my ensemble part")
-
-    local MMLInstrumentUI = require('MMLInstrumentUI')
+    local cur = ISTimedActionQueue.getCurrent(player)
+    if cur and instanceof(cur, "TAPlayMMLEnsemble") then
+      cur.isEnsemble = true
+      ISTimedActionQueue.remove(cur)
+      return
+    end
     local ui = MMLInstrumentUI.getExistingInstance() or nil
     local isOpen = ui and
         ((ui.getIsVisible and ui:getIsVisible()) or (ui.isVisible and ui:isVisible()) or ui.visible == true)
     if (ui and isOpen) then
-      print("[MMLClient] EnsemblePla for player: ", tostring(playerId))
       ui:onEnsemblePlay(myMMLPlayer.mml)
     else
-      print("[MMLClient] TAPlayMMLFromInventory for player: ", tostring(playerId))
-      ISTimedActionQueue.clear(player)
-      ISTimedActionQueue.add(TAPlayMMLFromInventory:new(player, myMMLPlayer.instrument, myMMLPlayer.mml, false))
+      ui = MMLInstrumentUI.getInstance(player, player:getSecondaryHandItem())
+      ui:show()
+      ui:onEnsemblePlay(myMMLPlayer.mml)
     end
+    print("[MMLClient] EnsemblePlay for me: ", tostring(myId))
   end
   -- 統一開始播放（先播放其他玩家，最後播放自己以確保 UI 更新）
   for _, mmlPlayer in ipairs(otherPlayers) do
@@ -174,7 +178,8 @@ end
 MMLClientRecvCommands['ServerEnsembleStop'] = function(args)
   print("[MMLClient] Received ensemble stop for player: " .. tostring(args.sourceId))
 
-
+  local myPlayer = getPlayer()
+  local myId = myPlayer:getOnlineID()
   -- 停止並清除所有活躍的 MMLPlayer 實例
   if MMLPlayer and type(MMLPlayer.activePlayers) == "table" then
     for id, player in pairs(MMLPlayer.activePlayers) do
@@ -188,12 +193,18 @@ MMLClientRecvCommands['ServerEnsembleStop'] = function(args)
       end
       -- 移除快取
       MMLPlayer.activePlayers[id] = nil
+
+      if id == myId then
+        local cur = ISTimedActionQueue.getCurrent(myPlayer)
+        if cur and instanceof(cur, "TAPlayMMLFromInventory") then
+          ISTimedActionQueue.remove(cur)
+          local item = myPlayer:getSecondaryHandItem()
+          ISTimedActionQueue.add(TAPlayMMLEnsemble:new(myPlayer, item))
+          return
+        end
+      end
     end
   end
-
-  local player = getPlayer()
-
-  ISTimedActionQueue.clear(player)
 end
 
 -- 事件處理
