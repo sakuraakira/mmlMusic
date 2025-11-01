@@ -1,11 +1,10 @@
+local MMLParser = require("MMLParser")
+local MusicPlayer = require("MusicPlayer")
+
 -- MMLPlayer.lua
 ---@class MMLPlayer
 ---@field new fun(self: MMLPlayer ,instrument: string , isSilent:boolean): MMLPlayer
 local MMLPlayer = {}
-
-local MMLParser = require("MMLParser")
-local MusicPlayer = require("MusicPlayer")
-
 -- 全局設定
 MMLPlayer.activePlayers = {}
 MMLPlayer.soundRange = nil
@@ -183,12 +182,6 @@ function MMLPlayer:loadMML(mmlInput)
 
   -- 6) originalMML：tempo 只出現在第 1 軌；其他軌不帶 tempo
   self.originalMML = table.concat(cleanedTracks, ",")
-
-  print(string.format(
-    "[MMLPlayer] Loaded %d tracks, %d total notes, duration: %.2fs",
-    #self.tracks, anyNotes, self.totalDuration / 1000
-  ))
-
   return anyNotes > 0
 end
 
@@ -249,8 +242,6 @@ function MMLPlayer:play()
   self.playerId = self.sourcePlayer:getOnlineID()
   MMLPlayer.activePlayers[self.playerId] = self
 
-  print(string.format("[MMLPlayer] Starting playback (Player: %s, Instrument: %s)",
-    self.playerId, self.instrument))
 
   -- 註冊更新函數
   self.updateFunc = function()

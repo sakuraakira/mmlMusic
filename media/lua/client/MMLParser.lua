@@ -341,12 +341,8 @@ function MMLParser:parseTempo(mml, pos)
 
   if num > 0 then
     if self.isSharedTempo then
-      -- Track 2/3:忽略 tempo 指令
-      print(string.format("[MMLParser] Warning: Tempo change (t%d) ignored in shared track", num))
     else
-      -- Track 1:允許修改
       self.tempoRef.value = num
-      print(string.format("[MMLParser] Tempo changed to %d BPM", num))
     end
   end
 
@@ -429,7 +425,6 @@ function MMLParser:parseAbsoluteNote(mml, pos)
   pos = newPos
 
   if noteNumber + 12 < 0 or noteNumber + 12 > 127 then
-    print(string.format("[MMLParser] Warning: Invalid MIDI note number %d", noteNumber))
     return pos
   end
 

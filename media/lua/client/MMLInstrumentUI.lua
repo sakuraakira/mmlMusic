@@ -16,6 +16,7 @@ local TAPlayMMLFromWorld = require('TimedAction/TAPlayMMLFromWorld')
 local PlayerItemToMMLInstrument = require('MMLInstrument')
 local MMLScores = require('MMLScores')
 local SheetIconSlot = require('IconSlot')
+local MMLMusicSkill = require('MMLMusicSkill')
 local WIDTH = 600
 local HEIGHT = 470 -- 增加高度以容納 Tab
 
@@ -557,21 +558,68 @@ function MMLInstrumentUI:hide()
   self:setVisible(false)
 end
 
-function MMLInstrumentUI:onPlay()
-  if not self.mml then
-    self.statusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet")
-    return
-  end
+function MMLInstrumentUI:setBuff(setxp)
+  local sheetItem = self.character:getPrimaryHandItem()
+  local musicSkill = MMLMusicSkill.getLevel(self.character)
+  -- 預設全為 0
+  local buff = {
+    xp = setxp,
+    applyUnhappyness = 0,
+    applyBoredom = 0,
+    applyPanic = 0,
+    applyStress = 0,
+  }
 
+  -- 確認是樂譜物品
+  if sheetItem then
+    if sheetItem:getFullType() == "MMLSheet.SheetMusic" then
+      local modData = sheetItem:getModData()
+      if modData and modData.buff and modData.buff ~= "" then
+        -- 拆成多個 buff 名稱
+        local activeBuffs = {}
+        for name in string.gmatch(modData.buff, "([^,]+)") do
+          activeBuffs[name] = true
+        end
+        if activeBuffs["masterpiece"] then
+          buff.applyUnhappyness = musicSkill
+          buff.applyBoredom = musicSkill
+          buff.applyPanic = musicSkill
+          buff.applyStress = musicSkill
+        else
+          if activeBuffs["healing"] then buff.applyUnhappyness = musicSkill end
+          if activeBuffs["touching"] then buff.applyBoredom = musicSkill end
+          if activeBuffs["powerful"] then buff.applyPanic = musicSkill end
+          if activeBuffs["beautiful"] then buff.applyStress = musicSkill end
+        end
+      end
+    elseif string.sub(sheetItem:getFullType(), 1, 9) == "MMLSheet." then
+      buff.applyUnhappyness = musicSkill
+      buff.applyBoredom = musicSkill
+      buff.applyPanic = musicSkill
+      buff.applyStress = musicSkill
+    end
+  end
+  self.TAPlay:setMusicBuff(buff)
+end
+
+function MMLInstrumentUI:onPlay()
   -- 檢查是否有其他玩家正在演奏
-  if MMLPlayer and MMLPlayer.activePlayers and #MMLPlayer.activePlayers > 0 then
-    self.character:Say(getText("UI_MML_WaitForOthers") or
-      "Someone is already playing, please wait for them to finish.")
-    return
+  if MMLPlayer and MMLPlayer.activePlayers then
+    for _ in pairs(MMLPlayer.activePlayers) do
+      self.character:Say(getText("UI_MML_WaitForOthers") or
+        "Someone is already playing, please wait for them to finish.")
+      return
+    end
   end
 
   if self.item ~= nil and self.character:getSecondaryHandItem() ~= self.item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(self.character, self.item, 50, false))
+  end
+
+  if not self.mml then
+    self.statusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet")
+    self:onNoMMLPlay()
+    return
   end
 
   local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
@@ -634,13 +682,37 @@ function MMLInstrumentUI:onPlay()
   else
     self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, combined, true)
   end
+  self:setBuff(1)
+  self.TAPlay.onComplete = function()
+    self:onPlaybackComplete()
+  end
+  ISTimedActionQueue.add(self.TAPlay)
 
+  self.isPlaying = true
+  self.isEnsemble = false
+  self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
+  self.playButton.enable = false
+  self.stopButton.enable = true
+end
+
+function MMLInstrumentUI:onNoMMLPlay()
+  local combined = MMLScores.getRandomMML(self.instrument)
+  if self.upperSidePianoObject then
+    local squareFacingPiano = self.facing == "south" and self.upperSidePianoObject:getSquare():getS()
+        or self.upperSidePianoObject:getSquare():getE()
+    ISTimedActionQueue.add(ISWalkToTimedAction:new(self.character, squareFacingPiano))
+
+    self.TAPlay = TAPlayMMLFromWorld:new(
+      self.character, self.instrument,
+      self.upperSidePianoObject, self.facing, self.hasSeat, combined, true)
+  else
+    self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, combined, true)
+  end
   self.TAPlay.onComplete = function()
     self:onPlaybackComplete()
   end
 
   ISTimedActionQueue.add(self.TAPlay)
-
   self.isPlaying = true
   self.isEnsemble = false
   self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
@@ -715,10 +787,18 @@ function MMLInstrumentUI:onEnsemble()
   end
 
   -- 檢查是否有其他玩家正在演奏
-  if MMLPlayer and MMLPlayer.activePlayers and #MMLPlayer.activePlayers > 0 then
-    self.character:Say(getText("UI_MML_WaitForOthers") or
-      "Someone is already playing, please wait for them to finish.")
-    return
+  if MMLPlayer and MMLPlayer.activePlayers then
+    for _ in pairs(MMLPlayer.activePlayers) do
+      self.character:Say(getText("UI_MML_WaitForOthers") or
+        "Someone is already playing, please wait for them to finish.")
+      return
+    end
+  end
+
+  if self.upperSidePianoObject then
+    local squareFacingPiano = self.facing == "south" and self.upperSidePianoObject:getSquare():getS()
+        or self.upperSidePianoObject:getSquare():getE()
+    ISTimedActionQueue.add(ISWalkToTimedAction:new(self.character, squareFacingPiano))
   end
 
   -- 準備合奏指令資料
@@ -809,8 +889,6 @@ function MMLInstrumentUI:onEnsemble()
       }
     )
   end
-
-  print("[MMLInstrumentUI] Ensemble started")
 end
 
 -- 新增：執行合奏播放
@@ -835,10 +913,11 @@ function MMLInstrumentUI:onEnsemblePlay(mml, isMain)
   else
     self.TAPlay = TAPlayMMLFromInventory:new(self.character, myInstrument, mml, false)
   end
-
+  self:setBuff(2)
   self.TAPlay.onComplete = function()
     self:onPlaybackComplete()
   end
+
   self.isPlaying = true
   self.isEnsemble = true
   self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
@@ -884,13 +963,12 @@ function MMLInstrumentUI:onMouseUp(x, y)
 
     -- 篩選或直接處理
     for _, item in ipairs(droppedItems) do
-      local fullType = item:getFullType() -- 例如 "Base.RippedSheetsDirty"
+      local fullType = item:getFullType()
       if fullType == "MMLSheet.SheetMusic" then
         local md = item:getModData() or {}
         local mmlData = md.mml
         if not mmlData or type(mmlData) ~= "table" then
           self:clearMML()
-          print("No MML data found in item", tostring(fullType))
         end
         self:setMML(mmlData, item)
         break

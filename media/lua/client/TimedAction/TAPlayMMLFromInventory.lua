@@ -3,13 +3,14 @@
 
 local MMLPlayer = require('MMLPlayer')
 local MMLMusicBuff = require('MMLMusicBuff')
-local MMLMusicSkill = require('MMLMusicSkill')
+
 ---@class TAPlayMMLFromInventory: ISBaseTimedAction
 ---@field onComplete fun(): nil 顯示視窗
 local TAPlayMMLFromInventory = ISBaseTimedAction:derive('TAPlayMMLFromInventory')
 
 local ItemToAnimation = {
   ['BassFinger'] = 'BardPlayGuitarBass',
+  ['BassPick'] = 'BardPlayGuitarBass',
   ['GuitarDistortion'] = 'BardPlayGuitarElectric',
   ['GuitarClean'] = 'BardPlayGuitarElectric',
   ['GuitarSteel'] = 'BardPlayGuitarElectric',
@@ -43,31 +44,16 @@ function TAPlayMMLFromInventory:new(character, instrument, mml, sendToServer)
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
   o.sendToServer = sendToServer or false
-  local musicSkill = MMLMusicSkill.getLevel(character)
-  self.MusicBuff = MMLMusicBuff:new(character, {
-    xp = sendToServer == false and 2 or 1,
-    applyUnhappyness = musicSkill,
-    applyBoredom = musicSkill,
-    applyPanic = musicSkill,
-    applyStress = musicSkill,
-  })
-  return o
-end
 
-function TAPlayMMLFromInventory:equipInstrumentOnSecondaryHand()
-  if self.character:isItemInBothHands(self.item) then
-    self.handItem = 'BothHands'
-  elseif self.character:isPrimaryHandItem(self.item) then
-    self.handItem = 'PrimaryHand'
-  elseif self.character:isSecondaryHandItem(self.item) then
-    self.handItem = 'SecondaryHand'
-  end
-  self.character:setPrimaryHandItem(nil)
-  self.character:setSecondaryHandItem(self.item)
+  return o
 end
 
 function TAPlayMMLFromInventory:isValid()
   return self.playing
+end
+
+function TAPlayMMLFromInventory:setMusicBuff(cfg)
+  self.MusicBuff = MMLMusicBuff:new(self.character, cfg)
 end
 
 -- ============================================================
@@ -78,10 +64,7 @@ function TAPlayMMLFromInventory:start()
 
   local animName = ItemToAnimation[self.instrument]
   if animName then
-    print("[MML] Setting animation: " .. animName)
     self:setActionAnim(animName)
-  else
-    print("[MML] Warning: No animation found for instrument: " .. tostring(self.instrument))
   end
 
   if isClient() and self.sendToServer then
@@ -94,7 +77,9 @@ function TAPlayMMLFromInventory:start()
     )
   end
 
-  self.MusicBuff:start()
+  if self.MusicBuff then
+    self.MusicBuff:start()
+  end
 end
 
 -- ============================================================
@@ -125,7 +110,9 @@ function TAPlayMMLFromInventory:update()
   else
     self:forceStop()
   end
-  self.MusicBuff:update()
+  if self.MusicBuff then
+    self.MusicBuff:update()
+  end
 end
 
 function TAPlayMMLFromInventory:getProgress()
@@ -144,10 +131,6 @@ end
 -- ============================================================
 function TAPlayMMLFromInventory:stop()
   self.playing = false
-  if isClient() then
-    local MMLClientSendCommands = require("MMLClientSendCommands")
-    MMLClientSendCommands.sendStopMML(self.character:getOnlineID())
-  end
   if self.mmlPlayer then
     self.mmlPlayer:stop()
   end
@@ -160,24 +143,10 @@ function TAPlayMMLFromInventory:stop()
     local MMLClientSendCommands = require("MMLClientSendCommands")
     MMLClientSendCommands.sendStopMML(self.character:getOnlineID())
   end
-  self.MusicBuff:stop()
-  ISBaseTimedAction.stop(self)
-end
-
--- ============================================================
--- 完成
--- ============================================================
-function TAPlayMMLFromInventory:EquipInstrumentAsBefore()
-  if self.handItem == 'PrimaryHand' then
-    self.character:setPrimaryHandItem(self.item)
-    self.character:setSecondaryHandItem(nil)
-  elseif self.handItem == 'SecondaryHand' then
-    self.character:setPrimaryHandItem(nil)
-    self.character:setSecondaryHandItem(self.item)
-  elseif self.handItem == 'BothHands' then
-    self.character:setPrimaryHandItem(self.item)
-    self.character:setSecondaryHandItem(self.item)
+  if self.MusicBuff then
+    self.MusicBuff:stop()
   end
+  ISBaseTimedAction.stop(self)
 end
 
 -- ============================================================
@@ -200,7 +169,9 @@ function TAPlayMMLFromInventory:perform()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
-  self.MusicBuff:stop()
+  if self.MusicBuff then
+    self.MusicBuff:stop()
+  end
   ISBaseTimedAction.perform(self)
 end
 

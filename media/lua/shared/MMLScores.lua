@@ -61,6 +61,113 @@ local function getScoreCount()
   return count
 end
 
+
+-- ============================================
+-- 根據樂器隨機取得組合後的 MML 字串
+-- ============================================
+local InstrumentAdditions = {
+  GuitarSteel = {
+    'MML.1',
+    'MML.2',
+    'MML.3',
+    'MML.5',
+  },
+  GuitarDistortion = {
+    'MML.1',
+    'MML.2',
+    'MML.3',
+    'MML.5',
+  },
+  GuitarClean = {
+    'MML.1',
+    'MML.2',
+    'MML.3',
+    'MML.5',
+  },
+  Piano = {
+    'MML.3',
+    'MML.4',
+    'MML.5',
+    'MML.6',
+    'MML.7',
+  },
+  BassFinger = {
+    'MML.8',
+    'MML.9',
+    'MML.18',
+    'MML.2',
+  },
+  BassPick = {
+    'MML.8',
+    'MML.9',
+    'MML.18',
+    'MML.2',
+  },
+  Keytar = {
+    'MML.3',
+    'MML.4',
+    'MML.5',
+    'MML.6',
+    'MML.7',
+  },
+  Flute = {
+    'MML.13',
+    'MML.14',
+    'MML.15',
+    'MML.16',
+  },
+  Violin = {
+    'MML.13',
+    'MML.14',
+    'MML.15',
+    'MML.16',
+  },
+  Trumpet = {
+    'MML.10',
+    'MML.11',
+    'MML.12',
+    'MML.19',
+  },
+  Saxophone = {
+    'MML.17',
+    'MML.18',
+    'MML.19',
+    'MML.11',
+  }
+}
+
+local function getRandomMMLForInstrument(instrument)
+  local trackType = "melody" -- 預設使用 melody 軌道
+  -- 1. 檢查樂器是否存在
+  local scoreList = InstrumentAdditions[instrument]
+  if not scoreList or #scoreList == 0 then
+    return nil
+  end
+
+  -- 2. 隨機選擇一個樂譜名稱
+  local randomIndex = ZombRand(#scoreList) + 1
+  local scoreName = scoreList[randomIndex]
+  -- 3. 取得樂譜資料
+  local score = getScore(scoreName)
+  if not score then
+    return nil
+  end
+
+  -- 4. 檢查 trackType 是否存在
+  if not score.mml or not score.mml[trackType] then
+    return nil
+  end
+
+  local track = score.mml[trackType]
+
+  -- 5. 組合 mml1, mml2, mml3
+  local mml1 = track.mml1 or ""
+  local mml2 = track.mml2 or ""
+  local mml3 = track.mml3 or ""
+
+  local combined = mml1 .. "," .. mml2 .. "," .. mml3
+  return combined
+end
 -- ============================================
 -- 匯出公開 API
 -- ============================================
@@ -70,5 +177,6 @@ return {
   list = listScores,
   count = getScoreCount,
   register = registerScore,
-  registerBatch = registerScores
+  registerBatch = registerScores,
+  getRandomMML = getRandomMMLForInstrument,
 }

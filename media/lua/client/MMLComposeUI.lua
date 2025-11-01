@@ -21,6 +21,7 @@
 local MMLComposeUI = ISCollapsableWindow:derive("MMLComposeUI")
 
 local MMLPlayer = require('MMLPlayer')
+local MMLMusicSkill = require('MMLMusicSkill')
 
 local WIDTH = 750
 local HEIGHT = 600
@@ -531,6 +532,55 @@ function MMLComposeUI:onStop()
   self.stopButton.enable = false
 end
 
+local function getRandomBuffs(level)
+  local buffs = require("MMLBuffs")
+  local results = {}
+
+  local rules = {
+    [3] = { { chance = 0.3, count = 1 } },
+    [4] = { { chance = 0.6, count = 1 } },
+    [5] = { { chance = 0.6, count = 1 }, { chance = 0.3, count = 1 } },
+    [6] = { { chance = 0.9, count = 1 }, { chance = 0.6, count = 1 }, { chance = 0.1, count = 1 } },
+    [7] = { { chance = 1.0, count = 1 }, { chance = 0.6, count = 1 }, { chance = 0.2, count = 1 } },
+    [8] = { { chance = 1.0, count = 1 }, { chance = 0.6, count = 1 }, { chance = 0.3, count = 1 } },
+    [9] = { { chance = 1.0, count = 2 }, { chance = 0.4, count = 1 } },
+    [10] = { { chance = 1.0, count = 2 }, { chance = 0.5, count = 1 } },
+  }
+
+  local rule = rules[level]
+  if not rule then return results end
+
+  local keys = {}
+  for k in pairs(buffs) do table.insert(keys, k) end
+
+  local function pickOne(exclude)
+    local pool = {}
+    for _, k in ipairs(keys) do
+      if not exclude[k] then table.insert(pool, k) end
+    end
+    if #pool == 0 then return nil end
+    return pool[ZombRand(#pool) + 1]
+  end
+
+  for _, r in ipairs(rule) do
+    if ZombRandFloat(0.0, 1.0) < r.chance then
+      for i = 1, r.count do
+        local pick = pickOne(results)
+        if pick then results[pick] = true end
+      end
+    end
+  end
+
+  local total = 0
+  for _ in pairs(results) do total = total + 1 end
+  if total >= 3 then
+    results = {}
+    results.masterpiece = true
+  end
+
+  return results
+end
+
 function MMLComposeUI:onComplete()
   -- 停止播放（如果正在播放）
   self:onStop()
@@ -592,7 +642,6 @@ function MMLComposeUI:onComplete()
     return
   end
 
-
   -- 從背包中移除空白樂譜
   if self.item:getFullType() == "MMLSheet.BlankSheetMusic" then
     player:getInventory():Remove(self.item)
@@ -607,19 +656,56 @@ function MMLComposeUI:onComplete()
     itemmodData.mml = mmlData
     player:Say(getText("UI_MML_Success") or "Sheet music updated!")
     self.statusLabel:setName(getText("UI_MML_Success") or "Success! Created: ")
+
+    local displayName = getText("UI_MML_SongName") .. sheetName .. ")"
+    if itemmodData.buff and itemmodData.buff ~= "" then
+      local buffs = {}
+      for buffName in string.gmatch(itemmodData.buff, '([^,]+)') do
+        local label = getText("UI_MML_" .. buffName) or buffName
+        table.insert(buffs, "[" .. label .. "]")
+      end
+      displayName = displayName .. "  " .. table.concat(buffs)
+    end
+    self.item:setName(displayName)
     return
   end
 
   -- 創建新的樂譜物品
   local newSheet = player:getInventory():AddItem("MMLSheet.SheetMusic")
   if newSheet then
-    -- 設置樂譜名稱
-    newSheet:setName(getText("UI_MML_SongName") .. sheetName .. ")")
     -- 將 MML 數據保存到物品的 ModData 中
     local modData = newSheet:getModData()
     modData.name = sheetName
     modData.mml = mmlData
 
+    local musicLevel = player:getPerkLevel(Perks.Music)
+    if musicLevel > 2 then
+      -- 取得 buff
+      local activeBuffs = getRandomBuffs(musicLevel)
+      -- 轉換成字串陣列
+      local buffList = {}
+      for k in pairs(activeBuffs) do
+        table.insert(buffList, k)
+      end
+      -- 儲存到 modData.buff
+      if #buffList > 0 then
+        modData.buff = table.concat(buffList, ",")
+      else
+        modData.buff = nil
+      end
+    end
+
+    local displayName = getText("UI_MML_SongName") .. sheetName .. ")"
+    -- 若有 buff，顯示對應文字
+    if modData.buff and modData.buff ~= "" then
+      local buffs = {}
+      for buffName in string.gmatch(modData.buff, '([^,]+)') do
+        local label = getText("UI_MML_" .. buffName) or buffName
+        table.insert(buffs, "[" .. label .. "]")
+      end
+      displayName = displayName .. "  " .. table.concat(buffs)
+    end
+    newSheet:setName(displayName)
     -- 顯示成功訊息
     player:Say(getText("UI_MML_Success") or "Sheet music created!")
     self.statusLabel:setName(getText("UI_MML_Success") or "Success! Created: ")

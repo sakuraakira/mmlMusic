@@ -17,8 +17,6 @@ MMLClientSendCommands.sendStartMML = function(sourceId, instrument, mmlString, p
     y = position.y,
     z = position.z
   })
-
-  print(string.format("[MMLClient] Sent MML to server (length: %d chars)", #mmlString))
 end
 
 -- 發送停止播放
@@ -28,8 +26,6 @@ MMLClientSendCommands.sendStopMML = function(sourceId)
   SendMMLClientCommand('ClientStopMML', {
     sourceId = sourceId
   })
-
-  print("[MMLClient] Sent stop command to server")
 end
 
 -- 請求音效範圍設定
@@ -51,8 +47,6 @@ MMLClientSendCommands.sendEnsembleReady = function(sourceId, playerName, instrum
     y = position.y,
     z = position.z
   })
-
-  print("[MMLClient] Sent ensemble ready to server")
 end
 
 -- 發送取消合奏準備狀態
@@ -65,8 +59,6 @@ MMLClientSendCommands.sendEnsembleCancel = function(sourceId, position)
     y = position.y,
     z = position.z
   })
-
-  print("[MMLClient] Sent ensemble cancel to server")
 end
 
 -- 發送合奏開始指令
@@ -79,8 +71,6 @@ MMLClientSendCommands.sendEnsembleStart = function(assignments, position)
     y = position.y,
     z = position.z
   })
-
-  print("[MMLClient] Sent ensemble start to server")
 end
 
 -- 發送合奏停止指令
@@ -92,8 +82,6 @@ MMLClientSendCommands.sendEnsembleStop = function(position)
     y = position.y,
     z = position.z
   })
-
-  print("[MMLClient] Sent ensemble stop to server")
 end
 
 
@@ -105,8 +93,6 @@ MMLClientSendCommands.sendMusicBuff = function(character, changes)
     sourceId = character:getOnlineID(),
     args = changes
   })
-
-  print("[MMLClient] Sent MusicBuff to server")
 end
 
 return MMLClientSendCommands

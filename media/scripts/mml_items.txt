@@ -7,7 +7,7 @@ module MMLSheet
         DisplayName      = Sheet Music,
         Icon             = MMLSheet.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
+        WorldStaticModel = SheetMusic,
         Tooltip          = Tooltip_MMLSheet_SheetMusic,
     }
     
@@ -18,7 +18,7 @@ module MMLSheet
         DisplayName      = Blank Sheet Music,
         Icon             = MMLSheet_New.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
+        WorldStaticModel = BlankSheetMusic,
         Tooltip          = Tooltip_MMLSheet_BlankSheetMusic,
     }
     
@@ -42,8 +42,8 @@ module MMLSheet
         DisplayName      = Old Sheet (Courage),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_Courage,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
     
     item Unravel
@@ -53,8 +53,8 @@ module MMLSheet
         DisplayName      = Old Sheet (unravel),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_Unravel,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
     
     item Tokyo_teddy_bear
@@ -64,8 +64,8 @@ module MMLSheet
         DisplayName      = Old Sheet (Tokyo teddy bear),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_Tokyo_teddy_bear,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
     
     item Bluebird
@@ -75,8 +75,8 @@ module MMLSheet
         DisplayName      = Old Sheet (Bluebird),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_Bluebird,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
     
     item Magnet
@@ -86,8 +86,8 @@ module MMLSheet
         DisplayName      = Old Sheet (Magnet),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_Magnet,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
     
     item God_knows
@@ -97,8 +97,8 @@ module MMLSheet
         DisplayName      = Old Sheet (God knows..),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_God_knows,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
     
     item Butterfly
@@ -108,8 +108,8 @@ module MMLSheet
         DisplayName      = Old Sheet (Butterfly),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_Butterfly,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
     
     item Senbonzakura
@@ -119,8 +119,8 @@ module MMLSheet
         DisplayName      = Old Sheet (Senbonzakura),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_Senbonzakura,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
     
     item ThoughMySongHasNoShape
@@ -130,7 +130,7 @@ module MMLSheet
         DisplayName      = Old Sheet (Though My Song Has No Shape),
         Icon             = MMLSheet_Old.png,
         Weight           = 0.05,
-        WorldStaticModel = SheetOfPaper,
-        Tooltip          = Tooltip_MMLSheet_ThoughMySongHasNoShape,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
 }

@@ -1,0 +1,22 @@
+module Base
+{
+    model SheetMusic
+    {
+        mesh = WorldItems/SheetOfPaper,
+        texture = WorldItems/SheetMusic,
+        scale = 0.015,
+    }
+    model BlankSheetMusic
+    {
+        mesh = WorldItems/SheetOfPaper,
+        texture = WorldItems/BlankSheetMusic,
+        scale = 0.015,
+    }
+    
+    model YellowingSheetMusic
+    {
+        mesh = WorldItems/SheetOfPaper,
+        texture = WorldItems/YellowingSheetMusic,
+        scale = 0.015,
+    }
+}

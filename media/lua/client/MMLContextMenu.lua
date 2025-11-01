@@ -84,8 +84,6 @@ function MMLContextMenu.onOpenMMLInstrumentUI(player, item)
   if player:getSecondaryHandItem() ~= item then
     ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 50, false))
   end
-  -- 建立並初始化 UI
-  print("Opening MML Instrument UI for  Player ID:", player:getOnlineID())
   local ui = MMLInstrumentUI.getInstance(player, item)
   ui:show()
 end

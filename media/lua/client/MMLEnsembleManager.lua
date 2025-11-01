@@ -12,13 +12,11 @@ function MMLEnsembleManager.addEnsemblePlayer(playerId, playerName, instrument)
     instrument = instrument,
     timestamp = getTimestamp()
   }
-  print("[MMLEnsembleManager] Added ensemble player: " .. playerName .. " (" .. instrument .. ")")
 end
 
 -- 移除準備合奏的玩家
 function MMLEnsembleManager.removeEnsemblePlayer(playerId)
   if ensemblePlayers[playerId] then
-    print("[MMLEnsembleManager] Removed ensemble player: " .. ensemblePlayers[playerId].name)
     ensemblePlayers[playerId] = nil
   end
 end
@@ -39,7 +37,6 @@ end
 -- 清除所有準備合奏的玩家
 function MMLEnsembleManager.clearAllPlayers()
   ensemblePlayers = {}
-  print("[MMLEnsembleManager] Cleared all ensemble players")
 end
 
 -- 檢查玩家是否在準備合奏

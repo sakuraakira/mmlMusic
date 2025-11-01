@@ -5,9 +5,6 @@ local TAPlayMMLFromInventory = require('TimedAction/TAPlayMMLFromInventory')
 
 -- 接收MML 播放命令
 MMLClientRecvCommands['ServerStartMML'] = function(args)
-  print(string.format("[MMLClient] Received MML from server (Player: %s, Instrument: %s)",
-    args.sourceId, args.instrument))
-
   local player = getPlayer()
   local sourcePlayer = getPlayerByOnlineID(args.sourceId)
 
@@ -39,13 +36,10 @@ MMLClientRecvCommands['ServerStartMML'] = function(args)
   end
 
   mmlPlayer:play()
-  print("[MMLClient] Started MML playback")
 end
 
 -- 接收停止命令
 MMLClientRecvCommands['ServerStopMML'] = function(args)
-  print("[MMLClient] Received stop command for player: " .. args.sourceId)
-
   if MMLPlayer.activePlayers[args.sourceId] then
     MMLPlayer.activePlayers[args.sourceId]:stop()
   end
@@ -54,18 +48,15 @@ end
 -- 接收果效
 MMLClientRecvCommands['ServerAnswerRange'] = function(args)
   MMLPlayer.setRange(args.SoundRange)
-  print("[MMLClient] Sound range set to: " .. args.SoundRange)
 end
 
 MMLClientRecvCommands['ServerMusicBuff'] = function(args)
-  print("[MMLClient] Received MusicBuff command for player: " .. args.sourceId)
   local MMLMusicEffectHandler = require("MMLMusicEffectHandler")
   MMLMusicEffectHandler.receiveEffect(args)
 end
 
 -- 接收合奏準備狀態
 MMLClientRecvCommands['ServerEnsembleReady'] = function(args)
-  print("[MMLClient] Received ensemble ready for player: " .. args.sourceId)
   local MMLEnsembleManager = require("MMLEnsembleManager")
   MMLEnsembleManager.addEnsemblePlayer(args.sourceId, args.playerName, args.instrument)
 
@@ -79,11 +70,8 @@ end
 
 -- 接收取消合奏準備狀態
 MMLClientRecvCommands['ServerEnsembleCancel'] = function(args)
-  print("[MMLClient] Received ensemble cancel for player: " .. args.sourceId)
-
   local playerId = getPlayer():getOnlineID()
   if args.sourceId == playerId then
-    print("[MMLClient] Canceling own ensemble preparation, no action needed.")
     return
   end
 
@@ -100,8 +88,6 @@ end
 
 -- 接收合奏開始指令
 MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
-  print("[MMLClient] Received ensemble start command count ", tostring(#args.assignments))
-
   local player = getPlayer()
   local myId = player:getOnlineID()
 
@@ -112,7 +98,6 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
   -- 1. 先預加載所有 MML（包括自己的）
   for playerId, assignment in pairs(args.assignments) do
     -- 停止之前的播放
-    print("[MMLClient] Preloading MML for player: ", tostring(playerId))
     if MMLPlayer.activePlayers[playerId] then
       MMLPlayer.activePlayers[playerId]:stop()
     end
@@ -139,7 +124,6 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
 
           if mmlPlayer:loadMML(mml) then
             table.insert(otherPlayers, mmlPlayer)
-            print("[MMLClient] Preloaded ensemble part for player: " .. playerId)
           end
         end
       end
@@ -149,7 +133,6 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
   -- 3. 最後通過 UI 播放自己的部分
   if myMMLPlayer then
     if args.sourceId == myId then
-      print("[MMLClient] EnsemblePlay for myself: ", tostring(myId))
       local ui = MMLInstrumentUI.getExistingInstance()
       ui:onEnsemblePlay(myMMLPlayer.mml, true)
     else
@@ -162,7 +145,6 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
       ui = MMLInstrumentUI.getInstance(player, player:getSecondaryHandItem())
       ui:show()
       ui:onEnsemblePlay(myMMLPlayer.mml, false)
-      print("[MMLClient] EnsemblePlay for me: ", tostring(myId))
     end
   end
   -- 統一開始播放（先播放其他玩家，最後播放自己以確保 UI 更新）
@@ -173,8 +155,6 @@ end
 
 -- 接收合奏停止指令
 MMLClientRecvCommands['ServerEnsembleStop'] = function(args)
-  print("[MMLClient] Received ensemble stop for player: " .. tostring(args.sourceId))
-
   local myPlayer = getPlayer()
   local myId = myPlayer:getOnlineID()
   -- 停止並清除所有活躍的 MMLPlayer 實例
@@ -182,11 +162,6 @@ MMLClientRecvCommands['ServerEnsembleStop'] = function(args)
     for id, player in pairs(MMLPlayer.activePlayers) do
       if player and type(player.stop) == "function" then
         local ok, err = pcall(function() player:stop() end)
-        if not ok then
-          print("[MMLClient] Error stopping player " .. tostring(id) .. ": " .. tostring(err))
-        else
-          print("[MMLClient] Stopped player " .. tostring(id))
-        end
       end
       -- 移除快取
       MMLPlayer.activePlayers[id] = nil

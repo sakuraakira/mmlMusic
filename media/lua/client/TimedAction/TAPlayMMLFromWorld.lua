@@ -1,6 +1,5 @@
 local MMLPlayer = require('MMLPlayer')
 local MMLMusicBuff = require('MMLMusicBuff')
-local MMLMusicSkill = require('MMLMusicSkill')
 
 ---@class TAPlayMMLFromWorld: ISBaseTimedAction
 ---@field instrumentObject IsoObject
@@ -43,14 +42,7 @@ function TAPlayMMLFromWorld:new(character, instrument, instrumentObject, orienta
   o.lastCheckTime = 0
   o.checkInterval = 100 -- 每100ms檢查一次狀態
   o.sendToServer = sendToServer or false
-  local musicSkill = MMLMusicSkill.getLevel(character)
-  self.MusicBuff = MMLMusicBuff:new(character, {
-    xp = sendToServer == false and 3 or 2,
-    applyUnhappyness = musicSkill,
-    applyBoredom = musicSkill,
-    applyPanic = musicSkill,
-    applyStress = musicSkill,
-  })
+  o.MusicBuff = nil
   return o
 end
 
@@ -88,17 +80,6 @@ function TAPlayMMLFromWorld:startAnimation()
       end
     end
   end
-  print(string.format("[MML] Warning: No matching animation (instrument=%s, seated=%s).",
-    tostring(self.instrument), tostring(self.seated)))
-end
-
-function TAPlayMMLFromWorld:unequipHandItems()
-  local secondaryItem = self.character:getSecondaryHandItem()
-  if secondaryItem ~= nil then
-    table.insert(self.handItems,
-      { item = secondaryItem, hands = "secondary" })
-  end
-  self.character:setSecondaryHandItem(nil)
 end
 
 function TAPlayMMLFromWorld:start()
@@ -115,26 +96,17 @@ function TAPlayMMLFromWorld:start()
       { x = self.character:getX(), y = self.character:getY(), z = self.character:getZ() }
     )
   end
-  self.MusicBuff:start()
+  if self.MusicBuff then
+    self.MusicBuff:start()
+  end
 end
 
 function TAPlayMMLFromWorld:isValid()
   return self.playing
 end
 
-function TAPlayMMLFromWorld:equipHandItemsAsBefore()
-  for _, handItemInfo in ipairs(self.handItems) do
-    if handItemInfo.hands == 'both' then
-      self.character:setSecondaryHandItem(handItemInfo.item)
-    elseif handItemInfo.hands == 'secondary' then
-      self.character:setSecondaryHandItem(handItemInfo.item)
-    end
-  end
-  self.handItems = {}
-end
-
-function TAPlayMMLFromWorld:terminateAction()
-
+function TAPlayMMLFromWorld:setMusicBuff(cfg)
+  self.MusicBuff = MMLMusicBuff:new(self.character, cfg)
 end
 
 -- ============================================================
@@ -156,7 +128,9 @@ function TAPlayMMLFromWorld:perform()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
-  self.MusicBuff:stop()
+  if self.MusicBuff then
+    self.MusicBuff:stop()
+  end
   ISBaseTimedAction.perform(self)
 end
 
@@ -174,7 +148,10 @@ function TAPlayMMLFromWorld:stop()
   if self.onComplete and type(self.onComplete) == "function" then
     self.onComplete()
   end
-  self.MusicBuff:stop()
+  if self.MusicBuff then
+    self.MusicBuff:stop()
+  end
+
   ISBaseTimedAction.stop(self)
 end
 
@@ -203,7 +180,9 @@ function TAPlayMMLFromWorld:update()
   else
     self:forceStop()
   end
-  self.MusicBuff:update()
+  if self.MusicBuff then
+    self.MusicBuff:update()
+  end
 end
 
 function TAPlayMMLFromWorld:getProgress()

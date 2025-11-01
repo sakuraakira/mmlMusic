@@ -42,12 +42,10 @@ local function applyMMLSelection(playerObj, item)
   if not (ui and isOpen) then return end
 
   local fullType = item:getFullType()
-  print("item type:", fullType)
   if fullType == "MMLSheet.SheetMusic" then
     local mmlData = item:getModData().mml
     if not mmlData or type(mmlData) ~= "table" then
       ui:clearMML()
-      print("No MML data found in item", tostring(fullType))
       return
     end
     ui:setMML(mmlData, item)
@@ -61,7 +59,6 @@ local function applyMMLSelection(playerObj, item)
 
     if not sheet or type(sheet.mml) ~= "table" then
       ui:clearMML()
-      print("No matching sheet for", tostring(fullType))
       return
     end
     ui:setMML(sheet.mml, item)
@@ -92,5 +89,3 @@ Events.OnEquipSecondary.Add(function(playerObj, item)
     MMLInstrumentUI.getInstance(playerObj, item)
   end
 end)
-
-print("[MML] MML system initialized successfully")

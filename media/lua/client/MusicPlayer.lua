@@ -41,10 +41,8 @@ function MusicPlayer:new()
   if not isClient() then
     if SandboxVars and SandboxVars.BardInteractiveMusic and SandboxVars.BardInteractiveMusic.SoundRange then
       self.range = SandboxVars.BardInteractiveMusic.SoundRange
-      print("[MusicPlayer] Sound range set from SandboxVars: " .. self.range)
     else
       self.range = 40 -- 預設值
-      print("[MusicPlayer] SandboxVars not found, using default sound range: 40")
     end
   end
 
@@ -75,7 +73,6 @@ end
 
 function MusicPlayer:playNote(sourcePlayerId, instrument, note, velocity, isSilent)
   if self.range == nil then
-    print('[MusicPlayer] ERROR: sound range not set')
     self.range = 40 -- 緊急預設值
   end
   local instrumentNote = GetFileName(instrument, note)
