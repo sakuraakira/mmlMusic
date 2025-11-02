@@ -1,0 +1,21 @@
+ItemName_JP = {
+  ItemName_MMLSheet.Courage = "黄ばんだ楽譜（曲名：Courage）",
+  ItemName_MMLSheet.Unravel = "黄ばんだ楽譜（曲名：unravel）",
+  ItemName_MMLSheet.Tokyo_teddy_bear = "黄ばんだ楽譜（曲名：東京テディベア）",
+  ItemName_MMLSheet.Bluebird = "黄ばんだ楽譜（曲名：ブルーバード）",
+  ItemName_MMLSheet.Magnet = "黄ばんだ楽譜（曲名：Magnet）",
+  ItemName_MMLSheet.God_knows = "黄ばんだ楽譜（曲名：God knows..）",
+  ItemName_MMLSheet.Senbonzakura  = "黄ばんだ楽譜（曲名：千本桜）",
+  ItemName_MMLSheet.Butterfly  = "黄ばんだ楽譜（曲名：Butterfly）",
+  ItemName_MMLSheet.ThoughMySongHasNoShape  = "黄ばんだ楽譜（曲名：歌に形はないけれど）",
+
+  ItemName_MMLSheet.SheetMusic = "楽譜",
+  ItemName_MMLSheet.BlankSheetBook = "空白の楽譜帳",
+  ItemName_MMLSheet.BlankSheetMusic = "空白の楽譜",
+
+  ItemName_MMLSheet.MusicSkill_Book1 = "音楽 第1巻 - 初級",
+  ItemName_MMLSheet.MusicSkill_Book2 = "音楽 第2巻 - 中級",
+  ItemName_MMLSheet.MusicSkill_Book3 = "音楽 第3巻 - 上級",
+  ItemName_MMLSheet.MusicSkill_Book4 = "音楽 第4巻 - 達人",
+  ItemName_MMLSheet.MusicSkill_Book5 = "音楽 第5巻 - マスター",
+}

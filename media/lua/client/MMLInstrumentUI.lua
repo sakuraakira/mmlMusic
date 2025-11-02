@@ -617,7 +617,7 @@ function MMLInstrumentUI:onPlay()
   end
 
   if not self.mml then
-    self.statusLabel:setName(getText("UI_MML_NoSheet") or "No Sheet")
+    self.statusLabel:setName(getText("UI_MML_NoSheetPlay") or "No Sheet Play")
     self:onNoMMLPlay()
     return
   end
@@ -920,7 +920,7 @@ function MMLInstrumentUI:onEnsemblePlay(mml, isMain)
 
   self.isPlaying = true
   self.isEnsemble = true
-  self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
+  self.statusLabel:setName(getText("UI_MML_Ensembling") or "Playing...")
   self.playButton.enable = false
   if isMain then
     self.stopButton.enable = true

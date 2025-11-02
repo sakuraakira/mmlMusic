@@ -1,0 +1,21 @@
+ItemName_EN = {
+  ItemName_MMLSheet.Courage = "Aged Sheet Music (Title: Courage)",
+  ItemName_MMLSheet.Unravel = "Aged Sheet Music (Title: unravel)",
+  ItemName_MMLSheet.Tokyo_teddy_bear = "Aged Sheet Music (Title: Tokyo Teddy bear)",
+  ItemName_MMLSheet.Bluebird = "Aged Sheet Music (Title: Bluebird)",
+  ItemName_MMLSheet.Magnet = "Aged Sheet Music (Title: Magnet)",
+  ItemName_MMLSheet.God_knows = "Aged Sheet Music (Title: God knows..)",
+  ItemName_MMLSheet.Senbonzakura  = "Aged Sheet Music (Title: Senbonzakura)",
+  ItemName_MMLSheet.Butterfly  = "Aged Sheet Music (Title: Butterfly)",
+  ItemName_MMLSheet.ThoughMySongHasNoShape  = "Aged Sheet Music (Title: Though My Song Has No Shape)",
+
+  ItemName_MMLSheet.SheetMusic = "Sheet Music",
+  ItemName_MMLSheet.BlankSheetBook = "Blank Sheet Music Book",
+  ItemName_MMLSheet.BlankSheetMusic = "Blank Sheet Music",
+
+  ItemName_MMLSheet.MusicSkill_Book1 = "Music Vol.1 - Beginner",
+  ItemName_MMLSheet.MusicSkill_Book2 = "Music Vol.2 - Intermediate",
+  ItemName_MMLSheet.MusicSkill_Book3 = "Music Vol.3 - Advanced",
+  ItemName_MMLSheet.MusicSkill_Book4 = "Music Vol.4 - Expert",
+  ItemName_MMLSheet.MusicSkill_Book5 = "Music Vol.5 - Master",
+}

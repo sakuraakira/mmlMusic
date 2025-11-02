@@ -1,0 +1,12 @@
+Tooltip_CN = {
+  Tooltip_MMLSheet_Masterpiece = "装备在主手可以演奏乐器<br>演奏时周围的人会减少所有负面情绪",
+  Tooltip_MMLSheet_MusicSkill_Book1 = "《弹指之间》— 吉他初学者的最爱",
+  Tooltip_MMLSheet_MusicSkill_Book2 = "《Funk Bass Fills》— 贝斯的完美教材",
+  Tooltip_MMLSheet_MusicSkill_Book3 = "《斯丹达尔管乐教程》— 进阶管乐技巧",
+  Tooltip_MMLSheet_MusicSkill_Book4 = "《流行钢琴的和弦奥秘》— 完美的合声训练",
+  Tooltip_MMLSheet_MusicSkill_Book5 = "《牛津小提琴进阶教程》— 提升绝对音感",
+  Tooltip_MMLSheet_SheetMusic = "装备在主手可以使用乐器演奏<br>演奏时周围的人会受到乐谱效果影响：<br>疗愈：降低不快乐<br>动人：降低无聊<br>震撼：降低恐慌<br>优美：降低压力<br>神曲：降低所有负面情绪",
+  Tooltip_MMLSheet_BlankSheetMusic = "右键开始创作新乐谱",
+  Tooltip_MMLSheet_BlankSheetBook = "右键开始创作，可制作10份乐谱",
+  Tooltip_BookTitle_Music = "提升音乐演奏能力",
+}

@@ -1,0 +1,21 @@
+ItemName_CN = {
+  ItemName_MMLSheet.Courage = "泛黄乐谱（曲名：Courage）",
+  ItemName_MMLSheet.Unravel = "泛黄乐谱（曲名：unravel）",
+  ItemName_MMLSheet.Tokyo_teddy_bear = "泛黄乐谱（曲名：东京Teddy bear）",
+  ItemName_MMLSheet.Bluebird = "泛黄乐谱（曲名：Bluebird）",
+  ItemName_MMLSheet.Magnet = "泛黄乐谱（曲名：Magnet）",
+  ItemName_MMLSheet.God_knows = "泛黄乐谱（曲名：God knows..）",
+  ItemName_MMLSheet.Senbonzakura  = "泛黄乐谱（曲名：千本樱）",
+  ItemName_MMLSheet.Butterfly  = "泛黄乐谱（曲名：Butterfly）",
+  ItemName_MMLSheet.ThoughMySongHasNoShape  = "泛黄乐谱（曲名：虽然后歌声无形）",
+
+  ItemName_MMLSheet.SheetMusic = "乐谱",
+  ItemName_MMLSheet.BlankSheetBook = "空白乐谱本",
+  ItemName_MMLSheet.BlankSheetMusic = "空白乐谱",
+
+  ItemName_MMLSheet.MusicSkill_Book1 = "音乐 第1卷 - 入门",
+  ItemName_MMLSheet.MusicSkill_Book2 = "音乐 第2卷 - 中级",
+  ItemName_MMLSheet.MusicSkill_Book3 = "音乐 第3卷 - 进阶",
+  ItemName_MMLSheet.MusicSkill_Book4 = "音乐 第4卷 - 专家",
+  ItemName_MMLSheet.MusicSkill_Book5 = "音乐 第5卷 - 大师",
+}

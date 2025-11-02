@@ -1,0 +1,3 @@
+IGUI_CH = {
+    IGUI_perks_UI_MusicSkill = "音乐",
+}

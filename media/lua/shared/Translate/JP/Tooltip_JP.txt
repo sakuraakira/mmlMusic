@@ -1,0 +1,12 @@
+Tooltip_JP = {
+  Tooltip_MMLSheet_Masterpiece = "メインハンドに装備すると楽器で演奏できる<br>演奏中、周囲の人々のネガティブな感情をすべて和らげる",
+  Tooltip_MMLSheet_MusicSkill_Book1 = "《指先の魔法》— ギター初心者に人気の教材",
+  Tooltip_MMLSheet_MusicSkill_Book2 = "《Funk Bass Fills》— ベース演奏の完璧な教本",
+  Tooltip_MMLSheet_MusicSkill_Book3 = "《スタンダール管楽チュートリアル》— 上級管楽テクニック",
+  Tooltip_MMLSheet_MusicSkill_Book4 = "《ポップピアノの和音の秘密》— 完璧なハーモニーを学ぶ",
+  Tooltip_MMLSheet_MusicSkill_Book5 = "《オックスフォード上級ヴァイオリン講座》— 絶対音感を鍛える",
+  Tooltip_MMLSheet_SheetMusic = "メインハンドに装備すると楽器で演奏可能<br>演奏中、周囲の人々に以下の効果：<br>癒し：不快感を軽減<br>感動：退屈を軽減<br>衝撃：恐怖を軽減<br>美麗：ストレスを軽減<br>神曲：全ての負面効果を軽減",
+  Tooltip_MMLSheet_BlankSheetMusic = "右クリックで新しい楽譜を作曲",
+  Tooltip_MMLSheet_BlankSheetBook = "右クリックで作曲開始（最大10枚の楽譜を作成可能）",
+  Tooltip_BookTitle_Music = "音楽演奏能力を向上させる",
+}

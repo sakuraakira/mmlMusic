@@ -1,0 +1,12 @@
+Tooltip_EN = {
+  Tooltip_MMLSheet_Masterpiece = "Equip in main hand to perform music<br>While playing, nearby people reduce all negative emotions",
+  Tooltip_MMLSheet_MusicSkill_Book1 = "《At Your Fingertips》 — A beginner’s favorite for guitar",
+  Tooltip_MMLSheet_MusicSkill_Book2 = "《Funk Bass Fills》 — The perfect guide for bass players",
+  Tooltip_MMLSheet_MusicSkill_Book3 = "《Stendhal’s Best Wind Techniques》 — Advanced wind instrument skills",
+  Tooltip_MMLSheet_MusicSkill_Book4 = "《Secrets of Pop Piano Chords》 — Perfect harmony training",
+  Tooltip_MMLSheet_MusicSkill_Book5 = "《Oxford Advanced Violin Course》 — Develops perfect pitch",
+  Tooltip_MMLSheet_SheetMusic = "Equip in main hand to perform with an instrument<br>During performance, nearby people receive sheet effects:<br>Healing: Reduces unhappiness<br>Touching: Reduces boredom<br>Powerful: Reduces panic<br>Beautiful: Reduces stress<br>Masterpiece: Reduces all negatives",
+  Tooltip_MMLSheet_BlankSheetMusic = "Right-click to start composing into a new sheet",
+  Tooltip_MMLSheet_BlankSheetBook = "Right-click to start composing; can create up to 10 sheets",
+  Tooltip_BookTitle_Music = "Improves musical performance ability",
+}
