@@ -8,6 +8,7 @@ ItemName_CH = {
   ItemName_MMLSheet.Senbonzakura  = "泛黃樂譜(曲名:千本櫻)",
   ItemName_MMLSheet.Butterfly  = "泛黃樂譜(曲名:Butterfly)",
   ItemName_MMLSheet.ThoughMySongHasNoShape  = "泛黃樂譜(曲名:雖然歌聲無形)",
+  ItemName_MMLSheet.TheGame  = "泛黃樂譜(曲名:The game)",
 
   ItemName_MMLSheet.SheetMusic = "樂譜",
   ItemName_MMLSheet.BlankSheetBook = "空白樂譜本",

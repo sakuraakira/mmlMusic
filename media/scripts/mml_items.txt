@@ -133,4 +133,15 @@ module MMLSheet
         WorldStaticModel = YellowingSheetMusic,
         Tooltip          = Tooltip_MMLSheet_Masterpiece,
     }
+    
+    item TheGame
+    {
+        DisplayCategory  = Literature,
+        Type             = Normal,
+        DisplayName      = Old Sheet (The game),
+        Icon             = MMLSheet_Old.png,
+        Weight           = 0.05,
+        WorldStaticModel = YellowingSheetMusic,
+        Tooltip          = Tooltip_MMLSheet_Masterpiece,
+    }
 }
