@@ -130,6 +130,9 @@ MMLClientRecvCommands['ServerEnsembleStart'] = function(args)
     end
   end
 
+  local startAt = args.startAt or (GetCurrentTimeInMs() + 500) -- 500ms後
+  MMLPlayer.setGlobalStartAt(startAt)
+
   -- 3. 最後通過 UI 播放自己的部分
   if myMMLPlayer then
     if args.sourceId == myId then

@@ -22,6 +22,7 @@ local MMLComposeUI = ISCollapsableWindow:derive("MMLComposeUI")
 
 local MMLPlayer = require('MMLPlayer')
 local MMLMusicSkill = require('MMLMusicSkill')
+local MMLScores = require('MMLScores')
 
 local WIDTH = 750
 local HEIGHT = 600
@@ -64,8 +65,8 @@ function MMLComposeUI.getInstance(character, item)
     instance.character = character
     instance.item = item
   end
-
-  if item:getFullType() == "MMLSheet.SheetMusic" then
+  local itemType = item:getFullType()
+  if itemType == "MMLSheet.SheetMusic" then
     local mmlData = item:getModData().mml
     if mmlData and type(mmlData) == "table" then
       -- 如果已經初始化，直接加載數據
@@ -81,6 +82,26 @@ function MMLComposeUI.getInstance(character, item)
         instance.pendingMMLData = mmlData
         -- 同時更新名稱
         local sheetName = item:getModData().name
+        if sheetName then
+          instance.pendingSheetName = sheetName
+        end
+      end
+    end
+  elseif MMLScores.has(itemType) then
+    local scoreData = MMLScores.get(itemType)
+    if scoreData then
+      -- 如果已經初始化，直接加載數據
+      if instance.isInitialized then
+        instance:loadMMLData(scoreData)
+        local sheetName = scoreData.name
+        if sheetName and instance.NameText then
+          instance.NameText:setText(sheetName)
+        end
+      else
+        -- 延遲加載數據，等待UI初始化完成
+        instance.pendingMMLData = scoreData
+        -- 同時更新名稱
+        local sheetName = scoreData.name
         if sheetName then
           instance.pendingSheetName = sheetName
         end

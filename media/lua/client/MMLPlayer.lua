@@ -1,6 +1,7 @@
 local MMLParser = require("MMLParser")
 local MusicPlayer = require("MusicPlayer")
 
+
 -- MMLPlayer.lua
 ---@class MMLPlayer
 ---@field new fun(self: MMLPlayer ,instrument: string , isSilent:boolean): MMLPlayer
@@ -8,6 +9,7 @@ local MMLPlayer = {}
 -- 全局設定
 MMLPlayer.activePlayers = {}
 MMLPlayer.soundRange = nil
+MMLPlayer.GlobalStartAt = nil
 
 -- ============================================================
 -- 全局設定函數
@@ -19,6 +21,10 @@ end
 
 function MMLPlayer.getRange()
   return MMLPlayer.soundRange or 40
+end
+
+function MMLPlayer.setGlobalStartAt(t)
+  MMLPlayer.GlobalStartAt = t
 end
 
 -- ============================================================
@@ -116,8 +122,7 @@ function MMLPlayer:loadMML(mmlInput)
   end
 
   -- 若初始 tempo 在第 1 軌本來就有，就保留原樣；若完全沒有找到，沿用 sharedTempo.value=120
-
-  -- 5) 逐軌解析：**先解析第 1 軌**（讓中途變速填入 sharedTempo），再解析其餘軌
+  -- 逐軌解析：**先解析第 1 軌**（讓中途變速填入 sharedTempo），再解析其餘軌
   local parseOrder = {}
   if #cleanedTracks >= 1 then table.insert(parseOrder, 1) end
   for i = 2, #cleanedTracks do table.insert(parseOrder, i) end
@@ -180,7 +185,7 @@ function MMLPlayer:loadMML(mmlInput)
     cleanedTracks[i] = trim(s)
   end
 
-  -- 6) originalMML：tempo 只出現在第 1 軌；其他軌不帶 tempo
+  -- originalMML：tempo 只出現在第 1 軌；其他軌不帶 tempo
   self.originalMML = table.concat(cleanedTracks, ",")
   return anyNotes > 0
 end
@@ -221,9 +226,9 @@ function MMLPlayer:play()
     return false
   end
 
-  self.isPlaying = true
-  self.startTime = GetCurrentTimeInMs()
+  self.isPlaying   = true
   self.activeNotes = {}
+  self.startTime   = MMLPlayer.GlobalStartAt or GetCurrentTimeInMs()
 
   -- 重置每個 track 的播放狀態與索引
   for _, t in ipairs(self.tracks) do
@@ -269,22 +274,25 @@ function MMLPlayer:update()
     end
   end
 
-  local currentTime = GetCurrentTimeInMs() - self.startTime
   local player = getPlayer()
-
   -- 計算音量(基於距離)
   if self.sourcePlayer and self.sourcePlayer ~= player then
     local distance = player:DistTo(
       self.sourcePlayer:getX(),
       self.sourcePlayer:getY()
     )
-
     local maxRange = MMLPlayer.getRange()
-
     if distance > maxRange then
       self:stop()
       return
     end
+  end
+
+
+  -- 尚未到開演時間 -> 不做任何事（同步的關鍵）
+  local currentTime = nowMs() - self.startTime
+  if currentTime < 0 then
+    return
   end
 
   -- 遍歷 track 排程播放(各 track 的 startTime 都是相對同一個 start)
