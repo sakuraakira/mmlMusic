@@ -617,7 +617,6 @@ function MMLInstrumentUI:onPlay()
   end
 
   if not self.mml then
-    self.statusLabel:setName(getText("UI_MML_NoSheetPlay") or "No Sheet Play")
     self:onNoMMLPlay()
     return
   end
@@ -715,9 +714,9 @@ function MMLInstrumentUI:onNoMMLPlay()
   ISTimedActionQueue.add(self.TAPlay)
   self.isPlaying = true
   self.isEnsemble = false
-  self.statusLabel:setName(getText("UI_MML_Playing") or "Playing...")
   self.playButton.enable = false
   self.stopButton.enable = true
+  self.statusLabel:setName(getText("UI_MML_NoSheetPlay") or "No Sheet Play")
 end
 
 -- 新增：播放完成時的回調
