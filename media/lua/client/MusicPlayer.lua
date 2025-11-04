@@ -11,6 +11,7 @@ end
 
 local InstrumentParameters = {
   ["Piano"] = { baseTime = 400, fadingTime = 200, polyphonic = true },
+  ["Keytar"] = { baseTime = 400, fadingTime = 100, polyphonic = true },
   ["Violin"] = { baseTime = 200, fadingTime = 100, polyphonic = true },
   ["GuitarDistortion"] = { baseTime = 300, fadingTime = 150, polyphonic = true },
   ["GuitarClean"] = { baseTime = 250, fadingTime = 150, polyphonic = true },

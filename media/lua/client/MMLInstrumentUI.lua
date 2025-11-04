@@ -682,7 +682,7 @@ function MMLInstrumentUI:onPlay()
     self.TAPlay = TAPlayMMLFromInventory:new(self.character, self.instrument, combined, true)
   end
 
-  local startAt = args.startAt or (GetCurrentTimeInMs() + 500)
+  local startAt = GetCurrentTimeInMs() + 500
   MMLPlayer.setGlobalStartAt(startAt)
   self:setBuff(1)
   self.TAPlay.onComplete = function()

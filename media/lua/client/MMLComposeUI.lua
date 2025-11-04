@@ -88,18 +88,20 @@ function MMLComposeUI.getInstance(character, item)
       end
     end
   elseif MMLScores.has(itemType) then
+    print("Loading MML score data for item type: " .. itemType)
     local scoreData = MMLScores.get(itemType)
+    print("scoreData type: " .. type(scoreData))
     if scoreData then
       -- 如果已經初始化，直接加載數據
       if instance.isInitialized then
-        instance:loadMMLData(scoreData)
+        instance:loadMMLData(scoreData.mml)
         local sheetName = scoreData.name
         if sheetName and instance.NameText then
           instance.NameText:setText(sheetName)
         end
       else
         -- 延遲加載數據，等待UI初始化完成
-        instance.pendingMMLData = scoreData
+        instance.pendingMMLData = scoreData.mml
         -- 同時更新名稱
         local sheetName = scoreData.name
         if sheetName then
@@ -496,6 +498,9 @@ function MMLComposeUI:onPlay()
   local anyPlayed = false
   local playedCount = 0
 
+  local startAt = Calendar.getInstance():getTimeInMillis() + 500
+  MMLPlayer.setGlobalStartAt(startAt)
+
   for _, tabName in ipairs(tabNames) do
     local controls = self.tabControls[tabName]
     if controls then
@@ -688,6 +693,10 @@ function MMLComposeUI:onComplete()
       displayName = displayName .. "  " .. table.concat(buffs)
     end
     self.item:setName(displayName)
+    return
+  else
+    player:Say(getText("UI_MML_IsAgedSheet") or "Is Aged Sheet!")
+    self.statusLabel:setName(getText("UI_MML_IsAgedSheet") or "Is Aged Sheet")
     return
   end
 

@@ -42,7 +42,7 @@ function MMLContextMenu.createMenu(playerIndex, context, items)
       )
     end
     return
-  elseif fullType:sub(1, 9) == "MMLSheet." then
+  elseif itemType:sub(1, 9) == "MMLSheet." then
     -- 檢查玩家背包是否有「筆」類物品（簡單用 fullType 名稱包含 Pen/Pencil 判斷）
     local function playerHasPen(p)
       if not p or not p:getInventory() then return false end

@@ -247,6 +247,12 @@ function MMLPlayer:play()
   self.playerId = self.sourcePlayer:getOnlineID()
   MMLPlayer.activePlayers[self.playerId] = self
 
+  local sm = getSoundManager()
+  if sm:getMusicVolume() ~= 0 then
+    self.currentVol = sm:getMusicVolume()
+    sm:setMusicVolume(0)
+  end
+
 
   -- 註冊更新函數
   self.updateFunc = function()
@@ -290,7 +296,7 @@ function MMLPlayer:update()
 
 
   -- 尚未到開演時間 -> 不做任何事（同步的關鍵）
-  local currentTime = nowMs() - self.startTime
+  local currentTime = GetCurrentTimeInMs() - self.startTime
   if currentTime < 0 then
     return
   end
@@ -338,7 +344,6 @@ function MMLPlayer:update()
 
   if finished and #self.activeNotes == 0 then
     self:stop()
-    print("[MMLPlayer] Playback finished!")
   end
 end
 
@@ -377,6 +382,11 @@ end
 -- ============================================================
 function MMLPlayer:stop()
   if not self.isPlaying then return end
+
+  local sm = getSoundManager()
+  if sm:getMusicVolume() ~= self.currentVol then
+    sm:setMusicVolume(self.currentVol)
+  end
 
   self.isPlaying = false
 
