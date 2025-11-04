@@ -384,7 +384,7 @@ function MMLPlayer:stop()
   if not self.isPlaying then return end
 
   local sm = getSoundManager()
-  if sm:getMusicVolume() ~= self.currentVol then
+  if self.currentVol and sm:getMusicVolume() ~= self.currentVol then
     sm:setMusicVolume(self.currentVol)
   end
 

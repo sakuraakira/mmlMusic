@@ -8,7 +8,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
         }
     }
     
@@ -20,7 +20,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
             pitch = 1.0594630944,
         }
     }
@@ -33,7 +33,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
             pitch = 0.9438743127,
         }
     }
@@ -46,7 +46,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
         }
     }
     
@@ -58,7 +58,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
             pitch = 1.0594630944,
         }
     }
@@ -71,7 +71,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
             pitch = 0.9438743127,
         }
     }
@@ -84,7 +84,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
         }
     }
     
@@ -96,7 +96,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
             pitch = 1.0594630944,
         }
     }
@@ -109,7 +109,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
             pitch = 0.9438743127,
         }
     }
@@ -122,7 +122,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
         }
     }
     
@@ -134,7 +134,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A2.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
             pitch = 1.0594630944,
         }
     }
@@ -147,7 +147,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.6,
+            volume = 0.5,
             pitch = 0.9438743127,
         }
     }
@@ -160,7 +160,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
         }
     }
     
@@ -172,7 +172,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
             pitch = 1.0594630944,
         }
     }
@@ -185,7 +185,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
             pitch = 0.9438743127,
         }
     }
@@ -198,7 +198,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
         }
     }
     
@@ -210,7 +210,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
             pitch = 1.0594630944,
         }
     }
@@ -223,7 +223,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
             pitch = 0.9438743127,
         }
     }
@@ -236,7 +236,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
         }
     }
     
@@ -248,7 +248,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
             pitch = 1.0594630944,
         }
     }
@@ -261,7 +261,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.62,
+            volume = 0.55,
             pitch = 0.9438743127,
         }
     }
@@ -274,7 +274,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
         }
     }
     
@@ -286,7 +286,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A3.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
             pitch = 1.0594630944,
         }
     }
@@ -299,7 +299,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
             pitch = 0.9438743127,
         }
     }
@@ -312,7 +312,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
         }
     }
     
@@ -324,7 +324,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
             pitch = 1.0594630944,
         }
     }
@@ -337,7 +337,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
             pitch = 0.9438743127,
         }
     }
@@ -350,7 +350,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
         }
     }
     
@@ -362,7 +362,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
             pitch = 1.0594630944,
         }
     }
@@ -375,7 +375,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.65,
+            volume = 0.55,
             pitch = 0.9438743127,
         }
     }
@@ -388,7 +388,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.6,
         }
     }
     
@@ -400,7 +400,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.6,
             pitch = 1.0594630944,
         }
     }
@@ -413,7 +413,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.6,
             pitch = 0.9438743127,
         }
     }
@@ -426,7 +426,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.6,
         }
     }
     
@@ -438,7 +438,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A4.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.6,
             pitch = 1.0594630944,
         }
     }
@@ -451,7 +451,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.7,
+            volume = 0.6,
             pitch = 0.9438743127,
         }
     }
@@ -464,7 +464,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
         }
     }
     
@@ -476,7 +476,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
             pitch = 1.0594630944,
         }
     }
@@ -489,7 +489,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
             pitch = 0.9438743127,
         }
     }
@@ -502,7 +502,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
         }
     }
     
@@ -514,7 +514,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Ds5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
             pitch = 1.0594630944,
         }
     }
@@ -527,7 +527,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
             pitch = 0.9438743127,
         }
     }
@@ -540,7 +540,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
         }
     }
     
@@ -552,7 +552,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_Fs5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
             pitch = 1.0594630944,
         }
     }
@@ -565,7 +565,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
             pitch = 0.9438743127,
         }
     }
@@ -578,7 +578,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
         }
     }
     
@@ -590,7 +590,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_A5.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
             pitch = 1.0594630944,
         }
     }
@@ -603,7 +603,7 @@ module mmlMusic {
             file = media/sound/guitarDistortion/GuitarDistortion_C6.ogg,
             distanceMax = 650,
             reverbFactor = 0.1,
-            volume = 0.72,
+            volume = 0.58,
             pitch = 0.9438743127,
         }
     }

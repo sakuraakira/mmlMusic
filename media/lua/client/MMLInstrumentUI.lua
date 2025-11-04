@@ -106,16 +106,9 @@ end
 -- Checkbox 變更回調函數
 function MMLInstrumentUI:onTrackCheckboxChanged(index, selected)
   -- 更新勾選狀態
-  if index == 1 then
-    self.selectedTracks.melody = selected
-  elseif index == 2 then
-    self.selectedTracks.harmony = selected
-  elseif index == 3 then
-    self.selectedTracks.accompaniment = selected
-  elseif index == 4 then
-    self.selectedTracks.orchestra = selected
-  elseif index == 5 then
-    self.selectedTracks.bassline = selected
+  local trackName = self.trackCheckbox:getOptionData(index)
+  if trackName then
+    self.selectedTracks[trackName] = selected
   end
 end
 
@@ -432,7 +425,7 @@ function MMLInstrumentUI:setMML(mml, item)
       end
       local optionName = trackDisplayNames[i]
       if hasContent then
-        self.trackCheckbox:addOption(optionName)
+        self.trackCheckbox:addOption(optionName, trackName)
       end
       self.selectedTracks[trackName] = false
     end
@@ -621,52 +614,27 @@ function MMLInstrumentUI:onPlay()
     return
   end
 
-  local trackNames = { "melody", "harmony", "accompaniment", "orchestra", "bassline" }
-  local allTracks = {}
-  -- 遍歷所有勾選的軌道
-  for i, trackName in ipairs(trackNames) do
-    if self.selectedTracks[trackName] and self.mml[trackName] then
-      table.insert(allTracks, {
-        mml1 = self.mml[trackName].mml1 or "",
-        mml2 = self.mml[trackName].mml2 or "",
-        mml3 = self.mml[trackName].mml3 or ""
-      })
+
+  -- 既定軌順序
+  local parts = {}
+
+
+  for trackName, isSelected in pairs(self.selectedTracks) do
+    print("Track:", trackName, "Selected:", tostring(isSelected))
+    if isSelected and self.mml[trackName] then
+      local t = self.mml[trackName]
+      print(trackName, " -> ", t.mml1)
+      if t.mml1 and t.mml1 ~= "" then table.insert(parts, t.mml1) end
+      if t.mml2 and t.mml2 ~= "" then table.insert(parts, t.mml2) end
+      if t.mml3 and t.mml3 ~= "" then table.insert(parts, t.mml3) end
     end
   end
-
-  -- 檢查是否有任何內容
-  if #allTracks == 0 then
-    self.statusLabel:setName(getText("UI_MML_NoTrackSelected") or "Please select at least one track")
-    return
-  end
-
-  -- 合併所有軌道的 mml1, mml2, mml3
-  local combined_mml1 = {}
-  local combined_mml2 = {}
-  local combined_mml3 = {}
-
-  for _, track in ipairs(allTracks) do
-    if track.mml1 ~= "" then
-      table.insert(combined_mml1, track.mml1)
-    end
-    if track.mml2 ~= "" then
-      table.insert(combined_mml2, track.mml2)
-    end
-    if track.mml3 ~= "" then
-      table.insert(combined_mml3, track.mml3)
-    end
-  end
-
-  local mml1 = table.concat(combined_mml1, ",")
-  local mml2 = table.concat(combined_mml2, ",")
-  local mml3 = table.concat(combined_mml3, ",")
-
-  if mml1 == "" and mml2 == "" and mml3 == "" then
+  if #parts == 0 then
     self.statusLabel:setName(getText("UI_MML_NoTracksAvailable") or "No tracks available")
     return
   end
 
-  local combined = string.format("%s,%s,%s", mml1, mml2, mml3)
+  local combined = table.concat(parts, ",")
 
   -- Use world TA if there is a world instrument object (covers Piano/GrandPiano)
   if self.upperSidePianoObject then
