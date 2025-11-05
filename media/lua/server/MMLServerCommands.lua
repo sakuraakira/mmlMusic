@@ -55,7 +55,7 @@ MMLServerCommands['ClientMusicBuff'] = function(player, args)
     local connectedPlayer = connectedPlayers:get(i)
 
     -- 廣播給範圍內的所有玩家（不包括自己）
-    if connectedPlayer:DistTo(args.x, args.y) < soundRange + 10 and connectedPlayer:getOnlineID() ~= player:getOnlineID() then
+    if connectedPlayer:DistTo(args.x, args.y) < soundRange + 10 and connectedPlayer:getOnlineID() ~= args.sourceId then
       SendMMLServerCommand(connectedPlayer, 'ServerMusicBuff', args)
       broadcastCount = broadcastCount + 1
     end

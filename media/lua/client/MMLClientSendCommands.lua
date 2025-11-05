@@ -89,10 +89,7 @@ end
 MMLClientSendCommands.sendMusicBuff = function(character, changes)
   if not isClient() then return end
 
-  SendMMLClientCommand('ClientMusicBuff', {
-    sourceId = character:getOnlineID(),
-    args = changes
-  })
+  SendMMLClientCommand('ClientMusicBuff', changes)
 end
 
 return MMLClientSendCommands
