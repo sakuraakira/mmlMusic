@@ -607,4 +607,143 @@ module mmlMusic {
             pitch = 0.9438743127,
         }
     }
+    
+    sound GuitarSteelC6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+        }
+    }
+    
+    sound GuitarSteelCs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarSteelD6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarSteelDs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+        }
+    }
+    
+    sound GuitarSteelE6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarSteelF6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarSteelFs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+        }
+    }
+    
+    sound GuitarSteelG6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarSteelGs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarSteelA6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+        }
+    }
+    
+    sound GuitarSteelAs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarSteel/GuitarSteel_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.72,
+            pitch = 1.0594630944,
+        }
+    }
 }

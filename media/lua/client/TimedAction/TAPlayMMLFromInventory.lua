@@ -64,6 +64,7 @@ function TAPlayMMLFromInventory:start()
 
   local animName = ItemToAnimation[self.instrument]
   if animName then
+    self:setOverrideHandModels(nil, self.item)
     self:setActionAnim(animName)
   end
 

@@ -607,4 +607,181 @@ module mmlMusic {
             pitch = 0.9438743127,
         }
     }
+    
+    sound GuitarDistortionC6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+        }
+    }
+    
+    sound GuitarDistortionCs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_C6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarDistortionD6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarDistortionDs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+        }
+    }
+    
+    sound GuitarDistortionE6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_Ds6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarDistortionF6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarDistortionFs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+        }
+    }
+    
+    sound GuitarDistortionG6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_Fs6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarDistortionGs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarDistortionA6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_A6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+        }
+    }
+    
+    sound GuitarDistortionAs6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_As6.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+            pitch = 1.0594630944,
+        }
+    }
+    
+    sound GuitarDistortionB6 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.58,
+            pitch = 0.9438743127,
+        }
+    }
+    
+    sound GuitarDistortionC7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+        }
+    }
+    
+    sound GuitarDistortionCs7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/guitarDistortion/GuitarDistortion_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.6,
+            pitch = 1.0594630944,
+        }
+    }
 }
