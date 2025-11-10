@@ -772,4 +772,16 @@ module mmlMusic {
             pitch = 0.9438743127,
         }
     }
+    
+    sound SaxophoneC7 {
+        category = Music,
+        loop = false,
+        is3D = true,
+        clip {
+            file = media/sound/saxophone/Saxophone_C7.ogg,
+            distanceMax = 650,
+            reverbFactor = 0.1,
+            volume = 0.85,
+        }
+    }
 }
